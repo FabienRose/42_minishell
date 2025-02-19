@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:17:00 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/19 10:19:34 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:19:41 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void print_welcome()
 	printf(" |   |%s%s%s    \\ \\__\\    \\ \\__\\ \\__\\ \\__\\\\ \\__\\ \\__\\____\\_\\  \\ \\__\\ \\__\\ \\_______\\ \\_______\\ \\_______\\ %s%s%s|   |\n", FONT_NRM, FONT_BOLD, FONT_YEL, FONT_NRM, FONT_BLU, FONT_BOLD);
 	printf(" |   |%s%s%s     \\|__|     \\|__|\\|__|\\|__| \\|__|\\|__|\\_________\\|__|\\|__|\\|_______|\\|_______|\\|_______| %s%s%s|   |\n", FONT_NRM, FONT_BOLD, FONT_YEL, FONT_NRM, FONT_BLU, FONT_BOLD);
 	printf(" |   |%s%s%s                                        \\|_________|                                        %s%s%s|   |\n", FONT_NRM, FONT_BOLD, FONT_YEL, FONT_NRM, FONT_BLU, FONT_BOLD);
-	printf(" |   |%s%s%s By Kristopher & CO                                                                         %s%s%s|   |\n", FONT_NRM, FONT_BOLD, FONT_YEL, FONT_NRM, FONT_BLU, FONT_BOLD);
+	printf(" |   |%s%s%s By クリストファ & ファビアン                                                               %s%s%s|   |\n", FONT_NRM, FONT_BOLD, FONT_YEL, FONT_NRM, FONT_BLU, FONT_BOLD);
 	printf(" |___|%s%s~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%s%s%s|___|\n", FONT_NRM, FONT_BLU, FONT_NRM, FONT_BLU, FONT_BOLD);
 	printf("(_____)                                                                                          (_____)\n%s", FONT_NRM);
 }
