@@ -6,7 +6,7 @@
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:45:41 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/19 11:48:13 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/02/19 12:01:16 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,7 @@ int	main(int argc, char **argv)
 	printf("Sunny init?");
 	return (0);
 }
+/**
+ * @brief 
+ * 
+ */
