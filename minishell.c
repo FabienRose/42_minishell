@@ -19,5 +19,6 @@ int	main(int argc, char **argv)
 	(void)argv;
 	printf("Hello World!");
 	printf("Hey my guy !!");
+	printf("Sunny init?");
 	return (0);
 }
