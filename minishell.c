@@ -6,7 +6,7 @@
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:53:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/19 10:53:27 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/02/19 11:01:29 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int	main(int argc, char **argv)
 	print_welcome();
 	(void)argc;
 	(void)argv;
+	printf("Hello World!");
 	return (0);
 }
