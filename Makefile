@@ -22,6 +22,7 @@ SMK_RM_FLAGS=-fr
 
 #----- Sources -----
 SRCS=	./minishell.c \
+		./shell/shell_init.c \
 		./signatures/sgn_welcome.c
 
 #----- Objects -----

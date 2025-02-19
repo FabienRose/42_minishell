@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:53:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/19 12:05:21 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/19 12:00:22 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/19 12:02:39 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell/shell.h"
+#include "shell.h"
 
-int	main(void)
+t_bool init_shell(t_shell *shell)
 {
-	t_shell data;
+	shell->initialized = TRUE;
 	
-	print_welcome();
-	if(!init_shell(&data))
-		return (1);	
-	return (0);
+	return (TRUE);
 }
