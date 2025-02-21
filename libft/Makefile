@@ -29,6 +29,7 @@ SRCS=	./convertions/ft_atoi.c \
 		./convertions/ft_itoa.c \
 		./memory/ft_memset.c \
 		./memory/ft_memmove.c \
+		./memory/ft_realloc.c \
 		./memory/ft_memcpy.c \
 		./memory/ft_bzero.c \
 		./memory/ft_memcmp.c \
@@ -36,6 +37,7 @@ SRCS=	./convertions/ft_atoi.c \
 		./memory/ft_calloc.c \
 		./strings/ft_strmapi.c \
 		./strings/ft_strncmp.c \
+		./strings/ft_strmerge.c \
 		./strings/ft_strnstr.c \
 		./strings/ft_strchr.c \
 		./strings/ft_striteri.c \
@@ -48,6 +50,7 @@ SRCS=	./convertions/ft_atoi.c \
 		./strings/ft_split.c \
 		./strings/ft_strdup.c \
 		./strings/ft_strjoin.c \
+		./strings/ft_strcpy.c \
 		./strings/ft_substr.c \
 		./strings/ft_toupper.c \
 		./checkers/ft_isascii.c \

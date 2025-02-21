@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 12:00:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 17:29:04 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/21 17:15:21 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/21 17:21:11 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "libft.h"
 
-t_bool shell_init(t_shell *shell)
+void	ft_strcpy(char *dst, const char *src)
 {
-	shell->initialized = TRUE;
-	shell->last_error = NULL;
-	return (TRUE);
+	size_t pos;
+	
+	if(!dst || !src)
+		return ;
+	pos = 0;
+	while(src[pos])
+	{
+		dst[pos] = src[pos];
+		pos++;
+	}
+	dst[pos] = 0;
 }
