@@ -23,6 +23,8 @@ SMK_RM_FLAGS=-fr
 #----- Sources -----
 SRCS=	./minishell.c \
 		./shell/shell_init.c \
+		./prompt/pmt_clear.c \
+		./prompt/pmt_init.c \
 		./directories/dir_init.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
