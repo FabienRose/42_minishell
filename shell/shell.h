@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.h                                            :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/19 12:04:40 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/20 19:59:24 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/20 19:59:24 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 //--------------------------------------------------
 typedef struct s_shell
 {
-	t_bool initialized;
+	t_bool	initialized;
+	char	**environement;
 }	t_shell;
 
 
@@ -37,5 +38,12 @@ typedef struct s_shell
  * @return FALSE if failed
  */
 t_bool	init_shell(t_shell *shell);
+
+//=================== EXEC UTILS ===================
+
+void	set_working_directory(t_shell *shell);
+t_bool	change_directory(t_shell minishell, char *arguments);
+t_bool	set_environement(t_shell *minishell, char *variable, char *path);
+
 
 #endif //SHELL_H

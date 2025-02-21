@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 09:11:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/19 10:11:13 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/19 17:15:43 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/19 17:23:33 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@
 //                   COMMON
 //--------------------------------------------------
 //====================== BOOLEAN ======================
-typedef unsigned char t_bool;
+typedef unsigned char	t_bool;
 # define TRUE 1
 # define FALSE 0
 
 //====================== PRINT ======================
-#define FONT_NRM			"\x1B[0m"
-#define FONT_RED 			"\x1B[31m"
-#define FONT_GRN 			"\x1B[32m"
-#define FONT_YEL 			"\x1B[33m"
-#define FONT_BLU 			"\x1B[34m"
-#define FONT_MAG 			"\x1B[35m"
-#define FONT_CYN 			"\x1B[36m"
-#define FONT_WHT 			"\x1B[37m"
-#define FONT_BOLD			"\033[1m"	 	 
-#define FONT_UNDERLINE		"\033[4m"	 
-#define FONT_NO_UNDERLINE	"\033[24m"	 
+# define FONT_NRM			"\x1B[0m"
+# define FONT_RED 			"\x1B[31m"
+# define FONT_GRN 			"\x1B[32m"
+# define FONT_YEL 			"\x1B[33m"
+# define FONT_BLU 			"\x1B[34m"
+# define FONT_MAG 			"\x1B[35m"
+# define FONT_CYN 			"\x1B[36m"
+# define FONT_WHT 			"\x1B[37m"
+# define FONT_BOLD			"\033[1m"	 	 
+# define FONT_UNDERLINE		"\033[4m"	 
+# define FONT_NO_UNDERLINE	"\033[24m"	 
 
 
 //--------------------------------------------------
