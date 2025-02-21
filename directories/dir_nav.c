@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   dir_nav.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:53:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/21 10:04:37 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/21 09:16:20 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/21 09:20:35 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell/shell.h"
+#include "directories.h"
 
-int	main(void)
+char *dir_getat(t_dir *dir, size_t pos)
+{	
+	if(!dir || !dir->detailed_path)
+		return (NULL);
+	return dir->detailed_path[pos];
+}
+
+size_t	dir_getlen(t_dir *dir)
 {
-	t_shell data;
-	
-	print_welcome();
-	
-	if(!init_shell(&data))
-		return (1);	
-	return (0);
+	size_t i;
+	if(!dir || !dir->detailed_path)
+		return (0);
+	i = 0;
+	while(dir->detailed_path[i])
+		i++;
+	return(i);
 }
