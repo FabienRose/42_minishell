@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   shell_clear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 12:00:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 16:11:38 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/21 16:03:05 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/21 16:09:04 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_bool shell_init(t_shell *shell)
+void shell_clear(t_shell *shell)
 {
-	shell->initialized = TRUE;
-	
-	return (TRUE);
+	if(!shell->last_error)
+	{
+		free(shell->last_error);
+		shell->last_error = NULL;
+	}
 }

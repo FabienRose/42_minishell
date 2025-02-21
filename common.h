@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:42:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/19 12:15:13 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:21:52 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,11 @@
  * 
  */
 void	print_welcome(void);
+
+//====================== UTILS ======================
+	//--------------------- Errors ---------------------
+void util_seterror(void *shell, const char *msg);
+void util_clearerror(void *shell);
+void util_printerror(void *shell);
 
 #endif //COMMON_H

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 09:52:48 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:11:40 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 //--------------------------------------------------
 typedef struct s_shell
 {
-	t_bool initialized;
+	t_bool	initialized;
+	char	*last_error;
 }	t_shell;
 
 
@@ -37,6 +38,14 @@ typedef struct s_shell
  * 
  * @return FALSE if failed
  */
-t_bool	init_shell(t_shell *shell);
+t_bool	shell_init(t_shell *shell);
+
+//====================== CLEAR ======================
+/**
+ * @brief Creal agiven shell struct
+ * 
+ * @param shell A pointer to the struct
+ */
+void shell_clear(t_shell *shell);
 
 #endif //SHELL_H
