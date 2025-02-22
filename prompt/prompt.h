@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/22 09:58:01 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:30:52 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ t_pmt*	pmt_new(const char* disp, void *shell);
  * @return t_bool FALSE if an error occured
  */
 t_bool	pmt_init(t_pmt* pmt, const char* disp, void *shell);
+
+//====================== START ======================
+/**
+ * @brief Calling prompt for reading in the stdoutput
+ * 
+ * @param pmt current t_pmy structure
+ * @return t_promtret: Retuen status of the prompt
+ */
+t_promtret pmt_start(t_pmt* pmt);
 
 //====================== CLEAR ======================
 /**

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:44:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/22 09:59:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/22 15:53:24 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static t_promtret shell_nextprompt(t_shell* shell)
 {
-	t_pmt	*current_pmt;
-	char	*head;
+	t_pmt		*current_pmt;
+	char		*head;
+	t_promtret	retvalue;
 	
 	head = shell_gethead(shell);
 	if(!head)
@@ -27,9 +28,9 @@ static t_promtret shell_nextprompt(t_shell* shell)
 	free(head);
 	if(!current_pmt)
 		return (PMT_ERROR);
-	printf("%s\n", current_pmt->disp);
+	retvalue = pmt_start(current_pmt);
 	pmt_clear(&current_pmt);
-	return (PMT_FAILED);
+	return (retvalue);
 }
 
 t_bool shell_start(t_shell* shell)
@@ -39,6 +40,10 @@ t_bool shell_start(t_shell* shell)
 	if(!shell_update_loc(shell))
 		return (FALSE);
 	ret = shell_nextprompt(shell);
+	while (ret != PMT_ERROR && ret != PMT_STOP)
+	{
+		ret = shell_nextprompt(shell);
+	}
 	if(ret == PMT_ERROR)
 		return (FALSE);
 	return (TRUE);

@@ -28,6 +28,7 @@ SRCS=	./minishell.c \
 		./shell/shell_start.c \
 		./utils/util_errors.c \
 		./prompt/pmt_utils.c \
+		./prompt/pmt_start.c \
 		./prompt/pmt_clear.c \
 		./prompt/pmt_init.c \
 		./directories/dir_init.c \
@@ -62,6 +63,8 @@ LIBFT_CALL=$(LIBFT_LPATH) $(LIBFT_LCALL)
 DEPS_LIST=$(LIBFT_PATH)$(LIBFT_NAME) 
 DEPS_CALLS=$(LIBFT_CALL) 
 
+#----- External -----
+EXT_DEPS=-lreadline
 
 #--------------------------------------------------
 #      LOADING BAR - ADVANCED MAKEFILE (AMK)
@@ -120,7 +123,7 @@ $(PNAME): $(DEPS_LIST) $(SMK_OBJS_DIR)/ $(SMK_OBJS)
 	$(eval NB_BARPOS := $(AMK_NB_FILES))
 	$(call init_bar)
 	$(call next_bar)
-	@$(CPL) $(CPL_FLAGS) $(DEPS_LIST) $(SMK_OBJS) $(DEPS_CALLS) -o $@
+	@$(CPL) $(CPL_FLAGS) $(DEPS_LIST) $(SMK_OBJS) $(DEPS_CALLS) $(EXT_DEPS) -o $@
 	$(call final_bar)
 	@printf "\n\033[s"
 

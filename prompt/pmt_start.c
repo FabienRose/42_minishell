@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:53:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/22 15:48:41 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/22 11:23:39 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/22 16:16:10 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell/shell.h"
+#include "prompt.h"
 
-int	main(void)
+t_promtret pmt_start(t_pmt* pmt)
 {
-	t_shell data;
+	char *input;
 	
-	print_welcome();
-	
-	if(!shell_init(&data))
+	if(!pmt || !pmt->disp)
+		return PMT_ERROR;
+	input = readline(pmt->disp);
+	if(input && ft_strlen(input) > 0  && input[0] != '\n')
+		add_history(input);
+	printf("HELLO\n");
+	if(input)
 	{
-		printf("%s%sError: Cannot init shell%s\n", FONT_RED, FONT_BOLD, FONT_NRM);
-		return (1);
+		free(input);
+		input = NULL;
 	}
-	if(!shell_start(&data))
-	{
-		util_printerror(&data);
-		shell_clear(&data);
-		return (1);
-	}
-	shell_clear(&data);
-	return (0);
+	else
+		return PMT_STOP;
+	return PMT_SUCCESS;
 }

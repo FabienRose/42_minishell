@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:42:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/22 11:03:48 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/22 15:52:03 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 //                 COMMON INCLUDES
 //--------------------------------------------------
 # include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 //--------------------------------------------------
 //                      LIBS
@@ -27,7 +29,7 @@
 //                   DEFIENS
 //--------------------------------------------------
 //====================== SETTINGS ======================
-#define PROMPT_DISP_FULL FALSE
+#define PROMPT_DISP_FULL TRUE
 
 #define PROMPT_USER_COL FONT_CYN
 #define PROMPT_NAME_COL FONT_YEL

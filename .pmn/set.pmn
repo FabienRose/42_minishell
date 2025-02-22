@@ -1,6 +1,7 @@
 &&Language&&##c##
 &&ProgType&&##program##
 &&ProgName&&##minishell##
+&&ExtLib&&##-lreadline##
 &&AdvancedMake&&##true##
 &&AMKWidth&&##50##
 &&AMKSleep&&##0##
