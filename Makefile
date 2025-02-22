@@ -24,12 +24,14 @@ SMK_RM_FLAGS=-fr
 SRCS=	./minishell.c \
 		./shell/shell_clear.c \
 		./shell/shell_init.c \
+		./shell/shell_env.c \
 		./shell/shell_start.c \
 		./utils/util_errors.c \
 		./prompt/pmt_utils.c \
 		./prompt/pmt_clear.c \
 		./prompt/pmt_init.c \
 		./directories/dir_init.c \
+		./directories/dir_disp.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 08:32:13 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 10:00:28 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/22 09:53:03 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ char	*dir_getat(t_dir *dir, size_t pos);
  * @return size_t the total count of folder in the path
  */
 size_t	dir_getlen(t_dir *dir);
+
+//====================== DISPLAY ======================
+/**
+ * @brief Generate the display path of the dir (PROMPT_DISP_FULL will modify the output)
+ * 
+ * @param dir Directory to generate the path from
+ * @return char* the returned path
+ */
+char *dir_getdisp(t_dir* dir);
 
 //====================== CLEAR ======================
 /**

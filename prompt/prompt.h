@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 17:48:55 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/22 09:58:01 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,22 @@
 #include "common.h"
 
 //--------------------------------------------------
+//                     ENUM
+//--------------------------------------------------
+typedef enum e_promptret
+{
+	PMT_SUCCESS,
+	PMT_FAILED,
+	PMT_STOP,
+	PMT_ERROR,	
+}	t_promtret;
+
+//--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
 typedef struct s_pmt
 {
-	char *disp;
+	char	*disp;
 	void	*l_shell;
 }	t_pmt;
 

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 08:39:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 09:24:29 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:03:28 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ t_bool dir_init_from_path(t_dir* dir, const char* path)
 	dir->detailed_path = ft_split(path, '/');
 	if(!dir->detailed_path)
 		return (FALSE);
-	dir->name = ft_strdup(dir_getat(dir, dir_getlen(dir) - 1));
+	if(dir_getlen(dir) == 0)
+		dir->name = ft_strdup("/");
+	else
+		dir->name = ft_strdup(dir_getat(dir, dir_getlen(dir) - 1));
 	if(!dir->name)
 		return (FALSE);
 	return (TRUE);

@@ -6,13 +6,9 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 08:41:35 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/22 08:44:22 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/22 09:04:21 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prompt.h"
 
-char *pmt_gethead()
-{
-	getenv()
-}

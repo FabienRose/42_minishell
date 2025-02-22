@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 17:52:01 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/22 09:32:45 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@
 //--------------------------------------------------
 typedef struct s_shell
 {
-	t_bool	initialized;
 	char	*last_error;
+	t_dir	*current_dir;
+	t_bool	initialized;
 }	t_shell;
 
 
@@ -42,7 +43,7 @@ typedef struct s_shell
  */
 t_bool	shell_init(t_shell *shell);
 
-//====================== NAME ======================
+//====================== START ======================
 /**
  * @brief Start the shell program (Main loop)
  * 
@@ -50,6 +51,22 @@ t_bool	shell_init(t_shell *shell);
  * @return t_bool FALSE if Failed
  */
 t_bool shell_start(t_shell* shell);
+
+
+//====================== ENV ======================
+/**
+ * @brief Fecth the environement for to generate a header to the prompt
+ * 
+ * @return char* Header to display (data is malloc)
+ */
+char *shell_gethead(t_shell *shell);
+/**
+ * @brief Call to update the shell->current_dir with PWD
+ * 
+ * @param shell Global shell structure
+ * @return t_bool FALSE if Failed
+ */
+t_bool shell_update_loc(t_shell *shell);
 
 //====================== CLEAR ======================
 /**
