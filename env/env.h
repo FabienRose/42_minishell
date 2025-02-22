@@ -1,45 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.h                                            :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 16:29:31 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/22 16:32:02 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/22 16:39:33 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/22 16:45:32 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#ifndef ENV_H
+# define ENV_H
 
 //--------------------------------------------------
-//                 COMMON INCLUDES
+//                 LOCAL INCLUDES
 //--------------------------------------------------
-# include <stdio.h>
+# include "common.h"
+
+# include "shell/shell.h"
 
 //--------------------------------------------------
-//                      LIBS
+//                   STRCUTURES
 //--------------------------------------------------
-# include "libft/libft.h"
-
-//--------------------------------------------------
-//                   DEFIENS
-//--------------------------------------------------
-//====================== DEVELOPMNET ======================
-# ifndef RELEASE
-#  define DEBUG
-#  define IS_DEBUG 1
-# endif
 
 //--------------------------------------------------
 //                    FUNCTIONS
 //--------------------------------------------------
-//====================== SIGNATURES ======================
-/**
- * @brief Print welcome message a the begining of the program
- * 
- */
-void	print_welcome(void);
 
-#endif //COMMON_H
+struct s_shell;
+typedef struct s_shell t_shell;
+
+t_bool	set_environement(t_shell *minishell, char *variable, char *path);
+
+#endif //ENV_H

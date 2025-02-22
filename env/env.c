@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 20:37:13 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/20 20:37:13 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/22 16:48:02 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/22 16:48:02 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./shell/shell.h"
+#include "env.h"
 
 extern char	**environ;
 
@@ -85,7 +85,6 @@ t_bool	set_environement(t_shell *minishell ,char *variable, char *path)
 		i++;
 	}
 	minishell->environement = resize_environ(i + 2);
-	printf("ENTRY >>> %s\n", entry);
 	if (!minishell->environement)
 	{
 		free(entry);

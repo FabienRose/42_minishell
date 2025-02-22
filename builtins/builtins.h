@@ -1,45 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.h                                            :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 16:29:31 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/22 16:32:02 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/22 16:24:36 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/22 16:24:36 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
 //--------------------------------------------------
-//                 COMMON INCLUDES
+//                 LOCAL INCLUDES
 //--------------------------------------------------
-# include <stdio.h>
+# include "common.h"
 
 //--------------------------------------------------
-//                      LIBS
+//                   STRCUTURES
 //--------------------------------------------------
-# include "libft/libft.h"
-
-//--------------------------------------------------
-//                   DEFIENS
-//--------------------------------------------------
-//====================== DEVELOPMNET ======================
-# ifndef RELEASE
-#  define DEBUG
-#  define IS_DEBUG 1
-# endif
 
 //--------------------------------------------------
 //                    FUNCTIONS
 //--------------------------------------------------
-//====================== SIGNATURES ======================
-/**
- * @brief Print welcome message a the begining of the program
- * 
- */
-void	print_welcome(void);
 
-#endif //COMMON_H
+#endif //BUILTINS_H

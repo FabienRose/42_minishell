@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 20:34:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/20 20:36:22 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/21 14:13:47 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/22 16:40:21 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell/shell.h"
+#include "env/env.h"
 
 int	main(void)
 {
