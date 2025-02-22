@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:13:06 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 16:24:28 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:59:51 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ void util_printerror(void *shell)
 		return ;
 	cast_shell = (t_shell*)shell;
 	if(!cast_shell->last_error)
-		perror("Error: ");
+	{
+		printf("%s%s", FONT_RED, FONT_BOLD);
+		perror("Error");
+		printf("%s\n", FONT_NRM);
+	}
 	else
 		printf("%s%sError: %s%s\n", FONT_RED, FONT_BOLD, cast_shell->last_error, FONT_NRM);
 }

@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   pmt_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:53:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/21 17:57:45 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/22 08:41:35 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/22 08:44:22 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell/shell.h"
+#include "prompt.h"
 
-int	main(void)
+char *pmt_gethead()
 {
-	t_shell data;
-	
-	print_welcome();
-	
-	if(!shell_init(&data))
-	{
-		printf("%s%sError: Cannot init shell%s\n", FONT_RED, FONT_BOLD, FONT_NRM);
-		return (1);
-	}
-	if(!shell_start(&data))
-	{
-		util_printerror(&data);
-		shell_clear(&data);
-		return (1);
-	}
-	shell_clear(&data);
-	return (0);
+	getenv()
 }

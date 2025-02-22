@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 13:42:27 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:48:55 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct s_pmt
 {
 	char *disp;
+	void	*l_shell;
 }	t_pmt;
 
 //--------------------------------------------------
@@ -36,7 +37,7 @@ typedef struct s_pmt
  * @param disp String to be display at the begining of a prompt
  * @return t_pmt* returned structure
  */
-t_pmt*	pmt_new(const char* disp);
+t_pmt*	pmt_new(const char* disp, void *shell);
 /**
  * @brief Inialize a t_pmt structure
  * 
@@ -44,7 +45,7 @@ t_pmt*	pmt_new(const char* disp);
  * @param disp String to be display at the begining of a prompt
  * @return t_bool FALSE if an error occured
  */
-t_bool	pmt_init(t_pmt* pmt, const char* disp);
+t_bool	pmt_init(t_pmt* pmt, const char* disp, void *shell);
 
 //====================== CLEAR ======================
 /**

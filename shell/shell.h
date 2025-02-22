@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 16:11:40 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:52:01 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 //                 LOCAL INCLUDES
 //--------------------------------------------------
 # include "common.h"
+
 # include "directories/directories.h"
+# include "prompt/prompt.h"
 
 //--------------------------------------------------
 //                   STRCUTURES
@@ -39,6 +41,15 @@ typedef struct s_shell
  * @return FALSE if failed
  */
 t_bool	shell_init(t_shell *shell);
+
+//====================== NAME ======================
+/**
+ * @brief Start the shell program (Main loop)
+ * 
+ * @param shell Global shell structure
+ * @return t_bool FALSE if Failed
+ */
+t_bool shell_start(t_shell* shell);
 
 //====================== CLEAR ======================
 /**
