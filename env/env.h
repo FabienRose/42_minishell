@@ -32,5 +32,15 @@ struct s_shell;
 typedef struct s_shell t_shell;
 
 t_bool	set_environement(t_shell *minishell, char *variable, char *path);
+t_bool  copy_environ(t_shell *minishell);
+t_bool  free_environ(char **environ);
+char	*create_env(char *variable, char *value);
+char	**resize_environ(int new_size);
+t_bool	unset_environement(t_shell *minishell, char *variable);
+
+
+
+
+
 
 #endif //ENV_H

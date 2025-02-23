@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "shell/shell.h"
-#include "env/env.h"
 
 int	main(void)
 {
@@ -19,7 +18,9 @@ int	main(void)
 	// int i = 0;
 
 	minishell.environement = NULL;
-	set_environement(&minishell, "FABIEN","La variable est set!");
+	copy_environ(&minishell);
+	set_environement(&minishell, "FABIEN","La variable est reset!");
+	set_environement(&minishell, "TEST","La variable est reset!");
 	// while (minishell.environement[i])
 	// {
 	// 	printf(">>> %d: %s\n",i, minishell.environement[i]);
@@ -27,7 +28,10 @@ int	main(void)
 	// 	i++;
 	// }
 	printf("Get env test : %s\n", getenv("FABIEN"));
-	free(minishell.environement);
+	printf("Get env test : %s\n", getenv("TEST"));
+	unset_environement(&minishell, "TEST");
+	printf("Get env test : %s\n", getenv("TEST"));
+	// free_environ(minishell.environement);
 	// set_environement("OLDPWD","/home/fmixtur");
 	// printf("After : %s\n", getenv("PWD"));
 	return (0);

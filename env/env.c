@@ -12,66 +12,15 @@
 
 #include "env.h"
 
-extern char	**environ;
-
-char	*create_env(char *variable, char *value)
-{
-	char	*entry;
-	size_t	len;
-	int		i;
-	int		j;
-
-	len = ft_strlen(variable) + ft_strlen(value) + 2;
-	entry = ft_calloc(1, len);
-	if (!entry)
-		return (NULL);
-	i = 0;
-	while (variable[i])
-	{
-		entry[i] = variable[i];
-		i++;
-	}
-	entry[i++] = '=';
-	j = 0;
-	while (value[j])
-	{
-		entry[i++] = value[j++];
-	}
-	return (entry);
-}
-
-char	**resize_environ(int new_size)
-{
-	char	**new_environ;
-	int		i;
-
-	new_environ = ft_calloc(new_size + 1, sizeof(char *));
-	if (!new_environ)
-		return (NULL);
-	i = 0;
-	while (environ[i] && i < new_size - 1)
-	{
-		new_environ[i] = ft_strdup(environ[i]);
-		if (!new_environ[i])
-		{
-			while (i-- > 0)
-			free(new_environ[i]);
-			free(new_environ);
-			return (NULL);
-		}
-		i++;
-	}
-	return (new_environ);
-}
-
 t_bool	set_environement(t_shell *minishell ,char *variable, char *path)
 {
-	int		i;
-	char	*entry;
+	int			i;
+	char		*entry;
+	extern char	**environ;
 	
 	entry = create_env(variable, path);
 	if (!entry)
-	return (FALSE);
+		return (FALSE);
 	i = 0;
 	while (environ[i])
 	{
@@ -92,6 +41,31 @@ t_bool	set_environement(t_shell *minishell ,char *variable, char *path)
 	}
 	minishell->environement[i] = entry;
 	minishell->environement[i + 1] = NULL;
+	free_environ(environ);
 	environ = minishell->environement;
 	return (TRUE);
+}
+
+t_bool	unset_environement(t_shell *minishell, char *variable)
+{
+	int		i;
+
+		i = 0;
+	while (minishell->environement[i])
+	{
+		if (ft_strncmp(minishell->environement[i], variable, ft_strlen(variable)) == 0)
+		{
+			free(minishell->environement[i]);
+			minishell->environement[i] = NULL;
+			while (minishell->environement[i])
+			{
+				minishell->environement[i] = minishell->environement[i + 1];
+				i++;
+			}
+			free(minishell->environement[i]);
+			return (TRUE);
+		}
+		i++;
+	}
+	return (FALSE);
 }

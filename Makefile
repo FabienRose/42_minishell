@@ -25,6 +25,7 @@ SRCS=	./minishell.c \
 		./signatures/sgn_welcome.c \
 		./builtins/cd.c \
 		./env/env.c \
+		./env/env_utils.c \
 		./shell/shell_init.c
 
 #----- Objects -----
