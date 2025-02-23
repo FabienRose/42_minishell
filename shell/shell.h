@@ -28,7 +28,6 @@ typedef struct s_shell
 	char	**environement;
 }	t_shell;
 
-
 //--------------------------------------------------
 //                    FUNCTIONS
 //--------------------------------------------------
@@ -38,6 +37,6 @@ typedef struct s_shell
  * 
  * @return FALSE if failed
  */
-t_bool	init_shell(t_shell *shell);
+t_bool	shell_init(t_shell *shell);
 
 #endif //SHELL_H

@@ -12,9 +12,10 @@
 
 #include "shell.h"
 
-t_bool	init_shell(t_shell *shell)
+t_bool	shell_init(t_shell *shell)
 {
+	shell->environement = NULL;
+	copy_environ(shell);
 	shell->initialized = TRUE;
-
 	return (TRUE);
 }

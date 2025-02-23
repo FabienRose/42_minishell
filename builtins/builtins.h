@@ -17,13 +17,18 @@
 //                 LOCAL INCLUDES
 //--------------------------------------------------
 # include "common.h"
-
+# include "shell/shell.h"
 //--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
 
+struct					s_shell;
+typedef struct s_shell	t_shell;
+
 //--------------------------------------------------
 //                    FUNCTIONS
 //--------------------------------------------------
+
+t_bool	change_directory(t_shell *shell, char *arg);
 
 #endif //BUILTINS_H

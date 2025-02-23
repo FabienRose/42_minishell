@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
@@ -12,51 +12,47 @@
 
 #include "env.h"
 
-
-t_bool  copy_environ(t_shell *minishell)
+t_bool	copy_environ(t_shell *minishell)
 {
-    extern char **environ;
-    int         i;
-    int         size;
+	extern char		**environ;
+	int				i;
+	int				size;
 
-    size = 0;
-    while (environ[size] != NULL)
-        size++;
-    
-    minishell->environement = malloc((size + 1) * sizeof(char *));
-    if (!minishell->environement)
-        return (FALSE);
-
-    i = 0;
-    while (i < size)
-    {
-        minishell->environement[i] = ft_strdup(environ[i]);
-        if (!minishell->environement[i])
-        {
-            while (i-- > 0)
-                free(minishell->environement[i]);
-            free(minishell->environement);
-            return (FALSE);
-        }
-        i++;
-    }
-    minishell->environement[size] = NULL;
-    environ = minishell->environement;
-    return (TRUE);
+	size = 0;
+	while (environ[size])
+		size++;
+	minishell->environement = malloc((size + 1) * sizeof(char *));
+	if (!minishell->environement)
+		return (FALSE);
+	i = -1;
+	while (++i < size)
+	{
+		minishell->environement[i] = ft_strdup(environ[i]);
+		if (!minishell->environement[i])
+		{
+			while (i-- > 0)
+				free(minishell->environement[i]);
+			free(minishell->environement);
+			return (FALSE);
+		}
+	}
+	minishell->environement[size] = NULL;
+	environ = minishell->environement;
+	return (TRUE);
 }
 
-t_bool  free_environ(char **environ)
+t_bool	free_environ(char **environ)
 {
-    int     i;
+	int	i;
 
-    i = 0;
-    while (environ[i])
-    {
-        free(environ[i]);
-        i++;
-    }
-    free(environ);
-    return (TRUE);
+	i = 0;
+	while (environ[i])
+	{
+		free(environ[i]);
+		i++;
+	}
+	free(environ);
+	return (TRUE);
 }
 
 char	*create_env(char *variable, char *value)
@@ -87,9 +83,9 @@ char	*create_env(char *variable, char *value)
 
 char	**resize_environ(int new_size)
 {
-    extern char	**environ;
-	char	    **new_environ;
-	int		    i;
+	extern char	**environ;
+	char		**new_environ;
+	int			i;
 
 	new_environ = ft_calloc(new_size + 1, sizeof(char *));
 	if (!new_environ)
@@ -101,7 +97,7 @@ char	**resize_environ(int new_size)
 		if (!new_environ[i])
 		{
 			while (i-- > 0)
-			free(new_environ[i]);
+				free(new_environ[i]);
 			free(new_environ);
 			return (NULL);
 		}

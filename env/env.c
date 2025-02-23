@@ -12,20 +12,15 @@
 
 #include "env.h"
 
-t_bool	set_environement(t_shell *minishell ,char *variable, char *path)
+t_bool	update_existing_env(char **environ, char *variable, char *entry)
 {
-	int			i;
-	char		*entry;
-	extern char	**environ;
-	
-	entry = create_env(variable, path);
-	if (!entry)
-		return (FALSE);
+	int	i;
+
 	i = 0;
 	while (environ[i])
 	{
 		if (ft_strncmp(environ[i], variable, ft_strlen(variable)) == 0
-		&& environ[i][ft_strlen(variable)] == '=')
+			&& environ[i][ft_strlen(variable)] == '=')
 		{
 			free(environ[i]);
 			environ[i] = entry;
@@ -33,6 +28,26 @@ t_bool	set_environement(t_shell *minishell ,char *variable, char *path)
 		}
 		i++;
 	}
+	return (FALSE);
+}
+
+t_bool	set_environement(t_shell *minishell, char *variable,
+			char *path, int path_is_malloc)
+{
+	int			i;
+	char		*entry;
+	extern char	**environ;
+
+	entry = create_env(variable, path);
+	if (path_is_malloc)
+		free(path);
+	if (!entry)
+		return (FALSE);
+	if (update_existing_env(environ, variable, entry))
+		return (TRUE);
+	i = 0;
+	while (environ[i])
+		i++;
 	minishell->environement = resize_environ(i + 2);
 	if (!minishell->environement)
 	{
@@ -50,10 +65,11 @@ t_bool	unset_environement(t_shell *minishell, char *variable)
 {
 	int		i;
 
-		i = 0;
+	i = 0;
 	while (minishell->environement[i])
 	{
-		if (ft_strncmp(minishell->environement[i], variable, ft_strlen(variable)) == 0)
+		if (ft_strncmp(minishell->environement[i], variable,
+				ft_strlen(variable)) == 0)
 		{
 			free(minishell->environement[i]);
 			minishell->environement[i] = NULL;

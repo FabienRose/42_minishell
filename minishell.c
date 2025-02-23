@@ -15,25 +15,25 @@
 int	main(void)
 {
 	t_shell	minishell;
-	// int i = 0;
 
-	minishell.environement = NULL;
-	copy_environ(&minishell);
-	set_environement(&minishell, "FABIEN","La variable est reset!");
-	set_environement(&minishell, "TEST","La variable est reset!");
-	// while (minishell.environement[i])
-	// {
-	// 	printf(">>> %d: %s\n",i, minishell.environement[i]);
-	// 	free(minishell.environement[i]);
-	// 	i++;
-	// }
-	printf("Get env test : %s\n", getenv("FABIEN"));
-	printf("Get env test : %s\n", getenv("TEST"));
-	unset_environement(&minishell, "TEST");
-	printf("Get env test : %s\n", getenv("TEST"));
-	// free_environ(minishell.environement);
-	// set_environement("OLDPWD","/home/fmixtur");
-	// printf("After : %s\n", getenv("PWD"));
+	shell_init(&minishell);
+	printf("Current dir : %s\n", getenv("PWD"));
+	printf("Previous dir : %s\n\n", getenv("OLDPWD"));
+	change_directory(&minishell, "env");
+	printf("current dir : %s\n", getenv("PWD"));
+	printf("previous dir : %s\n\n", getenv("OLDPWD"));
+	change_directory(&minishell, "..");
+	printf("current dir : %s\n", getenv("PWD"));
+	printf("previous dir : %s\n\n", getenv("OLDPWD"));
+	change_directory(&minishell, "~/42");
+	printf("current dir : %s\n", getenv("PWD"));
+	printf("previous dir : %s\n\n", getenv("OLDPWD"));
+	change_directory(&minishell, "..");
+	printf("current dir : %s\n", getenv("PWD"));
+	printf("previous dir : %s\n\n", getenv("OLDPWD"));
+	change_directory(&minishell, "..");
+	printf("current dir : %s\n", getenv("PWD"));
+	printf("previous dir : %s\n\n", getenv("OLDPWD"));
+	free_environ(minishell.environement);
 	return (0);
 }
-
