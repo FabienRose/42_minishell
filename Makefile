@@ -24,8 +24,9 @@ SMK_RM_FLAGS=-fr
 SRCS=	./minishell.c \
 		./signatures/sgn_welcome.c \
 		./builtins/cd.c \
-		./env/env.c \
+		./builtins/echo.c \
 		./env/env_utils.c \
+		./env/env.c \
 		./shell/shell_init.c
 
 #----- Objects -----

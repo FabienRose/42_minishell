@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 20:18:53 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/23 20:24:08 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/23 20:10:19 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/23 20:13:08 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell/shell.h"
 
-int	main(void)
+t_bool	echo(t_shell *shell, char *args)
 {
-	t_shell	minishell;
+	t_bool	n_option;
+	char	*msg;
 
-	shell_init(&minishell);
-	echo(&minishell, "-nnn je tese mon code");
-	free_environ(minishell.environement);
-	return (0);
+	(void)shell;
+	n_option = FALSE;
+	if (!args)
+	{
+		printf("\n");
+		return (TRUE);
+	}
+	if (ft_strncmp(args, "-n", 2) == 0 && (args[2] == ' ' || args[2] == '\0'))
+	{
+		n_option = TRUE;
+		args += 2;
+		while (*args == ' ')
+			args++;
+	}
+	msg = args;
+	printf("%s", msg);
+	if (!n_option)
+		printf("\n");
+	return (TRUE);
 }
