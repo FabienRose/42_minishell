@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   pmt_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 11:23:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/23 11:21:55 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/23 10:54:30 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/23 18:11:54 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prompt.h"
 
-t_promtret pmt_start(t_pmt* pmt)
-{	
-	if(!pmt || !pmt->disp)
-		return PMT_ERROR;
-	pmt->prompt = readline(pmt->disp);
-	if(pmt->prompt && ft_strlen(pmt->prompt) > 0  && pmt->prompt[0] != '\n')
+static t_bool pmt_iscontrole(char c)
+{
+	if(c == '|'
+		|| c == '&'
+		|| c == '>'
+		|| c == '<')
+		return (TRUE);
+	return (FALSE);
+}
+
+t_bool pmt_parse(t_pmt* pmt)
+{
+	size_t pos;
+
+	(void)pmt_iscontrole;
+	if(!pmt->reader)
+		return (FALSE);
+	pos = 0;
+	while(pmt->prompt[pos])
 	{
-		add_history(pmt->prompt);
-		if(!pmt_parse(pmt))
-			return (PMT_ERROR);
+		pmt_reader_addchar(pmt->reader, pmt->prompt[pos]);
+		pos++;		
 	}
-	if(!pmt->prompt)
-		return (PMT_STOP);
-	return (PMT_SUCCESS);
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:38:37 by kgauthie          #+#    #+#             */
-/*   Updated: 2024/10/05 17:48:22 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:33:27 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,21 @@ static char	**ft_split_sub(char **final_str, char const *s, char c)
 	return (final_str);
 }
 
-static char	**ft_split_release(char	**arr)
+void ft_split_release(char	***arr)
 {
 	size_t	pos;
 
 	pos = 0;
-	while (arr[pos])
+	if(!arr || !(*arr))
+		return ;
+	while ((*arr)[pos])
 	{
-		free(arr[pos]);
-		arr[pos] = NULL;
+		free((*arr)[pos]);
+		(*arr)[pos] = NULL;
 		pos++;
 	}
-	free(arr);
-	return (NULL);
+	free(*arr);
+	*arr = NULL;
 }
 
 static char	**ft_split_final(char **final_str, size_t wc)
@@ -80,7 +82,10 @@ static char	**ft_split_final(char **final_str, size_t wc)
 	while (pos < wc)
 	{
 		if (!final_str[pos])
-			return (ft_split_release(final_str));
+		{
+			ft_split_release(&final_str);
+			return (NULL);
+		}
 		pos++;
 	}
 	final_str[wc] = NULL;

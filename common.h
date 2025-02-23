@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:42:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/22 17:00:58 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/23 11:46:47 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 #define PROMPT_NAME_COL FONT_YEL
 #define PROMPT_DIR_COL FONT_BLU
 
+#define PROMT_BUFFER_SIZE 32
+
 //====================== DEVELOPMNET ======================
 # ifndef RELEASE
 #  define DEBUG
@@ -57,5 +59,8 @@ void	print_welcome(void);
 void util_seterror(void *shell, const char *msg);
 void util_clearerror(void *shell);
 void util_printerror(void *shell);
+
+	//--------------------- Strings ---------------------
+void util_printsplit(char **split);
 
 #endif //COMMON_H

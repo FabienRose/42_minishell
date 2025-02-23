@@ -6,23 +6,66 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/22 09:16:48 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:53:51 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prompt.h"
 
+void	pmt_clear_cmds(t_pmt *pmt)
+{
+	size_t pos;
+
+	if(!pmt->cmds)
+		return ;
+	pos = 0;
+	while(pmt->cmds[pos])
+	{
+		free(pmt->cmds[pos]);
+		pmt->cmds[pos] = NULL;
+		pos++;
+	}
+	free(pmt->cmds);
+	pmt->cmds = NULL;
+}
+
 void	pmt_clear(t_pmt **pmt)
 {
 	t_pmt *cpmt = *pmt;
-	if(cpmt->disp)
-	{
-		free(cpmt->disp);
-		cpmt->disp = NULL;
-	}
 	if(cpmt)
 	{
+		if(cpmt->disp)
+		{
+			free(cpmt->disp);
+			cpmt->disp = NULL;
+		}
+		if(cpmt->prompt)
+		{
+			free(cpmt->prompt);
+			cpmt->prompt = NULL;
+		}
+		pmt_reader_clear(&(cpmt->reader));
+		pmt_clear_cmds(cpmt);
 		free(cpmt);
-		*pmt = NULL;
+	}
+	*pmt = NULL;
+}
+
+void	pmt_reader_clear(t_pmt_reader **reader)
+{
+	t_pmt_reader *creader;
+
+	creader = *reader;
+	if(!reader || !creader)
+		return ;
+	if(creader->buffer)
+	{
+		free(creader->buffer);
+		creader->buffer = NULL;
+	}
+	if(creader)
+	{
+		free(creader);
+		*reader = NULL;
 	}
 }

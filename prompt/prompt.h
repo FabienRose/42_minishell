@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/22 11:30:52 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:46:34 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 //                 LOCAL INCLUDES
 //--------------------------------------------------
 #include "common.h"
+
+#include "command/command.h"
 
 //--------------------------------------------------
 //                     ENUM
@@ -32,10 +34,22 @@ typedef enum e_promptret
 //--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
+typedef struct s_pmt_reader
+{
+	char	*buffer;
+	size_t	pos;
+	size_t	size;
+	t_bool	is_in_sq;
+	t_bool	is_in_dq;
+}	t_pmt_reader;
+
 typedef struct s_pmt
 {
-	char	*disp;
-	void	*l_shell;
+	char			*disp;
+	char			*prompt;
+	t_pmt_reader	*reader;
+	t_cmd			**cmds;
+	void			*l_shell;
 }	t_pmt;
 
 //--------------------------------------------------
@@ -57,6 +71,19 @@ t_pmt*	pmt_new(const char* disp, void *shell);
  * @return t_bool FALSE if an error occured
  */
 t_bool	pmt_init(t_pmt* pmt, const char* disp, void *shell);
+/**
+ * @brief Create and Initialize (pmt_reader_init) a new t_pmt_reader struct
+ * 
+ * @return t_pmt_reader* returned structure
+ */
+t_pmt_reader* pmt_reader_new();
+/**
+ * @brief Inialize a t_pmt_reader structure
+ * 
+ * @param reader Struct to initialize
+ * @return t_bool FALSE if an error occured
+ */
+t_bool pmt_reader_init(t_pmt_reader *reader);
 
 //====================== START ======================
 /**
@@ -67,6 +94,32 @@ t_bool	pmt_init(t_pmt* pmt, const char* disp, void *shell);
  */
 t_promtret pmt_start(t_pmt* pmt);
 
+//====================== PARSE ======================
+/**
+ * @brief Apply prompt when user press enter
+ * 
+ * @param pmt current t_pmy structure
+ * @return t_bool: (FALSE if Failed)
+ */
+t_bool pmt_parse(t_pmt* pmt);
+
+//====================== READER ======================
+/**
+ * @brief Add a char to the current reader buffer (cann call pmt_reader_extendbuffer)
+ * 
+ * @param reader t_pmt_reader of the current prompt
+ * @param c character to add
+ * @return t_bool Return FALSE if malloc fail (called by pmt_reader_extendbuffer)
+ */
+t_bool pmt_reader_addchar(t_pmt_reader* reader, char c);
+/**
+ * @brief Resize the given reader buffer
+ * 
+ * @param reader t_pmt_reader of the current prompt
+ * @return t_bool Return FALSE if malloc fail (called by pmt_reader_extendbuffer)
+ */
+t_bool pmt_reader_extendbuffer(t_pmt_reader* reader);
+
 //====================== CLEAR ======================
 /**
  * @brief Clear a t_pmt structure and set passed var to NULL
@@ -74,5 +127,11 @@ t_promtret pmt_start(t_pmt* pmt);
  * @param pmt Pointer of pointer of a t_pmt structure
  */
 void	pmt_clear(t_pmt **pmt);
+/**
+ * @brief Clear a t_pmt_reader structure
+ * 
+ * @param reader Pointer of a t_pmt_reader structure
+ */
+void	pmt_reader_clear(t_pmt_reader **reader);
 
 #endif //PROMPT_H

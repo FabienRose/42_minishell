@@ -27,16 +27,21 @@ SRCS=	./minishell.c \
 		./shell/shell_init.c \
 		./shell/shell_env.c \
 		./shell/shell_start.c \
+		./utils/util_string.c \
 		./utils/util_errors.c \
 		./prompt/pmt_utils.c \
 		./prompt/pmt_start.c \
+		./prompt/pmt_parse.c \
 		./prompt/pmt_clear.c \
 		./prompt/pmt_init.c \
+		./prompt/pmt_reader.c \
 		./directories/dir_init.c \
 		./directories/dir_disp.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
-		./signatures/sgn_welcome.c
+		./signatures/sgn_welcome.c \
+		./command/cmd_init.c \
+		./command/cmd_clear.c
 
 #----- Objects -----
 OBJS=$(SRCS:.c=.o)

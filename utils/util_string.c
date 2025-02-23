@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   util_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 11:23:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/23 11:21:55 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/23 11:24:06 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/23 11:29:50 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "common.h"
 
-t_promtret pmt_start(t_pmt* pmt)
-{	
-	if(!pmt || !pmt->disp)
-		return PMT_ERROR;
-	pmt->prompt = readline(pmt->disp);
-	if(pmt->prompt && ft_strlen(pmt->prompt) > 0  && pmt->prompt[0] != '\n')
+void util_printsplit(char **split)
+{
+	size_t i;
+
+	i = 0;
+	while(split[i])
 	{
-		add_history(pmt->prompt);
-		if(!pmt_parse(pmt))
-			return (PMT_ERROR);
+		printf("%-4lu--> %s\n", i, split[i]);
+		i++;
 	}
-	if(!pmt->prompt)
-		return (PMT_STOP);
-	return (PMT_SUCCESS);
 }

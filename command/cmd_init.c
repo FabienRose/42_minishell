@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   cmd_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 11:23:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/23 11:21:55 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/23 17:28:22 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/23 17:32:53 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "command.h"
 
-t_promtret pmt_start(t_pmt* pmt)
-{	
-	if(!pmt || !pmt->disp)
-		return PMT_ERROR;
-	pmt->prompt = readline(pmt->disp);
-	if(pmt->prompt && ft_strlen(pmt->prompt) > 0  && pmt->prompt[0] != '\n')
+t_cmd	*cmd_create()
+{
+	t_cmd *ncmd;
+
+	ncmd = ft_calloc(sizeof(t_cmd), 1);
+	if(!ncmd)
+		return (NULL);
+	if(!cmd_init(ncmd))
 	{
-		add_history(pmt->prompt);
-		if(!pmt_parse(pmt))
-			return (PMT_ERROR);
+		cmd_clear(&ncmd);
+		return (NULL);
 	}
-	if(!pmt->prompt)
-		return (PMT_STOP);
-	return (PMT_SUCCESS);
+	return ncmd;
+}
+
+t_bool	cmd_init(t_cmd* cmd)
+{
+	cmd->arguments = NULL;
+	cmd->name = NULL;
+	return (TRUE);
 }
