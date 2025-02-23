@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 16:48:02 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/22 16:48:02 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/23 11:27:01 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/23 11:27:24 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**resize_environ(int new_size)
 		if (!new_environ[i])
 		{
 			while (i-- > 0)
-				free(new_environ[i]);
+			free(new_environ[i]);
 			free(new_environ);
 			return (NULL);
 		}
@@ -68,15 +68,15 @@ t_bool	set_environement(t_shell *minishell ,char *variable, char *path)
 {
 	int		i;
 	char	*entry;
-
+	
 	entry = create_env(variable, path);
 	if (!entry)
-		return (FALSE);
+	return (FALSE);
 	i = 0;
 	while (environ[i])
 	{
 		if (ft_strncmp(environ[i], variable, ft_strlen(variable)) == 0
-			&& environ[i][ft_strlen(variable)] == '=')
+		&& environ[i][ft_strlen(variable)] == '=')
 		{
 			free(environ[i]);
 			environ[i] = entry;
