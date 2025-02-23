@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/22 09:32:45 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:26:58 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@
 //--------------------------------------------------
 typedef struct s_shell
 {
-	char	*last_error;
-	t_dir	*current_dir;
-	t_bool	initialized;
+	char				*last_error;
+	t_dir				*current_dir;
+	struct	sigaction	sa;
+	t_bool				initialized;
 }	t_shell;
 
 
@@ -52,6 +53,20 @@ t_bool	shell_init(t_shell *shell);
  */
 t_bool shell_start(t_shell* shell);
 
+//====================== SIGNALS ======================
+/**
+ * @brief Initialize the signal within the t_shell struct
+ * 
+ * @param ptr to the main t_shell structure
+ * @return t_bool = FALSE if fail
+ */
+t_bool shell_init_sig(t_shell* ptr);
+/**
+ * @brief Function called by the sigaction system
+ * 
+ * @param sig Signal ID
+ */
+void	shell_sig_handler(int sig);
 
 //====================== ENV ======================
 /**

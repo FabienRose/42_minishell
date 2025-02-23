@@ -22,6 +22,7 @@ SMK_RM_FLAGS=-fr
 
 #----- Sources -----
 SRCS=	./minishell.c \
+		./shell/shell_signals.c \
 		./shell/shell_clear.c \
 		./shell/shell_init.c \
 		./shell/shell_env.c \

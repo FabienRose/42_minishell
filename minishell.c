@@ -6,13 +6,13 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:53:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/22 15:48:41 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/23 10:30:02 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell/shell.h"
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
 	t_shell data;
 	
@@ -30,5 +30,10 @@ int	main(void)
 		return (1);
 	}
 	shell_clear(&data);
+
+	(void)argc;
+	(void)argv;
+	(void)envp;
 	return (0);
+	//TODO: Check memory error on resize_environ with strdup
 }

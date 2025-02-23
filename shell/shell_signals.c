@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   shell_signals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 12:00:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/22 18:17:25 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/22 16:58:32 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/23 10:50:01 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_bool shell_init(t_shell *shell)
+extern int hello;
+
+void	shell_sig_handler(int sig)
 {
-	shell->last_error = NULL;
-	shell->current_dir = NULL;
-	shell->initialized = TRUE;
-	if(!shell_init_sig(shell))
+	if(sig == SIGINT)
+	{
+		printf("\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+}
+
+t_bool shell_init_sig(t_shell* ptr)
+{
+	if(!ptr)
 		return (FALSE);
+	ptr->sa.sa_handler = &shell_sig_handler;
+	ptr->sa.sa_flags = SA_SIGINFO;
+	sigemptyset(&(ptr->sa.sa_mask));
+	sigaddset(&(ptr->sa.sa_mask), SIGINT);
+	sigaction(SIGINT, &(ptr->sa), NULL);
 	return (TRUE);
 }
