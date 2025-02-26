@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 16:51:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/26 16:51:26 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/25 13:03:03 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/26 16:45:54 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell/shell.h"
+#include "builtins.h"
 
-t_bool	echo(t_shell *shell, char *args)
+static void	swap(char **a, char **b)
 {
-	int		i;
-	t_bool	n_flag;
+	char	*tmp;
 
-	(void)shell;
-	n_flag = FALSE;
-	i = 0;
-	while (args[i] == '-')
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void	bubble_sort(char **array)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (array[++i])
 	{
-		i++;
-		while (args[i] == 'n')
-			i++;
-		if (args[i] == ' ' || args[i] == '\0')
-		{
-			while (args[i] == ' ')
-				i++;
-			n_flag = TRUE;
-		}
-		else
-			i = 0;
+		j = -1;
+		while (array[++j + 1])
+			if (ft_strncmp(array[j], array[j + 1], ft_strlen(array[j])) > 0)
+				swap(&array[j], &array[j + 1]);
 	}
-	ft_putstr_fd(args + i, 1);
-	if (!n_flag)
-		write(1, "\n", 1);
-	return (TRUE);
 }

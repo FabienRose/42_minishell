@@ -23,8 +23,13 @@ SMK_RM_FLAGS=-fr
 #----- Sources -----
 SRCS=	./minishell.c \
 		./signatures/sgn_welcome.c \
+		./builtins/print_env.c \
 		./builtins/cd.c \
+		./builtins/unset.c \
 		./builtins/echo.c \
+		./builtins/export.c \
+		./builtins/builtin_utils.c \
+		./builtins/pwd.c \
 		./env/env_utils.c \
 		./env/env.c \
 		./shell/shell_init.c

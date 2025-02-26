@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.c                                        :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 23/02/2025 10:31:51 by fmixtur           #+#    #+#             */
-/*   Updated: 23/02/2025 10:31:51 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/25 16:44:56 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/25 16:45:05 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,22 @@ char	*create_env(char *variable, char *value)
 	int		i;
 	int		j;
 
-	len = ft_strlen(variable) + ft_strlen(value) + 2;
+	if (value)
+		len = ft_strlen(variable) + ft_strlen(value) + 2;
+	else
+		len = ft_strlen(variable) + 1;
 	entry = ft_calloc(1, len);
 	if (!entry)
 		return (NULL);
-	i = 0;
-	while (variable[i])
-	{
+	i = -1;
+	while (variable[++i])
 		entry[i] = variable[i];
-		i++;
-	}
-	entry[i++] = '=';
-	j = 0;
-	while (value[j])
+	if (value)
 	{
-		entry[i++] = value[j++];
+		entry[i++] = '=';
+		j = 0;
+		while (value[j])
+			entry[i++] = value[j++];
 	}
 	return (entry);
 }

@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 16:51:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/26 16:51:26 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/25 11:23:49 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/25 15:21:27 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell/shell.h"
+#include "builtins.h"
 
-t_bool	echo(t_shell *shell, char *args)
+t_bool	pwd(void)
 {
-	int		i;
-	t_bool	n_flag;
+	char	*pwd;
 
-	(void)shell;
-	n_flag = FALSE;
-	i = 0;
-	while (args[i] == '-')
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
 	{
-		i++;
-		while (args[i] == 'n')
-			i++;
-		if (args[i] == ' ' || args[i] == '\0')
-		{
-			while (args[i] == ' ')
-				i++;
-			n_flag = TRUE;
-		}
-		else
-			i = 0;
+		perror("minishell: pwd");
+		return (FALSE);
 	}
-	ft_putstr_fd(args + i, 1);
-	if (!n_flag)
-		write(1, "\n", 1);
+	printf("%s\n", pwd);
+	free(pwd);
 	return (TRUE);
 }
