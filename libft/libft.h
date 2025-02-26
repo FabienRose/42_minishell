@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:11:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 08:33:02 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:22:55 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ t_bool	ft_isdigit(int c);
 t_bool	ft_isalnum(int c);
 t_bool	ft_isascii(int c);
 t_bool	ft_isprint(int c);
+/**
+ * @brief Same as isspace(3)
+ * @note CHeck man of isspace(3)
+ * 
+ * @param c Character to check
+ * @return t_bool TRUE if is space
+ */
 t_bool	ft_isspace(int c);
 
 //--------------------------------------------------
@@ -92,13 +99,109 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 //--------------------------------------------------
 void	*ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
+/**
+ * @brief Realloc memory and copy data the newly create pointer
+ * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * 
+ * @param ptr Pointer of the pointer to realloc
+ * @param old_len Current size in Byte of the memory
+ * @param new_len New size in Byte of the memory
+ * @return t_bool FALSE if Failed
+ */
 t_bool	ft_realloc(void **ptr, size_t old_len, size_t new_len);
+/**
+ * @brief Realloc memory and copy data the newly create pointer (size * QUANTITY)
+ * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * 
+ * @param ptr Pointer of the pointer to realloc
+ * @param old_len Current in QUANTITY of the memory
+ * @param new_len New size in QUANTITY of the memory
+ * @param data_size Size of one type (QUANTITY)
+ * @return t_bool FALSE if Failed
+ */
+t_bool ft_realloc_s(void **ptr, size_t old_len, size_t new_len, size_t data_size);
+/**
+ * @brief Realloc memory and copy data the newly double array
+ * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * 
+ * @param ptr Pointer of the pointer to realloc
+ * @param old_len Current in QUANTITY of the memory
+ * @param new_len New size in QUANTITY of the memory
+ * @return t_bool 
+ */
+t_bool ft_realloc_da(void ***ptr, size_t old_len, size_t new_len);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
-size_t	ft_darraylen(void **arr);
+
+//--------------------------------------------------
+//                     ARRAY
+//--------------------------------------------------
+	//--------------------- Push ---------------------
+/**
+ * @brief Add and extend memory a the end of the array
+ * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * 
+ * @param arr Pointer of pointer of the array
+ * @param size Size in Byte of the struct to be added;
+ * @return void *: location of the newly created data;
+ */
+void *ft_arraypush(void **arr, size_t size);
+/**
+ * @brief Add and extend memory a the end of the double array
+ * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * 
+ * @param arr Pointer of pointer of the double array
+ * @param ndata Pointer of the newly added structure
+ * @return t_bool FALSE if failed
+ */
+t_bool ft_arraypush_d(void ***arr, void *ndata);
+/**
+ * @brief Add and extend memory a the end of the double array
+ * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * 
+ * @param arr Pointer of pointer of the double array
+ * @param create Function called to create the new data
+ * @param del Function to free newly allocated memory in case of fail
+ * @return t_bool FALSE if failed
+ */
+t_bool ft_arraypush_df(void ***arr, void *(*create)(void), void(*del)(void *));
+
+	//--------------------- Len ---------------------
+/**
+ * @brief Get the size of the array
+ * 
+ * @param arr Array to check
+ * @param size Size in Byte of the struct to count
+ * @return size_t  Size of the given array
+ */
+size_t	ft_arraylen(void *arr, size_t size);
+
+/**
+ * @brief Get the size of the array of array
+ * 
+ * @param arr Double array to check
+ * @return size_t  Size of the given array
+ */
+size_t	ft_arraylen_d(void **arr);
+
+	//--------------------- Free ---------------------
+/**
+ * @brief Free and set to null a given array
+ * 
+ * @param arr Array to free
+ */
+void ft_arrayfree(void **arr);
+/**
+ * @brief Free a double array all component arr free using custom function
+ * 
+ * @param arr Pointer of the double array to free
+ * @param del Function used to delete the components
+ */
+void ft_arrayfree_d(void ***arr, void(*del)(void *));
+
 
 //--------------------------------------------------
 //                    STRINGS
@@ -107,6 +210,15 @@ size_t	ft_strlen(const char *s);
 void	ft_strcpy(char *dst, const char *src);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
+/**
+ * @brief Merge str1, str2, str3 (in order) with bstr
+ * 
+ * @param bstr Pointer of string, which will be realloc and merged with the other str
+ * @param str1 [NULLABLE] Str to add
+ * @param str2 [NULLABLE] Str to add
+ * @param str3 [NULLABLE] Str to add
+ * @return t_bool FALSE if failed
+ */
 t_bool	ft_strmerge(char **bstr, const char *str1, const char *str2, const char *str3);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
@@ -119,6 +231,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
+/**
+ * @brief Release an array of strings
+ * 
+ * @param arr Pointer of the array
+ */
 void	ft_split_release(char ***arr);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));

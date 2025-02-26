@@ -34,6 +34,7 @@ SRCS=	./minishell.c \
 		./prompt/pmt_start.c \
 		./prompt/pmt_parse.c \
 		./prompt/pmt_clear.c \
+		./prompt/pmt_debug.c \
 		./prompt/pmt_init.c \
 		./prompt/pmt_reader.c \
 		./directories/dir_init.c \

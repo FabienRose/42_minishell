@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 09:15:37 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 09:56:47 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,13 @@ void	pmt_clear(t_pmt **pmt);
  * @param reader Pointer of a t_pmt_reader structure
  */
 void	pmt_reader_clear(t_pmt_reader **reader);
+
+//====================== DEBUG ======================
+/**
+ * @brief Print detailed info on the current prompt
+ * 
+ * @param pmt t_pmt to display
+ */
+void pmt_print(t_pmt* pmt);
 
 #endif //PROMPT_H

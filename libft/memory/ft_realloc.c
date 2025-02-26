@@ -34,3 +34,13 @@ t_bool ft_realloc(void **ptr, size_t old_len, size_t new_len)
 	*ptr = nptr;
 	return (TRUE);
 }
+
+t_bool ft_realloc_s(void **ptr, size_t old_len, size_t new_len, size_t data_size)
+{
+	return ft_realloc(ptr, old_len * data_size, new_len * data_size);
+}
+
+t_bool ft_realloc_da(void ***ptr, size_t old_len, size_t new_len)
+{
+	return ft_realloc_s((void **)ptr, old_len, new_len, sizeof(void *));
+}

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_darraylen.c                                     :+:      :+:    :+:   */
+/*   pmt_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 08:03:10 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 08:04:05 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/26 10:05:54 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/26 10:16:40 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "prompt.h"
 
-size_t ft_darraylen(void **arr)
+t_bool pmt_newcmd(t_pmt* pmt)
 {
-	size_t pos;
-
-	pos = 0;
-	while(arr[pos])
-		pos++;
-	return pos;
+	size_t cmd_len;
+	
+	if(!pmt || !pmt->cmds || !pmt->active_cmd)
+		return (FALSE);
+	cmd_len = ft_darraylen((void **)(pmt->cmds));
+	if(!ft_realloc((void **)(&(pmt->cmds)), cmd_len * sizeof(t_cmd *), (cmd_len + 1 + 1) * sizeof(t_cmd *)))
+		return (FALSE);
+	
 }
