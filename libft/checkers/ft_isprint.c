@@ -6,15 +6,15 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 10:27:32 by kgauthie          #+#    #+#             */
-/*   Updated: 2024/10/04 14:35:09 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 08:31:44 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+t_bool	ft_isprint(int c)
 {
 	if ((' ' <= c && c <= '~'))
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }

@@ -30,6 +30,7 @@ SRCS=	./minishell.c \
 		./utils/util_string.c \
 		./utils/util_errors.c \
 		./prompt/pmt_utils.c \
+		./prompt/pmt_checkers.c \
 		./prompt/pmt_start.c \
 		./prompt/pmt_parse.c \
 		./prompt/pmt_clear.c \
@@ -40,6 +41,8 @@ SRCS=	./minishell.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c \
+		./command/cmd_debug.c \
+		./command/cmd_args.c \
 		./command/cmd_init.c \
 		./command/cmd_clear.c
 

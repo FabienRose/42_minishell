@@ -28,6 +28,7 @@ SMK_RM_FLAGS=-fr
 SRCS=	./convertions/ft_atoi.c \
 		./convertions/ft_itoa.c \
 		./memory/ft_memset.c \
+		./memory/ft_darraylen.c \
 		./memory/ft_memmove.c \
 		./memory/ft_realloc.c \
 		./memory/ft_memcpy.c \
@@ -55,6 +56,7 @@ SRCS=	./convertions/ft_atoi.c \
 		./strings/ft_toupper.c \
 		./checkers/ft_isascii.c \
 		./checkers/ft_isdigit.c \
+		./checkers/ft_isspace.c \
 		./checkers/ft_isalpha.c \
 		./checkers/ft_isalnum.c \
 		./checkers/ft_isprint.c \

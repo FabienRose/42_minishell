@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:11:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/23 11:17:17 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 08:33:02 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ typedef unsigned char t_bool;
 //--------------------------------------------------
 //                   CHECKERS
 //--------------------------------------------------
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_isascii(int c);
-int		ft_isprint(int c);
+t_bool	ft_isalpha(int c);
+t_bool	ft_isdigit(int c);
+t_bool	ft_isalnum(int c);
+t_bool	ft_isascii(int c);
+t_bool	ft_isprint(int c);
+t_bool	ft_isspace(int c);
 
 //--------------------------------------------------
 //                  CONVERTIONS
@@ -97,6 +98,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
+size_t	ft_darraylen(void **arr);
 
 //--------------------------------------------------
 //                    STRINGS

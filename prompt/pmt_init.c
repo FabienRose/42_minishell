@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/23 17:50:51 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 07:44:23 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static t_bool pmt_init_cmds(t_pmt *pmt)
 	pmt->cmds[0] = cmd_create();
 	if(!pmt->cmds[0])
 		return (FALSE);
+	pmt->active_cmd = pmt->cmds[0];
 	return (TRUE);
 }
 

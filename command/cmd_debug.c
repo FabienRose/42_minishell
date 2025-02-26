@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   cmd_debug.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 09:11:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 08:32:06 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/26 08:10:22 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/26 08:14:17 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "command.h"
 
-t_bool	ft_isascii(int c)
+void cmd_print(t_cmd* cmd)
 {
-	if ((0 <= c && c <= 127))
-		return (TRUE);
-	return (FALSE);
+	size_t i;
+	
+	if(!cmd)
+	{
+		printf("Debug: no cmd passed");
+		return ;
+	}
+	if(cmd->name)
+		printf ("Name: %s\n", cmd->name);
+	i = 0;
+	if(!cmd->arguments)
+		return ;
+	while (cmd->arguments[i])
+	{
+		printf("Arg %lu: %s\n", i, cmd->arguments[i]);
+		i++;
+	}
 }

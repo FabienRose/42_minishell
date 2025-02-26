@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:24:56 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/23 17:36:54 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 08:15:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,16 @@ t_cmd	*cmd_create();
  */
 t_bool	cmd_init(t_cmd* cmd);
 
+//====================== ARGS ======================
+/**
+ * @brief Add an argument in the t_cmd structure (realloc arg size)
+ * 
+ * @param cmd t_cmd to add arguments in
+ * @param arg argument to add
+ * @return t_bool FALSE on Failed
+ */
+t_bool cmd_add_arg(t_cmd *cmd, char *arg);
+
 //====================== CLEAR ======================
 /**
  * @brief Clear a t_cmd struct and free the struct from its suffering
@@ -52,5 +62,14 @@ t_bool	cmd_init(t_cmd* cmd);
  * @param cmd Pointer of pointer of the t_cmd structure to clear
  */
 void	cmd_clear(t_cmd **cmd);
+
+//====================== DEBUG ======================
+/**
+ * @brief Print a t_cmd structure details
+ * @warning Do not use in final product
+ * 
+ * @param cmd t_cmd to print
+ */
+void cmd_print(t_cmd* cmd);
 
 #endif //COMMAND_H
