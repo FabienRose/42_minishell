@@ -25,10 +25,12 @@ SMK_RM_FLAGS=-fr
 #--------------------------------------------------
 
 #----- Sources -----
-SRCS=	./convertions/ft_atoi.c \
+SRCS=	./array/ft_arraypush.c \
+		./array/ft_arraylen.c \
+		./array/ft_arrayfree.c \
+		./convertions/ft_atoi.c \
 		./convertions/ft_itoa.c \
 		./memory/ft_memset.c \
-		./memory/ft_darraylen.c \
 		./memory/ft_memmove.c \
 		./memory/ft_realloc.c \
 		./memory/ft_memcpy.c \

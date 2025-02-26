@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/23 17:53:51 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:28:53 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	pmt_clear_cmds(t_pmt *pmt)
 	pos = 0;
 	while(pmt->cmds[pos])
 	{
-		free(pmt->cmds[pos]);
-		pmt->cmds[pos] = NULL;
+		cmd_clear(&(pmt->cmds[pos]));
 		pos++;
 	}
 	free(pmt->cmds);

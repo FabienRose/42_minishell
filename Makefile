@@ -29,6 +29,7 @@ SRCS=	./minishell.c \
 		./shell/shell_start.c \
 		./utils/util_string.c \
 		./utils/util_errors.c \
+		./prompt/pmt_cmd.c \
 		./prompt/pmt_utils.c \
 		./prompt/pmt_checkers.c \
 		./prompt/pmt_start.c \
@@ -133,7 +134,7 @@ $(PNAME): $(DEPS_LIST) $(SMK_OBJS_DIR)/ $(SMK_OBJS)
 	$(eval NB_BARPOS := $(AMK_NB_FILES))
 	$(call init_bar)
 	$(call next_bar)
-	@$(CPL) $(CPL_FLAGS) $(DEPS_LIST) $(SMK_OBJS) $(DEPS_CALLS) $(EXT_DEPS) -o $@
+	@$(CPL) $(CPL_FLAGS) -fsanitize=address -fsanitize=leak  $(DEPS_LIST) $(SMK_OBJS) $(DEPS_CALLS) $(EXT_DEPS) -o $@
 	$(call final_bar)
 	@printf "\n\033[s"
 

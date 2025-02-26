@@ -6,11 +6,16 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:28:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/23 17:32:53 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:39:00 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
+
+void	*cmd_new()
+{
+	return (void *)(cmd_create());
+}
 
 t_cmd	*cmd_create()
 {

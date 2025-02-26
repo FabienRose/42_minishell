@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 07:57:40 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 08:19:19 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:42:31 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_bool cmd_add_arg(t_cmd *cmd, char *arg)
 	}
 	else
 	{
-		csize = ft_darraylen((void **)(cmd->arguments));
+		csize = ft_arraylen_d((void **)(cmd->arguments));
 		if(!ft_realloc((void **)(&(cmd->arguments)), csize * sizeof(char *), (csize + 1 + 1) * sizeof(char *)))
 			return (FALSE);
 		cmd->arguments[csize] = arg;

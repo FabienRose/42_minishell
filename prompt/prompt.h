@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 09:56:47 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:48:20 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,15 @@ t_bool pmt_iscontrole(char c);
  * @return t_bool TRUE if within quotes
  */
 t_bool pmt_isinquote(t_pmt_reader* reader);
+
+//====================== CMD ======================
+/**
+ * @brief Add a new command to the t_pmt and set it as active
+ * 
+ * @param pmt t_pmt in which the command wil be added
+ * @return t_bool FASLE if failed
+ */
+t_bool pmt_newcmd(t_pmt* pmt);
 
 //====================== PARSE ======================
 /**

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:54:30 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 09:57:11 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:59:04 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_bool pmt_parse_applyctrl(t_pmt* pmt, char *extract)
 	}
 	return (TRUE);
 }
-static t_bool pmt_parse_onctrl(t_pmt* pmt)
+static t_bool pmt_parse_onctrl(t_pmt* pmt, size_t pos)
 {	
 	char *extract;
 	
@@ -35,13 +35,15 @@ static t_bool pmt_parse_onctrl(t_pmt* pmt)
 	if(ft_strlen(extract) == 0)
 	{
 		free(extract);
-		return (TRUE);
+		extract = NULL;
 	}
-	if(!pmt_parse_applyctrl(pmt, extract))
+	if(extract && !pmt_parse_applyctrl(pmt, extract))
 	{
 		free(extract);
 		return (FALSE);
 	}
+	if(pmt_iscontrole(pmt->prompt[pos]) && !pmt_newcmd(pmt))
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -51,7 +53,7 @@ static t_bool pmt_parse_check(t_pmt *pmt, size_t pos)
 		|| ft_isspace(pmt->prompt[pos])) 
 		&& !pmt_isinquote(pmt->reader))
 	{
-		if(!pmt_parse_onctrl(pmt))
+		if(!pmt_parse_onctrl(pmt, pos))
 			return (FALSE);
 	}
 	else

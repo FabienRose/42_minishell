@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:05:54 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 10:16:40 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:35:55 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 t_bool pmt_newcmd(t_pmt* pmt)
 {
-	size_t cmd_len;
-	
+	t_cmd *cmd;
+
 	if(!pmt || !pmt->cmds || !pmt->active_cmd)
 		return (FALSE);
-	cmd_len = ft_darraylen((void **)(pmt->cmds));
-	if(!ft_realloc((void **)(&(pmt->cmds)), cmd_len * sizeof(t_cmd *), (cmd_len + 1 + 1) * sizeof(t_cmd *)))
+	cmd = cmd_create();
+	if(!cmd)
 		return (FALSE);
-	
+	if(!ft_arraypush_d((void ***)(&pmt->cmds), cmd))
+	{
+		cmd_clear(&cmd);
+		return (FALSE);
+	}
+	pmt->active_cmd = cmd;	
+	return (TRUE);
 }

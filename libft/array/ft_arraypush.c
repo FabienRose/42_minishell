@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:53:50 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 12:23:55 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:27:40 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void *ft_arraypush(void **arr, size_t size)
 	len = ft_arraylen(*arr, size);
 	if(!ft_realloc_s(arr, len, len + 2, size))
 		return (NULL);
-	return (carr[len * size]);
+	return (void *)(&(carr[len * size]));
 }
 t_bool ft_arraypush_d(void ***arr, void *ndata)
 {

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:24:56 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 08:15:26 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:41:11 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ typedef struct s_cmd
  * 
  * @return t_cmd* Newly created struct
  */
-t_cmd	*cmd_create();
+t_cmd	*cmd_create();/**
+* @brief Create and initialize (cmd_init) a t_cmd structure
+* 
+* @return t_cmd* Newly created struct
+*/
+void	*cmd_new();
 /**
  * @brief Initialize a t_cmd structure
  * 
@@ -62,6 +67,12 @@ t_bool cmd_add_arg(t_cmd *cmd, char *arg);
  * @param cmd Pointer of pointer of the t_cmd structure to clear
  */
 void	cmd_clear(t_cmd **cmd);
+/**
+ * @brief libft compatible version of cmd_clear;
+ * 
+ * @param cmd Pointer of pointer of the t_cmd structure to clear
+ */
+void	cmd_release(void *cmd);
 
 //====================== DEBUG ======================
 /**
