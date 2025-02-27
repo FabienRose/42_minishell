@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:42:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/23 11:46:47 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:39:38 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <errno.h>
 
 //--------------------------------------------------
 //                      LIBS

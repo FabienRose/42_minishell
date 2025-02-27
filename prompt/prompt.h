@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 16:48:20 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:09:02 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,14 @@ t_bool pmt_reader_init(t_pmt_reader *reader);
  * @return t_promtret: Retuen status of the prompt
  */
 t_promtret pmt_start(t_pmt* pmt);
+
+/**
+ * @brief 
+ * 
+ * @param pmt 
+ * @return t_promtret 
+ */
+t_promtret pmt_exec(t_pmt* pmt);
 
 //====================== CHECKERS ======================
 /**

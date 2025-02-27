@@ -15,6 +15,9 @@ PNAME=minishell
 RM_FLAGS=-f
 SMK_RM_FLAGS=-fr
 
+#----- Sanitize flags -----
+SAN_FLAGS=-fsanitize=address -fsanitize=leak
+
 
 #--------------------------------------------------
 #              SOURCES AND OBJECTS
@@ -134,9 +137,14 @@ $(PNAME): $(DEPS_LIST) $(SMK_OBJS_DIR)/ $(SMK_OBJS)
 	$(eval NB_BARPOS := $(AMK_NB_FILES))
 	$(call init_bar)
 	$(call next_bar)
-	@$(CPL) $(CPL_FLAGS) -fsanitize=address -fsanitize=leak  $(DEPS_LIST) $(SMK_OBJS) $(DEPS_CALLS) $(EXT_DEPS) -o $@
+	@$(CPL) $(CPL_FLAGS) $(if $(SAN_ACTIVE), $(SAN_FLAGS)) $(DEPS_LIST) $(SMK_OBJS) $(DEPS_CALLS) $(EXT_DEPS) -o $@
 	$(call final_bar)
 	@printf "\n\033[s"
+
+sanitize: fclean
+	@printf "%-101s\033[s[\033[1m\033[33mWORKING\033[0m]" "$$(printf "[\033[1m\033[34mMAKEFILE\033[0m - \033[1m\033[36mCompiling\033[0m]: Compiling with Sanitize")"
+	@printf "\033[u[\033[1m\033[34mOK\033[0m]        \n\033[s"
+	@$(MAKE) --no-print-directory SAN_ACTIVE=true
 
 $(SMK_OBJS_DIR)/%.o: %.c
 	$(call init_bar)

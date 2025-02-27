@@ -2,6 +2,7 @@
 &&ProgType&&##program##
 &&ProgName&&##minishell##
 &&ExtLib&&##-lreadline##
+&&Sanitize&&##true##
 &&AdvancedMake&&##true##
 &&AMKWidth&&##50##
 &&AMKSleep&&##0##
