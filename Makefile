@@ -32,6 +32,13 @@ SRCS=	./minishell.c \
 		./shell/shell_start.c \
 		./utils/util_string.c \
 		./utils/util_errors.c \
+		./builtins/pwd.c \
+		./builtins/print_env.c \
+		./builtins/cd.c \
+		./builtins/echo.c \
+		./builtins/unset.c \
+		./builtins/builtin_utils.c \
+		./builtins/export.c \
 		./prompt/pmt_cmd.c \
 		./prompt/pmt_utils.c \
 		./prompt/pmt_checkers.c \
@@ -49,7 +56,9 @@ SRCS=	./minishell.c \
 		./command/cmd_debug.c \
 		./command/cmd_args.c \
 		./command/cmd_init.c \
-		./command/cmd_clear.c
+		./command/cmd_clear.c \
+		./env/env.c \
+		./env/env_utils.c
 
 #----- Objects -----
 OBJS=$(SRCS:.c=.o)

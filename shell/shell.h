@@ -5,13 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 16:03:32 by kgauthie         ###   ########.fr       */
-=======
-/*   Created: 2025/02/20 19:59:24 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/27 15:30:23 by kgauthie         ###   ########.fr       */
->>>>>>> errerbranch
+/*   Updated: 2025/02/27 16:20:53 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +33,6 @@ typedef struct s_shell
 	struct	sigaction	sa;
 	char				**environement;
 	t_bool				initialized;
-<<<<<<< HEAD
-=======
-	char				**environement;
->>>>>>> errerbranch
 }	t_shell;
 
 //--------------------------------------------------
