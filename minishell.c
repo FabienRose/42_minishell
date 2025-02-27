@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:53:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/27 15:27:58 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:32:45 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,7 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_shell	minishell;
-	int i = 0;
-
-	minishell.environement = NULL;
-	// printf("Before : %s\n", getenv(test));
-	set_environement(&minishell, "FABIEN","La variable est set!");
-	while (minishell.environement[i])
-	{
-		printf(">>> %d: %s\n",i, minishell.environement[i]);
-		free(minishell.environement[i]);
-		i++;
-	}
-	free(minishell.environement);
-	
+	t_shell	data;
 	print_welcome();
 	
 	if(!shell_init(&data))

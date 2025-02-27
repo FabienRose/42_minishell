@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 19:59:24 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/27 15:29:50 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:30:23 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ typedef struct s_shell
 	t_dir				*current_dir;
 	struct	sigaction	sa;
 	t_bool				initialized;
-	t_bool	initialized;
-	char	**environement;
+	char				**environement;
 }	t_shell;
 
 

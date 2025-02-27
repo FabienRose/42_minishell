@@ -32,6 +32,8 @@ SRCS=	./minishell.c \
 		./shell/shell_start.c \
 		./utils/util_string.c \
 		./utils/util_errors.c \
+		./builtins/cd.c \
+		./builtins/env.c \
 		./prompt/pmt_cmd.c \
 		./prompt/pmt_utils.c \
 		./prompt/pmt_checkers.c \
