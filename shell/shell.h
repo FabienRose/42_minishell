@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 12:14:13 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:03:32 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "directories/directories.h"
 # include "prompt/prompt.h"
 
+# include "builtins/builtins.h"
+# include "env/env.h"
 //--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
@@ -29,9 +31,9 @@ typedef struct s_shell
 	char				*last_error;
 	t_dir				*current_dir;
 	struct	sigaction	sa;
+	char				**environement;
 	t_bool				initialized;
 }	t_shell;
-
 
 //--------------------------------------------------
 //                    FUNCTIONS

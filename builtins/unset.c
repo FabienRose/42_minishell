@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 12:00:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 16:03:02 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/25 18:11:23 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/26 12:31:03 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "builtins.h"
 
-#include "shell.h"
-
-t_bool shell_init(t_shell *shell)
+t_bool	unset(t_shell *shell, char *args)
 {
-	shell->last_error = NULL;
-	shell->current_dir = NULL;
-	if(!shell_init_sig(shell))
+	if (!args)
 		return (FALSE);
-	shell->environement = NULL;
-	if(!copy_environ(shell))
+	if (!is_valid_identifier(args))
 		return (FALSE);
-	shell->initialized = TRUE;
+	unset_environement(shell, args);
 	return (TRUE);
 }

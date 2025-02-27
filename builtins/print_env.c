@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   print_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 12:00:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 16:03:02 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/26 17:24:35 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/26 17:28:41 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "builtins.h"
 
-#include "shell.h"
-
-t_bool shell_init(t_shell *shell)
+t_bool	print_env(t_shell *shell)
 {
-	shell->last_error = NULL;
-	shell->current_dir = NULL;
-	if(!shell_init_sig(shell))
-		return (FALSE);
-	shell->environement = NULL;
-	if(!copy_environ(shell))
-		return (FALSE);
-	shell->initialized = TRUE;
+	int	i;
+
+	if (!shell->environement)
+		return (TRUE);
+	i = 0;
+	while (shell->environement[i])
+	{
+		printf("%s\n", shell->environement[i]);
+		i++;
+	}
 	return (TRUE);
 }
