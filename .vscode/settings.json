@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"functional": "c",
-		"unordered_map": "c"
+		"unordered_map": "c",
+		"shell.h": "c",
+		"builtins.h": "c"
 	}
 }

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 18:11:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/26 12:31:03 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/02/27 16:44:04 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
+#include "shell/shell.h"
 
 t_bool	unset(t_shell *shell, char *args)
 {

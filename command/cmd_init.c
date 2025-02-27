@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:28:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 12:39:00 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:50:34 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ t_cmd	*cmd_create()
 
 t_bool	cmd_init(t_cmd* cmd)
 {
-	cmd->arguments = NULL;
 	cmd->name = NULL;
+	cmd->arguments = ft_calloc(sizeof(char *), 1);
+	if(!cmd->arguments)
+		return (FALSE);
 	return (TRUE);
 }

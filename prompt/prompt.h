@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 12:09:02 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:35:36 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "common.h"
 
 #include "command/command.h"
+#include "builtins/builtins.h"
 
 //--------------------------------------------------
 //                     ENUM

@@ -6,11 +6,12 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:23:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 12:26:23 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:48:23 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prompt.h"
+#include "shell/shell.h"
 
 t_promtret pmt_start(t_pmt* pmt)
 {	
@@ -31,8 +32,15 @@ t_promtret pmt_start(t_pmt* pmt)
 
 t_promtret pmt_exec(t_pmt* pmt)
 {
+	//TODO: A refaire
 	if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 		return PMT_ERROR;
-	printf("Command exec: %s\n", pmt->cmds[0]->name);
+	if(ft_strncmp(pmt->cmds[0]->name, "cd", 3) == 0)
+	{
+		printf("Test-->%p\n", pmt->cmds[0]->arguments);
+		if(!change_directory(pmt->l_shell, pmt->cmds[0]->arguments[0]))
+			return PMT_FAILED;
+		shell_update_loc(pmt->l_shell);
+	}
 	return PMT_SUCCESS;
 }
