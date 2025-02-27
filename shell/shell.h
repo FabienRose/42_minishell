@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 12:14:13 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/20 19:59:24 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/27 15:29:50 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_shell
 	t_dir				*current_dir;
 	struct	sigaction	sa;
 	t_bool				initialized;
+	t_bool	initialized;
+	char	**environement;
 }	t_shell;
 
 
@@ -90,5 +92,12 @@ t_bool shell_update_loc(t_shell *shell);
  * @param shell A pointer to the struct
  */
 void shell_clear(t_shell *shell);
+
+//=================== EXEC UTILS ===================
+
+void	set_working_directory(t_shell *shell);
+t_bool	change_directory(t_shell minishell, char *arguments);
+t_bool	set_environement(t_shell *minishell, char *variable, char *path);
+
 
 #endif //SHELL_H
