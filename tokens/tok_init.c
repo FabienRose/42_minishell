@@ -1,24 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_checkers.c                                     :+:      :+:    :+:   */
+/*   tok_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 08:54:31 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 09:23:57 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/28 08:32:35 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/28 10:30:58 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "token.h"
 
-
-t_bool pmt_isinquote(t_pmt_reader* reader)
+t_token	*tok_create()
 {
-	if(!reader)
+	t_token* ntoken;
+
+	ntoken = ft_calloc(sizeof(t_token), 1);
+	if(!ntoken)
+		return (NULL);
+	if(!tok_init(ntoken))
+	{
+		tok_clear(&ntoken);
+		return (NULL);
+	}
+	return (ntoken);
+}
+void	*tok_new()
+{
+	return tok_create();
+}
+t_bool	tok_init(t_token* token)
+{
+	if(!token)
 		return (FALSE);
-	if(reader->is_in_dq 
-		|| reader->is_in_sq)
-		return (TRUE);
-	return (FALSE);
+	token->input = ft_calloc(sizeof(char), 1);
+	if(!token->input)
+		return (FALSE);
+	token->type = TOK_NONE;
+	return (TRUE);	
 }

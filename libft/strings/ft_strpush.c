@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_checkers.c                                     :+:      :+:    :+:   */
+/*   ft_strpush.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 08:54:31 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 09:23:57 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/28 09:37:55 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/28 10:01:28 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "libft.h"
 
-
-t_bool pmt_isinquote(t_pmt_reader* reader)
+t_bool ft_strpush(char **str, char c)
 {
-	if(!reader)
+	size_t len;
+
+	len = ft_strlen(*str);
+	if(!ft_realloc((void **)str, len, len + 2))
 		return (FALSE);
-	if(reader->is_in_dq 
-		|| reader->is_in_sq)
-		return (TRUE);
-	return (FALSE);
+	(*str)[len] = c;
+	return (TRUE);
 }

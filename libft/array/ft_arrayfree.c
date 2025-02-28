@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:01:37 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 12:18:09 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:55:40 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void ft_arrayfree_d(void ***arr, void(*del)(void *))
 	{
 		(*del)(carr[pos]);
 		carr[pos] = NULL;
+		pos++;
 	}
 	free(carr);
 	*arr = NULL;

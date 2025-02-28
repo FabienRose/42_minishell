@@ -25,6 +25,11 @@ SAN_FLAGS=-fsanitize=address -fsanitize=leak
 
 #----- Sources -----
 SRCS=	./minishell.c \
+		./tokens/tok_util.c \
+		./tokens/tok_parse.c \
+		./tokens/tok_init.c \
+		./tokens/tok_clear.c \
+		./tokens/tok_debug.c \
 		./shell/shell_signals.c \
 		./shell/shell_clear.c \
 		./shell/shell_init.c \
@@ -44,6 +49,7 @@ SRCS=	./minishell.c \
 		./prompt/pmt_checkers.c \
 		./prompt/pmt_start.c \
 		./prompt/pmt_parse.c \
+		./prompt/pmt_tok.c \
 		./prompt/pmt_clear.c \
 		./prompt/pmt_debug.c \
 		./prompt/pmt_init.c \

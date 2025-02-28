@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:54:30 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 16:59:04 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:30:16 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static t_bool pmt_parse_applyctrl(t_pmt* pmt, char *extract)
 	}
 	return (TRUE);
 }
-static t_bool pmt_parse_onctrl(t_pmt* pmt, size_t pos)
+
+static t_bool pmt_parse_onctrl(t_pmt* pmt, size_t *pos)
 {	
 	char *extract;
 	
@@ -42,15 +43,17 @@ static t_bool pmt_parse_onctrl(t_pmt* pmt, size_t pos)
 		free(extract);
 		return (FALSE);
 	}
-	if(pmt_iscontrole(pmt->prompt[pos]) && !pmt_newcmd(pmt))
+	if(tok_iscontrole(pmt->prompt[*pos]) 
+		&& (!pmt_addtok(pmt, pos)
+		|| !pmt_newcmd(pmt)))
 		return (FALSE);
 	return (TRUE);
 }
 
-static t_bool pmt_parse_check(t_pmt *pmt, size_t pos)
+static t_bool pmt_parse_check(t_pmt *pmt, size_t  *pos)
 {
-	if((!pmt->prompt[pos] || pmt_iscontrole(pmt->prompt[pos])
-		|| ft_isspace(pmt->prompt[pos])) 
+	if((!pmt->prompt[*pos] || tok_iscontrole(pmt->prompt[*pos])
+		|| ft_isspace(pmt->prompt[*pos])) 
 		&& !pmt_isinquote(pmt->reader))
 	{
 		if(!pmt_parse_onctrl(pmt, pos))
@@ -58,7 +61,7 @@ static t_bool pmt_parse_check(t_pmt *pmt, size_t pos)
 	}
 	else
 	{
-		if(!pmt_reader_addchar(pmt->reader, pmt->prompt[pos]))
+		if(!pmt_reader_addchar(pmt->reader, pmt->prompt[*pos]))
 			return (FALSE);
 	}
 	return (TRUE);
@@ -73,11 +76,11 @@ t_bool pmt_parse(t_pmt* pmt)
 	pos = 0;
 	while(pmt->prompt[pos])
 	{
-		if(!pmt_parse_check(pmt, pos))
+		if(!pmt_parse_check(pmt, &pos))
 			return (FALSE);
 		pos++;		
 	}
-	if(!pmt_parse_check(pmt, pos))
+	if(!pmt_parse_check(pmt, &pos))
 		return (FALSE);
 	pmt_print(pmt);
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 12:03:47 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/28 09:13:30 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_pmt*	pmt_new(const char* disp, void *shell)
 	return (npmt);
 }
 
-static t_bool pmt_init_cmds(t_pmt *pmt)
+static t_bool pmt_init_sub(t_pmt *pmt)
 {
 	if(!pmt)
 		return (FALSE);
@@ -38,6 +38,9 @@ static t_bool pmt_init_cmds(t_pmt *pmt)
 	if(!pmt->cmds[0])
 		return (FALSE);
 	pmt->active_cmd = pmt->cmds[0];
+	pmt->tokens = ft_calloc(sizeof(t_token*), 1 + 1);
+	if(!pmt->tokens)
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -54,12 +57,13 @@ t_bool	pmt_init(t_pmt* pmt, const char* disp, void *shell)
 	pmt->reader = pmt_reader_new();
 	if(!pmt->reader)
 		return (FALSE);
-	if(!pmt_init_cmds(pmt))
+	if(!pmt_init_sub(pmt))
 		return (FALSE);
 	pmt->l_shell = shell;
 	pmt->prompt = NULL;
 	return (TRUE);
 }
+
 t_pmt_reader* pmt_reader_new()
 {
 	t_pmt_reader *nreader;

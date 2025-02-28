@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_checkers.c                                     :+:      :+:    :+:   */
+/*   tok_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 08:54:31 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 09:23:57 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/28 08:32:40 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/28 13:55:18 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "token.h"
 
 
-t_bool pmt_isinquote(t_pmt_reader* reader)
+void	tok_clear(t_token **token)
 {
-	if(!reader)
-		return (FALSE);
-	if(reader->is_in_dq 
-		|| reader->is_in_sq)
-		return (TRUE);
-	return (FALSE);
+	t_token *ctoken;
+
+	ctoken = *token;
+	if(ctoken)
+	{
+		if(ctoken->input)
+		{
+			free(ctoken->input);
+			ctoken->input = NULL;
+		}
+		
+		free(ctoken);
+		*token = NULL;
+	}
+}
+void	tok_release(void *token)
+{
+	tok_clear((t_token **)(&token));
 }
