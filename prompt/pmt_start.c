@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 11:23:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 16:48:23 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/01 12:49:36 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/01 12:51:10 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,7 @@ t_promtret pmt_exec(t_pmt* pmt)
 	//TODO: A refaire
 	if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 		return PMT_ERROR;
-	if(ft_strncmp(pmt->cmds[0]->name, "cd", 3) == 0)
-	{
-		printf("Test-->%p\n", pmt->cmds[0]->arguments);
-		if(!change_directory(pmt->l_shell, pmt->cmds[0]->arguments[0]))
-			return PMT_FAILED;
-		shell_update_loc(pmt->l_shell);
-	}
-	return PMT_SUCCESS;
+	if (!exec_builtins(pmt))
+		return (PMT_SUCCESS);
+	return (PMT_FAILED);
 }

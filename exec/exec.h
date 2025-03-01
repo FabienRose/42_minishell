@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 13:00:55 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/01 13:00:55 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/01 13:28:48 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/01 13:28:48 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#ifndef EXEC_H
+# define EXEC_H
 
 //--------------------------------------------------
 //                 LOCAL INCLUDES
 //--------------------------------------------------
 # include "common.h"
-
+# include "builtins/builtins.h"
+# include "prompt/prompt.h"
+# include "shell/shell.h"
 //--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
 
-struct					s_shell;
-typedef struct s_shell	t_shell;
-
+struct					s_pmt;
+typedef struct s_pmt	t_pmt;
 //--------------------------------------------------
+
 //                    FUNCTIONS
 //--------------------------------------------------
 
-t_bool	change_directory(t_shell *shell, char **arg);
-t_bool	echo(char **args);
-t_bool	pwd(char **arguments);
-t_bool	export(t_shell *shell, char **arg);
-void	bubble_sort(char **array);
-t_bool	is_valid_identifier(char *str);
-t_bool	unset(t_shell *shell, char **args);
-t_bool	print_env(t_shell *shell, char **args);
+t_bool	exec_builtins(t_pmt *pmt);
 
-#endif //BUILTINS_H
+#endif //EXEC_H

@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 16:39:32 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/25 16:46:41 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/02/28 17:21:52 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/28 17:42:48 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
-t_bool	update_existing_env(char **environ, char *variable, char *entry)
+t_bool	update_existing_env(char **env_copy, char *variable, char *entry)
 {
-	int	i;
+	int			i;
+	int			var_len;
+	int			has_equals;
+	extern char	**environ;
 
 	i = 0;
-	while (environ[i])
+	var_len = ft_strlen(variable);
+	has_equals = ft_strchr(entry, '=') != NULL;
+	while (env_copy[i])
 	{
-		if (ft_strncmp(environ[i], variable, ft_strlen(variable)) == 0
-			&& environ[i][ft_strlen(variable)] == '=')
+		if (ft_strncmp(env_copy[i], variable, var_len) == 0
+			&& (env_copy[i][var_len] == '=' || env_copy[i][var_len] == '\0'))
 		{
-			free(environ[i]);
-			environ[i] = entry;
+			if (!has_equals)
+				return (TRUE);
+			free(env_copy[i]);
+			env_copy[i] = entry;
+			environ = env_copy;
 			return (TRUE);
 		}
 		i++;
@@ -32,21 +40,21 @@ t_bool	update_existing_env(char **environ, char *variable, char *entry)
 }
 
 t_bool	set_environement(t_shell *minishell, char *variable,
-			char *path, int path_is_malloc)
+			char *value, int path_is_malloc)
 {
 	int			i;
 	char		*entry;
 	extern char	**environ;
 
-	entry = create_env(variable, path);
+	entry = create_env(variable, value);
 	if (path_is_malloc)
-		free(path);
+		free(value);
 	if (!entry)
 		return (FALSE);
-	if (update_existing_env(environ, variable, entry))
+	if (update_existing_env(minishell->environement, variable, entry))
 		return (TRUE);
 	i = 0;
-	while (environ[i])
+	while (minishell->environement[i])
 		i++;
 	minishell->environement = resize_environ(i + 2);
 	if (!minishell->environement)
@@ -56,32 +64,42 @@ t_bool	set_environement(t_shell *minishell, char *variable,
 	}
 	minishell->environement[i] = entry;
 	minishell->environement[i + 1] = NULL;
-	free_environ(environ);
 	environ = minishell->environement;
 	return (TRUE);
 }
 
+static void	shift_environ(t_shell *minishell, int start)
+{
+	int			j;
+	extern char	**environ;
+
+	j = start;
+	while (minishell->environement[j + 1])
+	{
+		minishell->environement[j] = minishell->environement[j + 1];
+		j++;
+	}
+	minishell->environement[j] = NULL;
+	environ = minishell->environement;
+}
+
 t_bool	unset_environement(t_shell *minishell, char *variable)
 {
-	int		i;
+	int			i;
+	int			var_len;
 
-	i = 0;
-	while (minishell->environement[i])
+	i = -1;
+	var_len = ft_strlen(variable);
+	while (minishell->environement[++i])
 	{
-		if (ft_strncmp(minishell->environement[i], variable,
-				ft_strlen(variable)) == 0)
+		if (ft_strncmp(minishell->environement[i], variable, var_len) == 0
+			&& (minishell->environement[i][var_len] == '='
+			|| minishell->environement[i][var_len] == '\0'))
 		{
 			free(minishell->environement[i]);
-			minishell->environement[i] = NULL;
-			while (minishell->environement[i])
-			{
-				minishell->environement[i] = minishell->environement[i + 1];
-				i++;
-			}
-			free(minishell->environement[i]);
+			shift_environ(minishell, i);
 			return (TRUE);
 		}
-		i++;
 	}
 	return (FALSE);
 }

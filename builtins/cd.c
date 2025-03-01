@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 11:43:21 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/27 16:41:55 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/28 12:12:15 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/28 13:01:17 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,16 @@ char	*define_path(char *arg)
 	return (path);
 }
 
-t_bool	change_directory(t_shell *shell, char *arg)
+t_bool	change_directory(t_shell *shell, char **arg)
 {
 	char	*path;
 
-	path = define_path(arg);
+	if (arg[1])
+	{
+		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
+		return (FALSE);
+	}
+	path = define_path(arg[0]);
 	if (chdir(path) == -1)
 	{
 		perror(ft_strjoin("minishell: cd: ", path));

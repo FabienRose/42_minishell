@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 16:51:19 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/27 16:43:52 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/28 16:40:17 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/28 16:40:17 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,28 @@ t_bool	add_env(t_shell *shell, char *arg)
 	return (ret);
 }
 
-t_bool	export(t_shell *shell, char *arg)
+t_bool	export(t_shell *shell, char **arg)
 {
+	int	i;
+
+	i = 0;
 	(void)shell;
-	if (!*arg)
+	if (!arg[i])
 	{
 		print_sorted_env(shell);
 		return (TRUE);
 	}
-	if (!is_valid_identifier(arg))
+	while (arg[i])
 	{
-		ft_putstr_fd("minishell: export: `", 2);
-		ft_putstr_fd(arg, 2);
-		ft_putstr_fd("': not a valid identifier\n", 2);
-		return (FALSE);
+		if (!is_valid_identifier(arg[i]))
+		{
+			ft_putstr_fd("minishell: export: `", 2);
+			ft_putstr_fd(arg[i], 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
+		}
+		else
+			add_env(shell, arg[i]);
+		i++;
 	}
-	if (add_env(shell, arg))
-		return (TRUE);
-	return (FALSE);
+	return (TRUE);
 }

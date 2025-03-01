@@ -3,23 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   print_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 17:24:35 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/27 16:43:57 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/01 12:38:17 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/01 12:38:40 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "builtins.h"
 #include "shell/shell.h"
 
-t_bool	print_env(t_shell *shell)
+t_bool	print_env(t_shell *shell, char **args)
 {
 	int	i;
 
+	if (args && args[0])
+	{
+		ft_putstr_fd("No arguments / options allowed\n", 2);
+		return (FALSE);
+	}
 	if (!shell->environement)
-		return (TRUE);
+	{
+		ft_putstr_fd("No environment variables set\n", 2);
+		return (FALSE);
+	}
 	i = 0;
 	while (shell->environement[i])
 	{

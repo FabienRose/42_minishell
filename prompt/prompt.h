@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 16:35:36 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/01 12:50:51 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/01 12:50:51 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include "command/command.h"
 #include "builtins/builtins.h"
-
+#include "exec/exec.h"
 //--------------------------------------------------
 //                     ENUM
 //--------------------------------------------------

@@ -1,42 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 16:51:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/27 16:43:47 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/28 14:46:03 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/02/28 14:46:26 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "shell/shell.h"
 
-t_bool	echo(t_shell *shell, char *args)
+static t_bool	check_n_flag(char *arg)
+{
+	int	i;
+
+	if (!arg || arg[0] != '-' || arg[1] != 'n')
+		return (FALSE);
+	i = 2;
+	while (arg[i] == 'n')
+		i++;
+	if (arg[i])
+		return (FALSE);
+	return (TRUE);
+}
+
+t_bool	echo(char **args)
 {
 	int		i;
 	t_bool	n_flag;
 
-	(void)shell;
 	n_flag = FALSE;
 	i = 0;
-	while (args[i] == '-')
+	if (args[i] && check_n_flag(args[i]))
 	{
+		n_flag = TRUE;
 		i++;
-		while (args[i] == 'n')
-			i++;
-		if (args[i] == ' ' || args[i] == '\0')
-		{
-			while (args[i] == ' ')
-				i++;
-			n_flag = TRUE;
-		}
-		else
-			i = 0;
 	}
-	ft_putstr_fd(args + i, 1);
+	while (args[i])
+	{
+		printf("%s", args[i]);
+		if (args[i + 1])
+			printf(" ");
+		i++;
+	}
 	if (!n_flag)
-		write(1, "\n", 1);
+		printf("\n");
 	return (TRUE);
 }

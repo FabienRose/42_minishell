@@ -25,40 +25,43 @@ SAN_FLAGS=-fsanitize=address -fsanitize=leak
 
 #----- Sources -----
 SRCS=	./minishell.c \
-		./shell/shell_signals.c \
-		./shell/shell_clear.c \
-		./shell/shell_init.c \
-		./shell/shell_env.c \
-		./shell/shell_start.c \
-		./utils/util_string.c \
-		./utils/util_errors.c \
-		./builtins/pwd.c \
-		./builtins/print_env.c \
-		./builtins/cd.c \
-		./builtins/echo.c \
-		./builtins/unset.c \
-		./builtins/builtin_utils.c \
-		./builtins/export.c \
-		./prompt/pmt_cmd.c \
-		./prompt/pmt_utils.c \
-		./prompt/pmt_checkers.c \
-		./prompt/pmt_start.c \
-		./prompt/pmt_parse.c \
-		./prompt/pmt_clear.c \
-		./prompt/pmt_debug.c \
-		./prompt/pmt_init.c \
-		./prompt/pmt_reader.c \
-		./directories/dir_init.c \
-		./directories/dir_disp.c \
-		./directories/dir_clear.c \
-		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c \
 		./command/cmd_debug.c \
-		./command/cmd_args.c \
 		./command/cmd_init.c \
 		./command/cmd_clear.c \
+		./command/cmd_args.c \
+		./exec/exec_builtins.c \
+		./exec/exec_cmd.c \
+		./exec/exec_cmd_utils.c \
+		./builtins/print_env.c \
+		./builtins/cd.c \
+		./builtins/unset.c \
+		./builtins/echo.c \
+		./builtins/export.c \
+		./builtins/builtin_utils.c \
+		./builtins/pwd.c \
+		./prompt/pmt_init.c \
+		./prompt/pmt_start.c \
+		./prompt/pmt_cmd.c \
+		./prompt/pmt_reader.c \
+		./prompt/pmt_utils.c \
+		./prompt/pmt_checkers.c \
+		./prompt/pmt_debug.c \
+		./prompt/pmt_parse.c \
+		./prompt/pmt_clear.c \
+		./utils/util_string.c \
+		./utils/util_errors.c \
+		./env/env_utils.c \
 		./env/env.c \
-		./env/env_utils.c
+		./shell/shell_env.c \
+		./shell/shell_clear.c \
+		./shell/shell_start.c \
+		./shell/shell_signals.c \
+		./shell/shell_init.c \
+		./directories/dir_clear.c \
+		./directories/dir_disp.c \
+		./directories/dir_init.c \
+		./directories/dir_nav.c
 
 #----- Objects -----
 OBJS=$(SRCS:.c=.o)
