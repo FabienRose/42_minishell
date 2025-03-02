@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 08:10:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 16:09:34 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 17:38:46 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void cmd_print_linkarr(const char *head, t_cmd **linked)
 {
 	size_t pos;
 
+	if(ft_arraylen_d((void **)linked) == 0)
+		return ;
 	printf("- %s -\n", head);
 	pos = 0;
 	while(linked[pos])
@@ -33,11 +35,21 @@ static void cmd_print_linkarr(const char *head, t_cmd **linked)
 	}
 }
 
+void cmd_print_sub(t_cmd* cmd)
+{
+	cmd_print_link("Pipe to", cmd->pipe_to);
+	cmd_print_link("Or to", cmd->or_to);
+	cmd_print_link("And to", cmd->and_to);
+	cmd_print_linkarr("Input files", cmd->input_files);
+	cmd_print_linkarr("Output files", cmd->output_files);
+	cmd_print_linkarr("Output End files", cmd->output_endfiles);
+	cmd_print_linkarr("Input from stdin", cmd->input_stdin);
+}
+
 void cmd_print(t_cmd* cmd)
 {
 	size_t i;
 	
-	(void)(cmd_print_link);
 	if(!cmd)
 	{
 		printf("Debug: no cmd passed");
@@ -53,7 +65,7 @@ void cmd_print(t_cmd* cmd)
 		printf("Arg %lu: %s\n", i, cmd->arguments[i]);
 		i++;
 	}
-	cmd_print_linkarr("Input files", cmd->input_files);
-	cmd_print_linkarr("Output files", cmd->output_files);
+	printf("full_command: %s\n", cmd->full_cmd);
+	cmd_print_sub(cmd);
 	printf("\n\n");
 }

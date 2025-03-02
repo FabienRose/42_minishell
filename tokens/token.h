@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 08:32:21 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 12:11:40 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 17:33:03 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef enum e_token_type
 	TOK_NONE,
 	TOK_REDIR_IN,
 	TOK_REDIR_OUT,
-	TOK_CHECKER_LEFT,
-	TOK_CHECKER_RIGHT,
+	TOK_READ_STDIN,
+	TOK_REDIR_OUTEND,
 	TOK_AND,
 	TOK_OR,
 	TOK_PIPE,

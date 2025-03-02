@@ -1,5 +1,4 @@
-void	print_welcome(void);
-void util_seterror(void *shell, const char *msg);
-void util_clearerror(void *shell);
-void util_printerror(void *shell);
-void util_printsplit(char **split);
+hello
+test
+true
+false

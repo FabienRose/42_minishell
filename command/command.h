@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:24:56 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 16:11:39 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 17:47:50 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,24 @@
  * 
  * @param input_files t_cmd** input commands (SHOULD BE A FILE) from which the data should come from (Token: '<')
  * @param output_files t_cmd** output commands (SHOULD BE A FILE) to which the data should go to  (Token: '>')
+ * @param output_files t_cmd** output commands (SHOULD BE A FILE) to which the data should go to and added at the end of the file (Token: '>>')
+ * @param input_stdin t_cmd** output commands (SHOULD A TEXT) to which the program will read the stdin util it reaches the given text (Token: '<<')
+ * @param pipe_to t_cmd* command to which this command will pipe to (Token: '|')
+ * @param or_to t_cmd* next command to execute if this one failed (Token: '||')
+ * @param and_to t_cmd* next command to execute if this one succeded (Token: '&&')
  */
 typedef struct s_cmd
 {
 	char *name;
 	char **arguments;
+	char *full_cmd;
 	struct s_cmd **input_files;
 	struct s_cmd **output_files;
+	struct s_cmd **output_endfiles;
+	struct s_cmd **input_stdin;
+	struct s_cmd *pipe_to;
+	struct s_cmd *or_to;
+	struct s_cmd *and_to;
 } t_cmd;
 
 //--------------------------------------------------

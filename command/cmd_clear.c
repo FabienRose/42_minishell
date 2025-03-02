@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:34:33 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 11:38:16 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 17:08:56 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,15 @@ void	cmd_clear(t_cmd **cmd)
 	}
 	if(c_cmd->arguments)
 		ft_split_release(&(c_cmd->arguments));
+	if(c_cmd->full_cmd)
+	{
+		free(c_cmd->full_cmd);
+		c_cmd->full_cmd = NULL;
+	}
 	ft_arrayfree((void **)&(c_cmd->input_files));
 	ft_arrayfree((void **)&(c_cmd->output_files));
+	ft_arrayfree((void **)&(c_cmd->output_endfiles));
+	ft_arrayfree((void **)&(c_cmd->input_stdin));
 	if(c_cmd)
 	{
 		free(c_cmd);

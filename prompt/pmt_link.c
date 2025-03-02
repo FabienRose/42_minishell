@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 14:05:06 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 16:17:48 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 17:40:30 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,26 @@ static void pmt_link_invtoken(t_pmt *pmt, t_token *token)
 	}
 }
 
+static t_cmd *pmt_link_apply_sub(t_pmt *pmt, t_cmd* active_cmd, size_t pos)
+{
+	if(pmt->tokens[pos]->type == TOK_PIPE)
+	{
+		active_cmd->pipe_to = pmt->cmds[pos + 1];
+		return pmt->cmds[pos + 1];
+	}
+	else if(pmt->tokens[pos]->type == TOK_OR)
+	{
+		active_cmd->or_to = pmt->cmds[pos + 1];
+		return pmt->cmds[pos + 1];
+	}
+	else if(pmt->tokens[pos]->type == TOK_AND)
+	{
+		active_cmd->and_to = pmt->cmds[pos + 1];
+		return pmt->cmds[pos + 1];
+	}
+	return (active_cmd);
+}
+
 static t_cmd *pmt_link_apply(t_pmt *pmt, t_cmd* active_cmd, size_t pos)
 {
 	if(pmt->tokens[pos]->type == TOK_REDIR_IN
@@ -40,7 +60,13 @@ static t_cmd *pmt_link_apply(t_pmt *pmt, t_cmd* active_cmd, size_t pos)
 	else if(pmt->tokens[pos]->type == TOK_REDIR_OUT
 		&& !ft_arraypush_d((void ***)&(active_cmd->output_files), pmt->cmds[pos + 1]))
 			return (NULL);
-	return active_cmd;
+	else if(pmt->tokens[pos]->type == TOK_REDIR_OUTEND
+		&& !ft_arraypush_d((void ***)&(active_cmd->output_endfiles), pmt->cmds[pos + 1]))
+			return (NULL);
+	else if(pmt->tokens[pos]->type == TOK_READ_STDIN
+		&& !ft_arraypush_d((void ***)&(active_cmd->input_stdin), pmt->cmds[pos + 1]))
+			return (NULL);
+	return (pmt_link_apply_sub(pmt, active_cmd, pos));
 }
 
 t_promtret pmt_link(t_pmt* pmt)
