@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 13:28:48 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/01 13:28:48 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/01 17:40:20 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/01 17:40:20 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@
 
 struct					s_pmt;
 typedef struct s_pmt	t_pmt;
+struct					s_shell;
+typedef struct s_shell	t_shell;
 //--------------------------------------------------
 
 //                    FUNCTIONS
 //--------------------------------------------------
 
 t_bool	exec_builtins(t_pmt *pmt);
+t_bool	exec_cmd(t_pmt *pmt, t_shell *shell);
+
 
 #endif //EXEC_H

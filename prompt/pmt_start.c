@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 12:49:36 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/01 12:51:10 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/01 17:39:44 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/01 17:39:44 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ t_promtret pmt_exec(t_pmt* pmt)
 		return PMT_ERROR;
 	if (!exec_builtins(pmt))
 		return (PMT_SUCCESS);
+	else
+		return (exec_cmd(pmt, pmt->l_shell));
 	return (PMT_FAILED);
 }

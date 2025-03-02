@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:42:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/27 16:10:50 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/01 17:40:31 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/01 17:40:31 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <errno.h>
+# include <fcntl.h>
+# include <sys/wait.h>
 
 //--------------------------------------------------
 //                      LIBS
