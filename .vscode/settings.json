@@ -3,6 +3,8 @@
 		"functional": "c",
 		"unordered_map": "c",
 		"shell.h": "c",
-		"builtins.h": "c"
+		"builtins.h": "c",
+		"prompt.h": "c",
+		"typeinfo": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 08:32:21 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 10:28:01 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 12:11:40 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 //                 LOCAL INCLUDES
 //--------------------------------------------------
 #include "common.h"
+#include "command/command.h"
 
 //--------------------------------------------------
 //                     ENUMS
@@ -24,8 +25,8 @@
 typedef enum e_token_type
 {
 	TOK_NONE,
-	TOK_REDIR_LEFT,
-	TOK_REDIR_RIGHT,
+	TOK_REDIR_IN,
+	TOK_REDIR_OUT,
 	TOK_CHECKER_LEFT,
 	TOK_CHECKER_RIGHT,
 	TOK_AND,
@@ -40,6 +41,8 @@ typedef struct s_token
 {
 	char			*input;
 	t_token_type	type;
+	t_cmd			*prev;
+	t_cmd			*next;
 }	t_token;
 
 

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:24:56 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 12:07:46 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 16:11:39 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,18 @@
 //--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
+/**
+ * @brief Command structure
+ * 
+ * @param input_files t_cmd** input commands (SHOULD BE A FILE) from which the data should come from (Token: '<')
+ * @param output_files t_cmd** output commands (SHOULD BE A FILE) to which the data should go to  (Token: '>')
+ */
 typedef struct s_cmd
 {
 	char *name;
 	char **arguments;
+	struct s_cmd **input_files;
+	struct s_cmd **output_files;
 } t_cmd;
 
 //--------------------------------------------------

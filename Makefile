@@ -52,6 +52,7 @@ SRCS=	./minishell.c \
 		./prompt/pmt_tok.c \
 		./prompt/pmt_clear.c \
 		./prompt/pmt_debug.c \
+		./prompt/pmt_link.c \
 		./prompt/pmt_init.c \
 		./prompt/pmt_reader.c \
 		./directories/dir_init.c \
@@ -61,6 +62,7 @@ SRCS=	./minishell.c \
 		./signatures/sgn_welcome.c \
 		./command/cmd_debug.c \
 		./command/cmd_args.c \
+		./command/cmd_util.c \
 		./command/cmd_init.c \
 		./command/cmd_clear.c \
 		./env/env.c \

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:54:30 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 10:30:16 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 16:10:28 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ t_bool pmt_parse(t_pmt* pmt)
 	}
 	if(!pmt_parse_check(pmt, &pos))
 		return (FALSE);
-	pmt_print(pmt);
 	return (TRUE);
 }

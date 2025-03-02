@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:23:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 13:25:12 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 16:10:41 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 t_promtret pmt_start(t_pmt* pmt)
 {	
+	t_promtret ret;
+
 	if(!pmt || !pmt->disp)
 		return PMT_ERROR;
 	pmt->prompt = readline(pmt->disp);
@@ -23,6 +25,9 @@ t_promtret pmt_start(t_pmt* pmt)
 		add_history(pmt->prompt);
 		if(!pmt_parse(pmt))
 			return (PMT_ERROR);
+		ret = pmt_link(pmt);
+		if(ret != PMT_SUCCESS)
+			return (ret);
 		return (pmt_exec(pmt));
 	}
 	if(!pmt->prompt)
@@ -33,7 +38,7 @@ t_promtret pmt_start(t_pmt* pmt)
 t_promtret pmt_exec(t_pmt* pmt)
 {
 	//TODO: A refaire
-	//TODO: if there is any token to null
+	pmt_print(pmt);
 	if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 		return PMT_ERROR;
 	if(ft_strncmp(pmt->cmds[0]->name, "cd", 3) == 0)

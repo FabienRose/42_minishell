@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 09:21:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 13:45:07 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/02 12:12:28 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static t_bool tok_parse_settype(t_token* token)
 
 	input_len = ft_strlen(token->input);
 	if(ft_strncmp(token->input, "<", input_len) == 0)
-		token->type = TOK_REDIR_LEFT;
+		token->type = TOK_REDIR_IN;
 	else if(ft_strncmp(token->input, ">", input_len) == 0)
-		token->type = TOK_REDIR_RIGHT;
+		token->type = TOK_REDIR_OUT;
 	else if(ft_strncmp(token->input, "<<", input_len) == 0)
 		token->type = TOK_CHECKER_LEFT;
 	else if(ft_strncmp(token->input, ">>", input_len) == 0)

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:31:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 10:28:04 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/28 14:28:45 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ typedef struct s_pmt
 	char			*prompt;
 	t_pmt_reader	*reader;
 	t_cmd			**cmds;
-	t_token			**tokens;
 	t_cmd			*active_cmd;
+	t_token			**tokens;
+	t_token			*last_token;
 	void			*l_shell;
 }	t_pmt;
 
@@ -114,6 +115,15 @@ t_promtret pmt_exec(t_pmt* pmt);
  * @return t_bool TRUE if within quotes
  */
 t_bool pmt_isinquote(t_pmt_reader* reader);
+
+//====================== LINK ======================
+/**
+ * @brief Will link the commands together and also check the tokens validity
+ * 
+ * @param pmt 
+ * @return t_promtret 
+ */
+t_promtret pmt_link(t_pmt* pmt);
 
 //====================== CMD ======================
 /**

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 09:13:30 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:16:04 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static t_bool pmt_init_sub(t_pmt *pmt)
 	pmt->tokens = ft_calloc(sizeof(t_token*), 1 + 1);
 	if(!pmt->tokens)
 		return (FALSE);
+	pmt->last_token = NULL;
 	return (TRUE);
 }
 
