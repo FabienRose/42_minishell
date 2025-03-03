@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 11:21:29 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 11:21:29 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/03 14:15:09 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/03 14:18:46 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,24 @@ t_promtret pmt_start(t_pmt* pmt)
 
 t_promtret pmt_exec(t_pmt* pmt)
 {
+	int		i;
+	t_bool	status;
+
+	i = 0;
 	//TODO: A refaire
-	pmt_print(pmt);
+	// pmt_print(pmt);
 	if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 		return PMT_ERROR;
-	if (!exec_builtins(pmt))
-		return (PMT_SUCCESS);
-	else
-		return (exec_cmd(pmt, pmt->l_shell));
-	return (PMT_FAILED);
+	while (pmt->cmds[i])
+	{
+		if (exec_builtins(pmt->cmds[i], pmt->l_shell) == PMT_SUCCESS)
+			status = PMT_SUCCESS;
+		else if (exec_cmd(pmt->cmds[i], pmt->l_shell))
+			status = PMT_SUCCESS;
+		else
+			status = PMT_FAILED;
+
+		i++;
+	}
+	return (status);
 }

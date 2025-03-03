@@ -1,65 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 17:31:16 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/01 17:40:17 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/03 14:04:01 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/03 14:04:01 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static t_bool	env_builtins(t_pmt *pmt)
+static t_bool	env_builtins(t_cmd *cmd, t_shell *shell)
 {
-	if (ft_strncmp(pmt->cmds[0]->name, "export", 7) == 0)
+	if (ft_strncmp(cmd->name, "export", 7) == 0)
 	{
-		export(pmt->l_shell, pmt->cmds[0]->arguments);
+		export(shell, cmd->arguments);
 		return (TRUE);
 	}
-	else if (ft_strncmp(pmt->cmds[0]->name, "unset", 6) == 0)
+	else if (ft_strncmp(cmd->name, "unset", 6) == 0)
 	{
-		unset(pmt->l_shell, pmt->cmds[0]->arguments);
+		unset(shell, cmd->arguments);
 		return (TRUE);
 	}
-	else if (ft_strncmp(pmt->cmds[0]->name, "env", 4) == 0)
+	else if (ft_strncmp(cmd->name, "env", 4) == 0)
 	{
-		print_env(pmt->l_shell, pmt->cmds[0]->arguments);
+		print_env(shell, cmd->arguments);
 		return (TRUE);
 	}
 	return (FALSE);
 }
 
-static t_bool	cd_builtins(t_pmt *pmt)
+static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
 {
-	if (ft_strncmp(pmt->cmds[0]->name, "cd", 3) == 0)
+	if (ft_strncmp(cmd->name, "cd", 3) == 0)
 	{
-		if (!change_directory(pmt->l_shell, pmt->cmds[0]->arguments))
+		if (!change_directory(shell, cmd->arguments))
 			return (FALSE);
-		shell_update_loc(pmt->l_shell);
+		shell_update_loc(shell);
 		return (TRUE);
 	}
-	else if (ft_strncmp(pmt->cmds[0]->name, "pwd", 4) == 0)
+	else if (ft_strncmp(cmd->name, "pwd", 4) == 0)
 	{
-		if (!pwd(pmt->cmds[0]->arguments))
+		if (!pwd(cmd->arguments))
 			return (FALSE);
 		return (TRUE);
 	}
-	else if (ft_strncmp(pmt->cmds[0]->name, "echo", 5) == 0)
+	else if (ft_strncmp(cmd->name, "echo", 5) == 0)
 	{
-		echo(pmt->cmds[0]->arguments);
+		echo(cmd->arguments);
 		return (TRUE);
 	}
 	return (FALSE);
 }
 
-t_bool	exec_builtins(t_pmt *pmt)
+t_bool	exec_builtins(t_cmd *cmd, t_shell *shell)
 {
-	if (env_builtins(pmt))
+	if (env_builtins(cmd, shell))
 		return (PMT_SUCCESS);
-	else if (cd_builtins(pmt))
+	else if (cd_builtins(cmd, shell))
 		return (PMT_SUCCESS);
 	return (PMT_FAILED);
 }
