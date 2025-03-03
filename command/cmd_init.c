@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 17:28:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 17:38:32 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/03 17:56:14 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/03 17:56:14 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_cmd	*cmd_create()
 t_bool	cmd_init(t_cmd* cmd)
 {
 	cmd->name = NULL;
+	cmd->previous_pipe = 0;
 	cmd->arguments = ft_calloc(sizeof(char *), 1);
 	if(!cmd->arguments)
 		return (FALSE);

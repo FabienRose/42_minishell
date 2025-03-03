@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 14:04:01 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 14:04:01 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/03 20:00:24 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/03 20:00:24 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,29 @@ static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
 
 t_bool	exec_builtins(t_cmd *cmd, t_shell *shell)
 {
+	int		status;
+	int		pipe_fd[2];
+
+	int	saved_stdin = dup(STDIN_FILENO);
+	int	saved_stdout = dup(STDOUT_FILENO);
+	if (cmd->pipe_to)
+	{
+		pipe(pipe_fd);
+		dup2(pipe_fd[1], STDOUT_FILENO);
+		cmd->previous_pipe = pipe_fd[0];
+		close(pipe_fd[1]);
+	}
+	if (cmd->previous_pipe)
+		dup2(cmd->previous_pipe, STDIN_FILENO);
 	if (env_builtins(cmd, shell))
-		return (PMT_SUCCESS);
+		status = PMT_SUCCESS;
 	else if (cd_builtins(cmd, shell))
-		return (PMT_SUCCESS);
-	return (PMT_FAILED);
+		status = PMT_SUCCESS;
+	else
+		status = PMT_FAILED;
+	dup2(saved_stdin, STDIN_FILENO);
+	dup2(saved_stdout, STDOUT_FILENO);
+	close(saved_stdin);
+	close(saved_stdout);
+	return (status);
 }

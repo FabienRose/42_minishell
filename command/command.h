@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.h                                           :+:      :+:    :+:   */
+/*   cmd_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 11:03:53 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 11:24:17 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/03 17:40:51 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/03 17:40:51 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_cmd
 	char *name;
 	char **arguments;
 	char *full_cmd;
+	int				previous_pipe;
 	struct s_cmd **input_files;
 	struct s_cmd **output_files;
 	struct s_cmd **output_endfiles;

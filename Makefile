@@ -32,8 +32,8 @@ SRCS=	./minishell.c \
 		./command/cmd_clear.c \
 		./command/cmd_args.c \
 		./exec/exec_builtins.c \
+		./exec/set_and_execute.c \
 		./exec/exec_cmd.c \
-		./exec/exec_cmd_utils.c \
 		./builtins/print_env.c \
 		./builtins/cd.c \
 		./builtins/unset.c \

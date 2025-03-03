@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_builtins.c                                    :+:      :+:    :+:   */
+/*   set_and_execute.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 17:40:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 13:24:42 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/03 19:53:01 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/03 19:53:01 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ typedef struct s_shell	t_shell;
 
 t_bool	exec_builtins(t_cmd *cmd, t_shell *shell);
 t_bool	exec_cmd(t_cmd *cmd, t_shell *shell);
-
+t_bool	set_and_execute(t_pmt *pmt);
 
 #endif //EXEC_H
