@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:28:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 17:38:32 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:25:23 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ t_bool	cmd_init(t_cmd* cmd)
 	cmd->arguments = ft_calloc(sizeof(char *), 1);
 	if(!cmd->arguments)
 		return (FALSE);
-	cmd->full_cmd = ft_calloc(sizeof(char *), 1);;
-	if(!cmd->full_cmd)
-		return (FALSE);
 	cmd->input_files = ft_calloc(sizeof(t_cmd *), 1);
 	if(!cmd->input_files)
 		return (FALSE);
@@ -53,6 +50,7 @@ t_bool	cmd_init(t_cmd* cmd)
 	cmd->input_stdin = ft_calloc(sizeof(t_cmd *), 1);
 	if(!cmd->input_stdin)
 		return (FALSE);
+	cmd->full_args = NULL;
 	cmd->pipe_to = NULL;
 	cmd->or_to = NULL;
 	cmd->and_to = NULL;
