@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 18:44:35 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 11:03:40 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/03 11:21:35 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/03 11:21:35 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "common.h"
 
 #include "command/command.h"
+#include "tokens/token.h"
 #include "builtins/builtins.h"
 #include "exec/exec.h"
 //--------------------------------------------------
@@ -51,6 +52,8 @@ typedef struct s_pmt
 	t_pmt_reader	*reader;
 	t_cmd			**cmds;
 	t_cmd			*active_cmd;
+	t_token			**tokens;
+	t_token			*last_token;
 	void			*l_shell;
 }	t_pmt;
 
@@ -106,20 +109,21 @@ t_promtret pmt_exec(t_pmt* pmt);
 
 //====================== CHECKERS ======================
 /**
- * @brief Check if char is a controle charatcer (|, &, >, <)
- * 
- * @param c Character to chekc
- * @return t_bool TRUE if match
- */
-t_bool pmt_iscontrole(char c);
-
-/**
  * @brief Check if the current reader is within quotes (single or  double)
  * 
  * @param reader t_pmt_reader to check
  * @return t_bool TRUE if within quotes
  */
 t_bool pmt_isinquote(t_pmt_reader* reader);
+
+//====================== LINK ======================
+/**
+ * @brief Will link the commands together and also check the tokens validity
+ * 
+ * @param pmt 
+ * @return t_promtret 
+ */
+t_promtret pmt_link(t_pmt* pmt);
 
 //====================== CMD ======================
 /**
@@ -129,6 +133,16 @@ t_bool pmt_isinquote(t_pmt_reader* reader);
  * @return t_bool FASLE if failed
  */
 t_bool pmt_newcmd(t_pmt* pmt);
+
+//====================== TOKEN ======================
+/**
+ * @brief Add a new token the the prompt and parse it
+ * 
+ * @param pmt Promt to add the token in
+ * @param pos Position of the begining of the token (will increment the value)
+ * @return t_bool FALSE if failed
+ */
+t_bool pmt_addtok(t_pmt* pmt, size_t *pos);
 
 //====================== PARSE ======================
 /**

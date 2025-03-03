@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_checkers.c                                     :+:      :+:    :+:   */
+/*   tok_debug.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 08:54:31 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 09:23:57 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/28 10:03:41 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/02/28 14:25:01 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "token.h"
 
-
-t_bool pmt_isinquote(t_pmt_reader* reader)
+void tok_print(t_token *token)
 {
-	if(!reader)
-		return (FALSE);
-	if(reader->is_in_dq 
-		|| reader->is_in_sq)
-		return (TRUE);
-	return (FALSE);
+	printf("Input: %s\n", token->input);
+	printf("Type: %i\n", token->type);
+	printf("Prev: %p\n", token->prev);
+	printf("Next: %p\n", token->next);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 17:39:44 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/01 17:39:44 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/03 11:21:29 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/03 11:21:29 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 t_promtret pmt_start(t_pmt* pmt)
 {	
+	t_promtret ret;
+
 	if(!pmt || !pmt->disp)
 		return PMT_ERROR;
 	pmt->prompt = readline(pmt->disp);
@@ -23,6 +25,9 @@ t_promtret pmt_start(t_pmt* pmt)
 		add_history(pmt->prompt);
 		if(!pmt_parse(pmt))
 			return (PMT_ERROR);
+		ret = pmt_link(pmt);
+		if(ret != PMT_SUCCESS)
+			return (ret);
 		return (pmt_exec(pmt));
 	}
 	if(!pmt->prompt)
@@ -33,6 +38,7 @@ t_promtret pmt_start(t_pmt* pmt)
 t_promtret pmt_exec(t_pmt* pmt)
 {
 	//TODO: A refaire
+	pmt_print(pmt);
 	if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 		return PMT_ERROR;
 	if (!exec_builtins(pmt))

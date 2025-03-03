@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:11:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 16:11:22 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/02/28 09:49:11 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,15 @@ void ft_arrayfree_d(void ***arr, void(*del)(void *));
 //--------------------------------------------------
 size_t	ft_strlen(const char *s);
 void	ft_strcpy(char *dst, const char *src);
+/**
+ * @brief Add charecter to a given string
+ * @warning Realloc is called the previous str will be freed
+ * 
+ * @param str Pointer of the string pointer
+ * @param c Character to add
+ * @return t_bool FALSE if failed
+ */
+t_bool	ft_strpush(char **str, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 /**

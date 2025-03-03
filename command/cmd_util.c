@@ -1,24 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_checkers.c                                     :+:      :+:    :+:   */
+/*   cmd_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 08:54:31 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 09:23:57 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/02 13:16:56 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/02 15:57:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
-
-
-t_bool pmt_isinquote(t_pmt_reader* reader)
-{
-	if(!reader)
-		return (FALSE);
-	if(reader->is_in_dq 
-		|| reader->is_in_sq)
-		return (TRUE);
-	return (FALSE);
-}
+#include "command.h"
