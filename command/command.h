@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:24:56 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/03 16:32:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:33:12 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_bool cmd_add_arg(t_cmd *cmd, char *arg);
  * @param cmd Structure to merge data
  * @return char** An array of all string data
  */
-char **cmd_get_fullarray(t_cmd *cmd)
+char **cmd_get_fullarray(t_cmd *cmd);
 
 //====================== CLEAR ======================
 /**

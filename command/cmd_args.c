@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 07:57:40 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/03 16:29:34 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:33:42 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char **cmd_get_fullarray(t_cmd *cmd)
 		return (NULL);
 	if(cmd->full_args)
 		return cmd->full_args;
-	len = ft_arraylen_d(cmd->arguments);
+	len = ft_arraylen_d((void**)(cmd->arguments));
 	cmd->full_args = ft_calloc(sizeof(char *), len  + 1 + 1);
 	if(!cmd->full_args)
 		return (NULL);
