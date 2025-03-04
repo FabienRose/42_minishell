@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 21:28:44 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/04 09:30:25 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/04 10:42:00 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/04 10:42:00 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@ t_bool	set_fd(t_cmd *cmd, t_fd *fd)
 	{
 		pipe(fd->pipe_fd);
 		dup2(fd->pipe_fd[1], STDOUT_FILENO);
+		if (fd->pipe_fd[1] == -1)
+			return (FALSE);
 		close(fd->pipe_fd[1]);
 		cmd->pipe_to->previous_pipe = fd->pipe_fd[0];
 	}
 	if (cmd->previous_pipe)
 	{
 		dup2(cmd->previous_pipe, STDIN_FILENO);
+		if (cmd->previous_pipe == -1)
+			return (FALSE);
 		close(cmd->previous_pipe);
 	}
 	return (TRUE);
