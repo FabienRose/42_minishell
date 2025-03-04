@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command.h                                          :+:      :+:    :+:   */
+/*   cmd_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 10:45:56 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/04 10:46:14 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/04 14:06:23 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/04 14:06:23 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_cmd
 {
 	char *name;
 	char **arguments;
-	char *full_cmd;
-	int				previous_pipe;
+	char **full_args;
+	int		previous_pipe;
 	struct s_cmd **input_files;
 	struct s_cmd **output_files;
 	struct s_cmd **output_endfiles;
@@ -79,6 +79,15 @@ t_bool	cmd_init(t_cmd* cmd);
  * @return t_bool FALSE on Failed
  */
 t_bool cmd_add_arg(t_cmd *cmd, char *arg);
+
+/**
+ * @brief Will create a new array with the name and arguments of the command (If already exist it will return the array stored in the t_cmd)
+ * @brief DO NOT RELEASE THE Char* contained in the array this is the reference as 'name' & 'arguments'
+ * 
+ * @param cmd Structure to merge data
+ * @return char** An array of all string data
+ */
+char **cmd_get_fullarray(t_cmd *cmd);
 
 //====================== CLEAR ======================
 /**

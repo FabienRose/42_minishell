@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 08:10:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 17:38:46 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:14:42 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void cmd_print(t_cmd* cmd)
 		printf("Arg %lu: %s\n", i, cmd->arguments[i]);
 		i++;
 	}
-	printf("full_command: %s\n", cmd->full_cmd);
 	cmd_print_sub(cmd);
 	printf("\n\n");
 }

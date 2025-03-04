@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 07:57:40 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 16:27:56 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:33:42 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,27 @@ t_bool cmd_add_arg(t_cmd *cmd, char *arg)
 		cmd->arguments[csize] = arg;
 	}
 	return (TRUE);
+}
+
+char **cmd_get_fullarray(t_cmd *cmd)
+{
+	size_t len;
+	size_t pos;
+
+	if(!cmd)
+		return (NULL);
+	if(cmd->full_args)
+		return cmd->full_args;
+	len = ft_arraylen_d((void**)(cmd->arguments));
+	cmd->full_args = ft_calloc(sizeof(char *), len  + 1 + 1);
+	if(!cmd->full_args)
+		return (NULL);
+	cmd->full_args[0] = cmd->name;
+	pos = 1;
+	while(pos <= len)
+	{
+		cmd->full_args[pos] = cmd->arguments[pos - 1];
+		pos++;
+	}
+	return (cmd->full_args);
 }

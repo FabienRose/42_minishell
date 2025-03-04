@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_init.c                                         :+:      :+:    :+:   */
+/*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 17:56:14 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 17:56:14 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/04 14:08:47 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/04 14:08:58 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ t_bool	cmd_init(t_cmd* cmd)
 	cmd->arguments = ft_calloc(sizeof(char *), 1);
 	if(!cmd->arguments)
 		return (FALSE);
-	cmd->full_cmd = ft_calloc(sizeof(char *), 1);;
-	if(!cmd->full_cmd)
-		return (FALSE);
 	cmd->input_files = ft_calloc(sizeof(t_cmd *), 1);
 	if(!cmd->input_files)
 		return (FALSE);
@@ -54,6 +51,7 @@ t_bool	cmd_init(t_cmd* cmd)
 	cmd->input_stdin = ft_calloc(sizeof(t_cmd *), 1);
 	if(!cmd->input_stdin)
 		return (FALSE);
+	cmd->full_args = NULL;
 	cmd->pipe_to = NULL;
 	cmd->or_to = NULL;
 	cmd->and_to = NULL;
