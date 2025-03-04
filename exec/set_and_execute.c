@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 15:56:55 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/04 16:10:50 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/04 19:07:16 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/04 22:25:22 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@ t_bool	redirect_fd(t_cmd *cmd)
 {
 	int	file_fd;
 
-	if (cmd->output_files && cmd->output_files[0])
+	if ((cmd->output_files && cmd->output_files[0])
+		|| (cmd->output_endfiles && cmd->output_endfiles[0]))
 	{
-		file_fd = open(cmd->output_files[0]->name,
-				O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (cmd->output_files && cmd->output_files[0])
+			file_fd = open(cmd->output_files[0]->name,
+					O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		else if (cmd->output_endfiles && cmd->output_endfiles[0])
+			file_fd = open(cmd->output_endfiles[0]->name,
+					O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if (file_fd == -1)
 			return (FALSE);
 		if (dup2(file_fd, STDOUT_FILENO) == -1)
