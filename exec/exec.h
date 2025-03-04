@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_and_execute.c                                  :+:      :+:    :+:   */
+/*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 19:53:01 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 19:53:01 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/03 21:12:32 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/03 21:12:32 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ struct					s_pmt;
 typedef struct s_pmt	t_pmt;
 struct					s_shell;
 typedef struct s_shell	t_shell;
+
+typedef struct s_fd
+{
+	int		pipe_fd[2];
+	int		saved_stdin;
+	int		saved_stdout;
+}	t_fd;
 //--------------------------------------------------
 
 //                    FUNCTIONS

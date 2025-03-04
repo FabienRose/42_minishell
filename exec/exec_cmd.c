@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_and_execute.c                                  :+:      :+:    :+:   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 19:58:44 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 19:58:44 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/04 10:22:47 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/04 10:24:52 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,7 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 	int		i;
 	char	*cmd_path;
 	char	*try_path;
-	int		pipe_fd[2];
 
-	if (pipe(pipe_fd) == -1)
-		return (FALSE);
-	if (cmd->pipe_to)
-	{
-		close(pipe_fd[1]);
-		dup2(pipe_fd[0], STDIN_FILENO);
-		close(pipe_fd[0]);
-	}
 	i = 0;
 	while (paths[i])
 	{
@@ -44,22 +35,23 @@ t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	pid_t	pid;
 	char	**paths;
-	int		pipe_fd[2];
 
 	paths = ft_split(getenv("PATH"), ':');
-	pipe(pipe_fd);
+	if (!paths)
+		return (FALSE);
 	pid = fork();
 	if (pid == -1)
+	{
+		ft_split_release(&paths);
 		return (FALSE);
-
+	}
 	if (pid == 0)
 	{
 		exec_path(paths, cmd, shell);
+		ft_split_release(&paths);
+		exit(1);
 	}
-	else
-	{
-		waitpid(pid, NULL, 0);
-		return (TRUE);
-	}
-	return (FALSE);
+	ft_split_release(&paths);
+	waitpid(pid, NULL, 0);
+	return (TRUE);
 }
