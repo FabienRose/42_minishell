@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 10:22:47 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/04 10:24:52 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/04 14:19:26 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/04 14:23:14 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 		try_path = ft_strjoin(paths[i], "/");
 		cmd_path = ft_strjoin(try_path, cmd->name);
 		free(try_path);
-		execve(cmd_path, cmd->arguments, shell->environement);
+		execve(cmd_path, cmd_get_fullarray(cmd), shell->environement);
 		free(cmd_path);
 		i++;
 	}

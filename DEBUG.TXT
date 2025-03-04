@@ -1,0 +1,24 @@
+
+>>>>>>>>>> Vérifier la délimitation des commandes <<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Comportement normal de bash:
+
+echo test   =  1 commande
+
+echo AAAA | echo BBBB = 2 commandes
+
+echo AAAA > test.txt = 1 commande
+
+echo AAAA > test2.txt | echo BBBB = 2 commandes
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Comportement de notre programme:
+
+echo test   =  1 commande
+
+echo AAAA | echo BBBB = 2 commandes
+
+echo AAAA > test.txt = 2 commandes
+
+echo AAAA > test2.txt | echo BBBB = 3 commandes
