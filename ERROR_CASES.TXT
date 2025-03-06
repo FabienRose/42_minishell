@@ -1,0 +1,2 @@
+fmixtur@DESKTOP-5RGRT1I:~/42/minishell$ echo TEST > >> test.txt 
+bash: syntax error near unexpected token `>>'

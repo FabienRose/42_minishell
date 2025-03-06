@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_builtins.c                                    :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 21:12:32 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 21:12:32 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/06 11:05:48 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/06 11:19:55 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct s_fd
 
 t_bool	exec_builtins(t_cmd *cmd, t_shell *shell);
 t_bool	exec_cmd(t_cmd *cmd, t_shell *shell);
-t_bool	set_and_execute(t_pmt *pmt);
-
+t_bool	set_and_execute(t_cmd *cmd, t_pmt *pmt);
+int		get_file_fd(t_cmd *cmd, char type);
+t_bool	set_fd(t_cmd *cmd, t_fd *fd);
+t_bool	reset_fd(t_fd *fd);
+t_bool	redirect_fd_output(t_cmd *cmd);
+t_bool	redirect_fd_input(t_cmd *cmd);
 #endif //EXEC_H

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:26:28 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/04 16:26:28 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/06 10:07:24 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/06 10:07:24 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_promtret pmt_exec(t_pmt* pmt)
 	pmt_print(pmt);
 	if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 		return PMT_ERROR;
-	if(set_and_execute(pmt) == PMT_SUCCESS)
+	if(set_and_execute(pmt->cmds[0], pmt) == PMT_SUCCESS)
 		return (PMT_SUCCESS);
 	return (PMT_ERROR);
 }
