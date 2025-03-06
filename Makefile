@@ -25,51 +25,52 @@ SAN_FLAGS=-fsanitize=address -fsanitize=leak
 
 #----- Sources -----
 SRCS=	./minishell.c \
-		./signatures/sgn_welcome.c \
-		./command/cmd_util.c \
-		./command/cmd_debug.c \
-		./command/cmd_init.c \
-		./command/cmd_clear.c \
-		./command/cmd_args.c \
-		./exec/exec_builtins.c \
-		./exec/set_and_execute.c \
-		./exec/exec_cmd.c \
-		./builtins/print_env.c \
-		./builtins/cd.c \
-		./builtins/unset.c \
-		./builtins/echo.c \
-		./builtins/export.c \
-		./builtins/builtin_utils.c \
-		./builtins/pwd.c \
-		./tokens/tok_clear.c \
-		./tokens/tok_init.c \
-		./tokens/tok_debug.c \
 		./tokens/tok_util.c \
 		./tokens/tok_parse.c \
-		./prompt/pmt_init.c \
-		./prompt/pmt_link.c \
-		./prompt/pmt_tok.c \
-		./prompt/pmt_start.c \
-		./prompt/pmt_cmd.c \
-		./prompt/pmt_reader.c \
-		./prompt/pmt_utils.c \
-		./prompt/pmt_checkers.c \
-		./prompt/pmt_debug.c \
-		./prompt/pmt_parse.c \
-		./prompt/pmt_clear.c \
+		./tokens/tok_init.c \
+		./tokens/tok_clear.c \
+		./tokens/tok_debug.c \
+		./shell/shell_signals.c \
+		./shell/shell_clear.c \
+		./shell/shell_init.c \
+		./shell/shell_env.c \
+		./shell/shell_start.c \
 		./utils/util_string.c \
 		./utils/util_errors.c \
-		./env/env_utils.c \
-		./env/env.c \
-		./shell/shell_env.c \
-		./shell/shell_clear.c \
-		./shell/shell_start.c \
-		./shell/shell_signals.c \
-		./shell/shell_init.c \
-		./directories/dir_clear.c \
-		./directories/dir_disp.c \
+		./builtins/pwd.c \
+		./builtins/print_env.c \
+		./builtins/cd.c \
+		./builtins/echo.c \
+		./builtins/unset.c \
+		./builtins/builtin_utils.c \
+		./builtins/export.c \
+		./exec/exec_cmd.c \
+		./exec/set_and_execute.c \
+		./exec/exec_builtins.c \
+		./prompt/pmt_cmd.c \
+		./prompt/pmt_utils.c \
+		./prompt/pmt_checkers.c \
+		./prompt/pmt_start.c \
+		./prompt/pmt_parse.c \
+		./prompt/pmt_tok.c \
+		./prompt/pmt_clear.c \
+		./prompt/pmt_debug.c \
+		./prompt/pmt_link.c \
+		./prompt/pmt_init.c \
+		./prompt/pmt_reader.c \
 		./directories/dir_init.c \
-		./directories/dir_nav.c
+		./directories/dir_disp.c \
+		./directories/dir_clear.c \
+		./directories/dir_nav.c \
+		./signatures/sgn_welcome.c \
+		./command/cmd_debug.c \
+		./command/cmd_vars.c \
+		./command/cmd_args.c \
+		./command/cmd_util.c \
+		./command/cmd_init.c \
+		./command/cmd_clear.c \
+		./env/env.c \
+		./env/env_utils.c
 
 #----- Objects -----
 OBJS=$(SRCS:.c=.o)

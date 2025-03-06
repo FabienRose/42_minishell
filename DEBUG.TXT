@@ -1,24 +1,20 @@
 
->>>>>>>>>> Vérifier la délimitation des commandes <<<<<<<<<<
+>>>>>>>>>> LOCAL PROGAM NOT WORKING <<<<<<<<<<
+Cannot start minishell in minishell
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-Comportement normal de bash:
 
-echo test   =  1 commande
+>>>>>>>>>> NO ERROR WHEN COMMAND NOT FOUND <<<<<<<<<<
+e.g. "dwqdq: command not found"
 
-echo AAAA | echo BBBB = 2 commandes
 
-echo AAAA > test.txt = 1 commande
+>>>>>>>>>> POSSIBLE ERROR ON FUNCTIONS NAMES <<<<<<<<<<
+Need to rename some function as the name is too common	emple unset or export
 
-echo AAAA > test2.txt | echo BBBB = 2 commandes
 
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-Comportement de notre programme:
-
-echo test   =  1 commande
-
-echo AAAA | echo BBBB = 2 commandes
-
-echo AAAA > test.txt = 2 commandes
-
-echo AAAA > test2.txt | echo BBBB = 3 commandes
+>>>>>>>>>> CHECK VAR SET POSIIBILITIES <<<<<<<<<<
+Check those in order
+arg= test;
+arg= ls;echo $arg
+arg= 
+arg= ls;echo $arg
+arg = test

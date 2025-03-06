@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:34:33 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/03 16:25:55 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/06 09:20:22 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,21 @@
 void	cmd_release(void *cmd)
 {
 	cmd_clear((t_cmd **)(&cmd));
+}
+
+
+static void	cmd_clear_sub(t_cmd *cmd)
+{
+	if(cmd->var_name)
+	{
+		free(cmd->var_name);
+		cmd->var_name = NULL;
+	}
+	if(cmd->var_data)
+	{
+		free(cmd->var_data);
+		cmd->var_data = NULL;
+	}
 }
 
 void	cmd_clear(t_cmd **cmd)
@@ -32,6 +47,7 @@ void	cmd_clear(t_cmd **cmd)
 	ft_arrayfree((void **)&(c_cmd->output_endfiles));
 	ft_arrayfree((void **)&(c_cmd->input_stdin));
 	ft_arrayfree((void **)&(c_cmd->full_args));
+	cmd_clear_sub(c_cmd);
 	if(c_cmd)
 	{
 		free(c_cmd);

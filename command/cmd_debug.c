@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_args.c                                         :+:      :+:    :+:   */
+/*   cmd_debug.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:06:16 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/04 19:06:16 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/06 09:22:59 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ static void cmd_print_linkarr(const char *head, t_cmd **linked)
 
 void cmd_print_sub(t_cmd* cmd)
 {
+	if(cmd->var_isset)
+	{
+		printf("\n---IS DATA---\n");
+		printf("Name: %s\n", cmd->var_name);
+		printf("Data: %s\n", cmd->var_data);
+		printf("-------------\n\n");
+	}
 	cmd_print_link("Pipe to", cmd->pipe_to);
 	cmd_print_link("Or to", cmd->or_to);
 	cmd_print_link("And to", cmd->and_to);

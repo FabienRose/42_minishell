@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_init.c                                         :+:      :+:    :+:   */
+/*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:06:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/04 19:06:06 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/06 09:19:16 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ typedef struct s_cmd
 	char **arguments;
 	char **full_args;
 	int		previous_pipe;
+	t_bool	var_isset;
+	char	*var_name;
+	char	*var_data;
 	struct s_cmd **input_files;
 	struct s_cmd **output_files;
 	struct s_cmd **output_endfiles;
@@ -88,6 +91,9 @@ t_bool cmd_add_arg(t_cmd *cmd, char *arg);
  * @return char** An array of all string data
  */
 char **cmd_get_fullarray(t_cmd *cmd);
+
+//====================== VARS ======================
+t_bool pmt_check_setvar(t_cmd *cmd);
 
 //====================== CLEAR ======================
 /**

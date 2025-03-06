@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 08:32:21 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 17:33:03 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:26:10 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,13 @@ t_bool tok_parse(t_token *token, void *vpmt, size_t *pos);
  * @return t_bool TRUE if match
  */
 t_bool tok_iscontrole(char c);
+/**
+ * @brief Test if he token a redirection token (>, >>, <, <<)
+ * 
+ * @param token token to test
+ * @return t_bool TRUE if one of the above
+ */
+t_bool tok_is_redir(t_token *token);
 
 //====================== CLEAR ======================
 /**

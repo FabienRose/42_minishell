@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:49:35 by kgauthie          #+#    #+#             */
-/*   Updated: 2024/10/04 14:32:31 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/06 08:59:46 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ char	*ft_strrchr(const char *s, int c)
 		if (s[i] == (char)c)
 			return (&(((char *)s)[i]));
 		i--;
+	}
+	return (NULL);
+}
+
+
+char	*ft_strfrchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (&(((char *)s)[i]));
+		i++;
 	}
 	return (NULL);
 }

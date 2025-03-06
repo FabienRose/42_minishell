@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   prompt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:12:48 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 21:12:48 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/06 07:56:06 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_pmt
 	t_pmt_reader	*reader;
 	t_cmd			**cmds;
 	t_cmd			*active_cmd;
+	t_cmd			*arg_cmd;
 	t_token			**tokens;
 	t_token			*last_token;
 	void			*l_shell;

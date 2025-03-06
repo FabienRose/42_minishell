@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:54:30 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 16:10:28 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/06 08:56:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_bool pmt_parse_applyctrl(t_pmt* pmt, char *extract)
 		pmt->active_cmd->name = extract;
 	else
 	{
-		if(!cmd_add_arg(pmt->active_cmd, extract))
+		if(!cmd_add_arg(pmt->arg_cmd, extract))
 			return (FALSE);
 	}
 	return (TRUE);
@@ -81,6 +81,8 @@ t_bool pmt_parse(t_pmt* pmt)
 		pos++;		
 	}
 	if(!pmt_parse_check(pmt, &pos))
+		return (FALSE);
+	if(!pmt_check_setvar(pmt->active_cmd))
 		return (FALSE);
 	return (TRUE);
 }

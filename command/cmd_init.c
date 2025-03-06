@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_debug.c                                        :+:      :+:    :+:   */
+/*   cmd_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:06:24 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/04 19:06:24 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/06 09:17:53 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ t_bool	cmd_init(t_cmd* cmd)
 {
 	cmd->name = NULL;
 	cmd->previous_pipe = 0;
+	cmd->var_isset = FALSE;
+	cmd->var_name = NULL;
+	cmd->var_data = NULL;
 	cmd->arguments = ft_calloc(sizeof(char *), 1);
 	if(!cmd->arguments)
 		return (FALSE);

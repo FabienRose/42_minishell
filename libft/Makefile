@@ -25,57 +25,58 @@ SMK_RM_FLAGS=-fr
 #--------------------------------------------------
 
 #----- Sources -----
-SRCS=	./convertions/ft_atoi.c \
-		./convertions/ft_itoa.c \
-		./lists/ft_lstiter.c \
-		./lists/ft_lstdelone.c \
-		./lists/ft_lstlast.c \
-		./lists/ft_lstsize.c \
-		./lists/ft_lstmap.c \
-		./lists/ft_lstnew.c \
-		./lists/ft_lstadd_back.c \
-		./lists/ft_lstclear.c \
-		./lists/ft_lstadd_front.c \
-		./memory/ft_bzero.c \
-		./memory/ft_memchr.c \
-		./memory/ft_memset.c \
-		./memory/ft_calloc.c \
-		./memory/ft_realloc.c \
-		./memory/ft_memcmp.c \
-		./memory/ft_memcpy.c \
-		./memory/ft_memmove.c \
+SRCS=	./array/ft_arraypush.c \
 		./array/ft_arraylen.c \
+		./array/ft_arraypop.c \
 		./array/ft_arrayfree.c \
-		./array/ft_arraypush.c \
-		./strings/ft_strchr.c \
-		./strings/ft_split.c \
-		./strings/ft_strtrim.c \
+		./convertions/ft_atoi.c \
+		./convertions/ft_itoa.c \
+		./memory/ft_memset.c \
+		./memory/ft_memmove.c \
+		./memory/ft_realloc.c \
+		./memory/ft_memcpy.c \
+		./memory/ft_bzero.c \
+		./memory/ft_memcmp.c \
+		./memory/ft_memchr.c \
+		./memory/ft_calloc.c \
+		./strings/ft_strpush.c \
+		./strings/ft_strmapi.c \
+		./strings/ft_strncmp.c \
 		./strings/ft_strmerge.c \
 		./strings/ft_strnstr.c \
-		./strings/ft_strmapi.c \
-		./strings/ft_strdup.c \
-		./strings/ft_tolower.c \
-		./strings/ft_toupper.c \
-		./strings/ft_substr.c \
+		./strings/ft_strchr.c \
 		./strings/ft_striteri.c \
-		./strings/ft_strlcpy.c \
-		./strings/ft_strpush.c \
-		./strings/ft_strlen.c \
 		./strings/ft_strlcat.c \
+		./strings/ft_strlcpy.c \
+		./strings/ft_strlen.c \
 		./strings/ft_strrchr.c \
-		./strings/ft_strcpy.c \
-		./strings/ft_strncmp.c \
+		./strings/ft_tolower.c \
+		./strings/ft_strtrim.c \
+		./strings/ft_split.c \
+		./strings/ft_strdup.c \
 		./strings/ft_strjoin.c \
-		./checkers/ft_isprint.c \
+		./strings/ft_strcpy.c \
+		./strings/ft_substr.c \
+		./strings/ft_toupper.c \
 		./checkers/ft_isascii.c \
 		./checkers/ft_isdigit.c \
+		./checkers/ft_isspace.c \
 		./checkers/ft_isalpha.c \
 		./checkers/ft_isalnum.c \
-		./checkers/ft_isspace.c \
-		./io/ft_putnbr_fd.c \
+		./checkers/ft_isprint.c \
+		./lists/ft_lstiter.c \
+		./lists/ft_lstadd_back.c \
+		./lists/ft_lstadd_front.c \
+		./lists/ft_lstmap.c \
+		./lists/ft_lstnew.c \
+		./lists/ft_lstsize.c \
+		./lists/ft_lstclear.c \
+		./lists/ft_lstlast.c \
+		./lists/ft_lstdelone.c \
 		./io/ft_putchar_fd.c \
 		./io/ft_putendl_fd.c \
-		./io/ft_putstr_fd.c
+		./io/ft_putstr_fd.c \
+		./io/ft_putnbr_fd.c
 
 #----- Objects -----
 OBJS=$(SRCS:.c=.o)

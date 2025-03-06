@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:11:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 09:49:11 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/06 09:48:20 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,15 @@ t_bool ft_arraypush_d(void ***arr, void *ndata);
  */
 t_bool ft_arraypush_df(void ***arr, void *(*create)(void), void(*del)(void *));
 
+	//--------------------- Pop ---------------------
+/**
+ * @brief Remove the first element of the array and risize this latter
+ * 
+ * @param arr Pointer to the array to resize
+ * @return void* Pointer to of the first element (Extracted);
+ */
+void *ft_arraypopfront_d(void ***arr);
+
 	//--------------------- Len ---------------------
 /**
  * @brief Get the size of the array
@@ -233,6 +242,14 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
+/**
+ * @brief Find the first occurence of the specified char
+ * 
+ * @param s String to search in
+ * @param c Caracter to find
+ * @return char* Pointer to the char (NULL if not found)
+ */
+char	*ft_strfrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strdup(const char *s);
