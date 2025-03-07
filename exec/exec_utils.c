@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_builtins.c                                    :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 11:39:52 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/06 11:39:52 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/07 14:47:44 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/07 14:50:16 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ t_bool	set_fd(t_cmd *cmd, t_fd *fd)
 		close(fd->pipe_fd[1]);
 		cmd->pipe_to->previous_pipe = fd->pipe_fd[0];
 	}
-	if (!redirect_fd_input(cmd) && cmd->previous_pipe)
+	if (!redirect_fd_input(cmd))
+		return (FALSE);
+	if (cmd->previous_pipe)
 	{
 		dup2(cmd->previous_pipe, STDIN_FILENO);
 		if (cmd->previous_pipe == -1)
@@ -65,6 +67,14 @@ int	get_file_fd(t_cmd *cmd, char type)
 	while (type == 'i' && cmd->input_files[i])
 	{
 		file_fd = open(cmd->input_files[i]->name, O_RDONLY);
+		if (file_fd == -1)
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(cmd->input_files[i]->name, 2);
+			ft_putstr_fd(": ", 2);
+			perror("");
+			return (-1);
+		}
 		i++;
 	}
 	return (file_fd);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_and_execute.c                                  :+:      :+:    :+:   */
+/*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 11:21:22 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/06 11:21:22 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/07 14:57:31 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/07 14:57:31 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_bool	set_and_execute(t_cmd *cmd, t_pmt *pmt)
 	status = PMT_SUCCESS;
 	if (cmd)
 	{
-		if (set_fd(cmd, &fd) == FALSE)
-			return (PMT_ERROR);
+		if (set_fd(cmd, &fd) == FALSE) //Check if error of just failed
+			return (PMT_FAILED	);
 		if (exec_builtins(cmd, pmt->l_shell) == PMT_SUCCESS)
 			status = PMT_SUCCESS;
 		else if (exec_cmd(cmd, pmt->l_shell))
