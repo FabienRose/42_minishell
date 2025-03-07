@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 13:39:19 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/03 13:41:33 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/06 12:14:53 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/06 12:14:53 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ t_bool	echo(char **args)
 	}
 	while (args[i])
 	{
-		printf("%s", args[i]);
+		ft_putstr_fd(args[i], 1);
 		if (args[i + 1])
-			printf(" ");
+			ft_putstr_fd(" ", 1);
 		i++;
 	}
 	if (!n_flag)
-		printf("\n");
+		ft_putstr_fd("\n", 1);
 	return (TRUE);
 }

@@ -1,97 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_and_execute.c                                  :+:      :+:    :+:   */
+/*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 19:07:16 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/04 22:25:22 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/07 14:57:31 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/07 14:57:31 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-t_bool	redirect_fd(t_cmd *cmd)
+t_bool	set_and_execute(t_cmd *cmd, t_pmt *pmt)
 {
-	int	file_fd;
-
-	if ((cmd->output_files && cmd->output_files[0])
-		|| (cmd->output_endfiles && cmd->output_endfiles[0]))
-	{
-		if (cmd->output_files && cmd->output_files[0])
-			file_fd = open(cmd->output_files[0]->name,
-					O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		else if (cmd->output_endfiles && cmd->output_endfiles[0])
-			file_fd = open(cmd->output_endfiles[0]->name,
-					O_WRONLY | O_CREAT | O_APPEND, 0644);
-		if (file_fd == -1)
-			return (FALSE);
-		if (dup2(file_fd, STDOUT_FILENO) == -1)
-		{
-			close(file_fd);
-			return (FALSE);
-		}
-		close(file_fd);
-		return (TRUE);
-	}
-	return (FALSE);
-}
-
-t_bool	set_fd(t_cmd *cmd, t_fd *fd)
-{
-	fd->saved_stdin = dup(STDIN_FILENO);
-	fd->saved_stdout = dup(STDOUT_FILENO);
-	if (!redirect_fd(cmd) && cmd->pipe_to)
-	{
-		pipe(fd->pipe_fd);
-		dup2(fd->pipe_fd[1], STDOUT_FILENO);
-		if (fd->pipe_fd[1] == -1)
-			return (FALSE);
-		close(fd->pipe_fd[1]);
-		cmd->pipe_to->previous_pipe = fd->pipe_fd[0];
-	}
-	if (cmd->previous_pipe)
-	{
-		dup2(cmd->previous_pipe, STDIN_FILENO);
-		if (cmd->previous_pipe == -1)
-			return (FALSE);
-		close(cmd->previous_pipe);
-	}
-	return (TRUE);
-}
-
-
-t_bool	reset_fd(t_fd *fd)
-{
-	dup2(fd->saved_stdin, STDIN_FILENO);
-	dup2(fd->saved_stdout, STDOUT_FILENO);
-	close(fd->saved_stdin);
-	close(fd->saved_stdout);
-	return (TRUE);
-}
-
-t_bool	set_and_execute(t_pmt *pmt)
-{
-	int		i;
 	t_bool	status;
 	t_fd	fd;
 
-	i = 0;
 	status = PMT_SUCCESS;
-	while (pmt->cmds[i])
+	if (cmd)
 	{
-		if (set_fd(pmt->cmds[i], &fd) == FALSE)
-			return (PMT_ERROR);
-		if (exec_builtins(pmt->cmds[i], pmt->l_shell) == PMT_SUCCESS)
+		if (set_fd(cmd, &fd) == FALSE) //Check if error of just failed
+			return (PMT_FAILED	);
+		if (exec_builtins(cmd, pmt->l_shell) == PMT_SUCCESS)
 			status = PMT_SUCCESS;
-		else if (exec_cmd(pmt->cmds[i], pmt->l_shell))
+		else if (exec_cmd(cmd, pmt->l_shell))
 			status = PMT_SUCCESS;
 		else
 			status = PMT_FAILED;
 		if (reset_fd(&fd) == FALSE)
 			return (PMT_ERROR);
-		i++;
 	}
+	if (cmd->and_to && status == PMT_SUCCESS)
+		set_and_execute(cmd->and_to, pmt);
+	if (cmd->or_to && status == PMT_FAILED)
+		set_and_execute(cmd->or_to, pmt);
+	if (cmd->pipe_to)
+		set_and_execute(cmd->pipe_to, pmt);
 	return (status);
 }

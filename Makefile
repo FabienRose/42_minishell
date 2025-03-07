@@ -25,6 +25,26 @@ SAN_FLAGS=-fsanitize=address -fsanitize=leak
 
 #----- Sources -----
 SRCS=	./minishell.c \
+		./signatures/sgn_welcome.c \
+		./command/cmd_util.c \
+		./command/cmd_debug.c \
+		./command/cmd_init.c \
+		./command/cmd_clear.c \
+		./command/cmd_args.c \
+		./exec/exec_builtins.c \
+		./exec/exec_utils.c \
+		./exec/set_and_execute.c \
+		./exec/exec_cmd.c \
+		./builtins/print_env.c \
+		./builtins/cd.c \
+		./builtins/unset.c \
+		./builtins/echo.c \
+		./builtins/export.c \
+		./builtins/builtin_utils.c \
+		./builtins/pwd.c \
+		./tokens/tok_clear.c \
+		./tokens/tok_init.c \
+		./tokens/tok_debug.c \
 		./tokens/tok_util.c \
 		./tokens/tok_parse.c \
 		./tokens/tok_init.c \
