@@ -29,6 +29,8 @@ SRCS=	./array/ft_arraypush.c \
 		./array/ft_arraylen.c \
 		./array/ft_arraypop.c \
 		./array/ft_arrayfree.c \
+		./files/ft_gnl.c \
+		./files/ft_gnl_utils.c \
 		./convertions/ft_atoi.c \
 		./convertions/ft_itoa.c \
 		./memory/ft_memset.c \

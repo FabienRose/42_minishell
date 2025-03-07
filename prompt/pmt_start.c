@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:57:43 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/07 14:58:32 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/07 15:09:50 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ t_promtret pmt_start(t_pmt* pmt)
 
 t_promtret pmt_exec(t_pmt* pmt)
 {
-	//TODO: A refaire
+	t_promtret status;
+	
 	pmt_print(pmt);
 	if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 		return PMT_ERROR;
-	if(set_and_execute(pmt->cmds[0], pmt) == PMT_SUCCESS)
-		return (PMT_SUCCESS);
-	return (PMT_ERROR);
+	status = set_and_execute(pmt->cmds[0], pmt);
+	return (status);
 }

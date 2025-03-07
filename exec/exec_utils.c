@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:47:44 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/07 14:50:16 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/07 15:35:02 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int	get_file_fd(t_cmd *cmd, char type)
 		{
 			ft_putstr_fd("minishell: ", 2);
 			ft_putstr_fd(cmd->input_files[i]->name, 2);
-			ft_putstr_fd(": ", 2);
-			perror("");
+			perror(": ");
 			return (-1);
 		}
 		i++;
@@ -114,5 +113,5 @@ t_bool	redirect_fd_input(t_cmd *cmd)
 		close(file_fd);
 		return (TRUE);
 	}
-	return (FALSE);
+	return (TRUE);
 }
