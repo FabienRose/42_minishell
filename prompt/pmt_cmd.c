@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:05:54 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/06 08:56:18 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:46:08 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_bool pmt_newcmd(t_pmt* pmt)
 
 	if(!pmt || !pmt->cmds || !pmt->active_cmd)
 		return (FALSE);
-	if(!pmt_check_setvar(pmt->active_cmd))
+	if(!cmd_check_setvar(pmt->active_cmd))
 		return (FALSE);
 	cmd = cmd_create();
 	if(!cmd)

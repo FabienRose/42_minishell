@@ -10,6 +10,7 @@ e.g. "dwqdq: command not found"
 >>>>>>>>>> POSSIBLE ERROR ON FUNCTIONS NAMES <<<<<<<<<<
 Need to rename some function as the name is too common	emple unset or export
 
+>>>>>>>>>> CANNOT CREATE ARG STARTING WITH A NUMBER OR OTHER CHACTERS <<<<<<<<<<
 
 >>>>>>>>>> CHECK VAR SET POSIIBILITIES <<<<<<<<<<
 Check those in order

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:12:48 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/06 07:56:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 11:33:21 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,32 @@ t_promtret pmt_exec(t_pmt* pmt);
  * @return t_bool TRUE if within quotes
  */
 t_bool pmt_isinquote(t_pmt_reader* reader);
+
+//====================== VARS ======================
+/**
+ * @brief Aplly the given variable to the reader
+ * 
+ * @param pmt Promt to apply the variable
+ * @param value Env var to get
+ * @return t_bool 
+ */
+t_bool pmt_applyargs(t_pmt *pmt, char *value);
+/**
+ * @brief Get the variable in the environment and return it
+ * 
+ * @param pmt Prompt to chekc
+ * @param pos Starting pos (Pointer to increment parse position)
+ * @return char* Environmnet variable value
+ */
+char *pmt_parseargs(t_pmt* pmt, size_t *pos);
+/**
+ * @brief Called whenever a $ is detected and will apply the variable to the prompt
+ * 
+ * @param pmt Prompt to apply the variable to
+ * @param pos Reference to the current prompt position
+ * @return t_bool FALSE if failed
+ */
+t_bool pmt_onarg(t_pmt* pmt, size_t *pos);
 
 //====================== LINK ======================
 /**

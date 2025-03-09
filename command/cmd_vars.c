@@ -6,13 +6,13 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 08:38:20 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/06 09:49:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:14:20 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 
-static t_bool pmt_check_setvar_clear(t_cmd *cmd)
+static t_bool cmd_check_setvar_clear(t_cmd *cmd)
 {
 	if(cmd->name)
 		free(cmd->name);
@@ -25,7 +25,7 @@ static t_bool pmt_check_setvar_clear(t_cmd *cmd)
 	return (TRUE);
 }
 
-t_bool pmt_check_setvar(t_cmd *cmd)
+t_bool cmd_check_setvar(t_cmd *cmd)
 {
 	char *found;
 	size_t pos;
@@ -45,5 +45,7 @@ t_bool pmt_check_setvar(t_cmd *cmd)
 	cmd->var_data = ft_substr(cmd->name, pos + 1, len - (pos + 1));
 	if(!cmd->var_data)
 		return (FALSE);
-	return (pmt_check_setvar_clear(cmd));
+	return (cmd_check_setvar_clear(cmd));
 }
+
+

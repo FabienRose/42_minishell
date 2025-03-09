@@ -51,6 +51,7 @@ SRCS=	./minishell.c \
 		./prompt/pmt_cmd.c \
 		./prompt/pmt_utils.c \
 		./prompt/pmt_checkers.c \
+		./prompt/pmt_vars.c \
 		./prompt/pmt_start.c \
 		./prompt/pmt_parse.c \
 		./prompt/pmt_tok.c \

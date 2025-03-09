@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:06:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/07 15:00:55 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:28:12 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,13 @@ t_bool cmd_add_arg(t_cmd *cmd, char *arg);
 char **cmd_get_fullarray(t_cmd *cmd);
 
 //====================== VARS ======================
-t_bool pmt_check_setvar(t_cmd *cmd);
+/**
+ * @brief Check if the command actually required to set an environmental variable
+ * 
+ * @param cmd command to check
+ * @return t_bool FALSE if failed
+ */
+t_bool cmd_check_setvar(t_cmd *cmd);
 
 //====================== CLEAR ======================
 /**
