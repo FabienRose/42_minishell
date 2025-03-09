@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:12:48 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/09 11:33:21 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 12:09:08 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,15 @@ char *pmt_parseargs(t_pmt* pmt, size_t *pos);
  * @return t_bool FALSE if failed
  */
 t_bool pmt_onarg(t_pmt* pmt, size_t *pos);
+
+//====================== TILDE ======================
+/**
+ * @brief Called to replace the '~' by the current home directory
+ * 
+ * @param pmt Promt to replace the '~' in
+ * @return t_bool FALSE if Failed
+ */
+t_bool pmt_ontilde(t_pmt* pmt);
 
 //====================== LINK ======================
 /**

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:54:30 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/09 11:36:42 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 12:08:49 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,14 @@ static t_bool pmt_parse_check(t_pmt *pmt, size_t  *pos)
 		if(!pmt_parse_onctrl(pmt, pos))
 			return (FALSE);
 	}
-	else if(pmt->prompt[*pos] == '$')
+	else if(pmt->prompt[*pos] == '$' && !pmt->reader->is_in_sq)
 	{
 		if(!pmt_onarg(pmt, pos))
+			return (FALSE);
+	}
+	else if(pmt->prompt[*pos] == '~' && !pmt_isinquote(pmt->reader))
+	{
+		if(!pmt_ontilde(pmt))
 			return (FALSE);
 	}
 	else

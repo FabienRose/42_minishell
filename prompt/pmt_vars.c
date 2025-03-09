@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:25:20 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/09 11:51:35 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 12:07:10 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_bool pmt_applyargs(t_pmt *pmt, char *value)
 	rpos = 0;
 	while(value[rpos])
 	{
-		pmt_reader_addchar(pmt->reader, value[rpos]);
+		if(!pmt_reader_addchar(pmt->reader, value[rpos]))
+			return (FALSE);
 		rpos++;
 	}
 	return (TRUE);

@@ -48,6 +48,7 @@ SRCS=	./minishell.c \
 		./exec/exec_utils.c \
 		./exec/set_and_execute.c \
 		./exec/exec_builtins.c \
+		./prompt/pmt_tilde.c \
 		./prompt/pmt_cmd.c \
 		./prompt/pmt_utils.c \
 		./prompt/pmt_checkers.c \
