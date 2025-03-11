@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:12:48 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/09 12:09:08 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:58:45 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,8 @@
 #include "tokens/token.h"
 #include "builtins/builtins.h"
 #include "exec/exec.h"
-//--------------------------------------------------
-//                     ENUM
-//--------------------------------------------------
-typedef enum e_promptret
-{
-	PMT_SUCCESS,
-	PMT_FAILED,
-	PMT_STOP,
-	PMT_ERROR,	
-}	t_promtret;
+#include "groups/groups.h"
+
 
 //--------------------------------------------------
 //                   STRCUTURES
@@ -50,6 +42,7 @@ typedef struct s_pmt
 	char			*disp;
 	char			*prompt;
 	t_pmt_reader	*reader;
+	t_grp			*starting_group;
 	t_cmd			**cmds;
 	t_cmd			*active_cmd;
 	t_cmd			*arg_cmd;
@@ -150,7 +143,8 @@ t_bool pmt_onarg(t_pmt* pmt, size_t *pos);
  * @param pmt Promt to replace the '~' in
  * @return t_bool FALSE if Failed
  */
-t_bool pmt_ontilde(t_pmt* pmt);
+t_bool pmt_ontilde
+(t_pmt* pmt);
 
 //====================== LINK ======================
 /**

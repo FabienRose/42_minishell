@@ -66,6 +66,10 @@ SRCS=	./minishell.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c \
+		./groups/grp_init.c \
+		./groups/grp_clear.c \
+		./groups/grp_debug.c \
+		./groups/grp_parse.c \
 		./command/cmd_debug.c \
 		./command/cmd_vars.c \
 		./command/cmd_args.c \

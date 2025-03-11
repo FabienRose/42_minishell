@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 09:21:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/02 17:34:54 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 15:05:23 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ static t_bool tok_parse_settype(t_token* token)
 		token->type = TOK_AND;
 	else if(ft_strncmp(token->input, "|", input_len) == 0)
 		token->type = TOK_PIPE;
+	else if(ft_strncmp(token->input, "(", input_len) == 0)
+		token->type = TOK_OPEN_PAR;
+	else if(ft_strncmp(token->input, ")", input_len) == 0)
+		token->type = TOK_CLOSE_PAR;
 	return (TRUE);
 }
 
@@ -43,6 +47,8 @@ t_bool tok_parse(t_token *token, void *vpmt, size_t *pos)
 	while(pmt->prompt[*pos] 
 		&& tok_iscontrole(pmt->prompt[*pos]))
 	{
+		if(ft_strlen(token->input) > 0 && tok_is_par(pmt->prompt[*pos]))
+			break;
 		if(!ft_strpush(&(token->input), pmt->prompt[*pos]))
 			return (FALSE);
 		(*pos)++;

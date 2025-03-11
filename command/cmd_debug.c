@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:06:16 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/06 09:22:59 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:45:39 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void cmd_print_link(const char *head, t_cmd *linked)
 {
 	if(linked)
 		printf("%s: %s (%p)\n", head, linked->name, linked);
-	else
-	printf("%s: None\n", head);
 }
 
 static void cmd_print_linkarr(const char *head, t_cmd **linked)

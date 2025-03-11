@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 13:53:18 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:48:57 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	pmt_clear(t_pmt **pmt)
 		pmt_reader_clear(&(cpmt->reader));
 		pmt_clear_cmds(cpmt);
 		ft_arrayfree_d((void ***)&(cpmt->tokens), &tok_release);
+		grp_clear(&(cpmt->starting_group));
 		free(cpmt);
 	}
 	*pmt = NULL;

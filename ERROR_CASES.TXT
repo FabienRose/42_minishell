@@ -1,2 +1,10 @@
 fmixtur@DESKTOP-5RGRT1I:~/42/minishell$ echo TEST > >> test.txt 
 bash: syntax error near unexpected token `>>'
+
+TEST TODO
+echo "2" || echo "3" && echo "4"
+(echo "1" || echo "2") && echo "3"
+((echo "1" || echo "2") && echo "3")
+echo "1" || echo "2" && echo "3" || echo "4"
+echo "1" || (echo "2" && echo "3") || echo "4"
+cat test.txt | (grep "test" && grep "test")

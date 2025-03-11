@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 08:32:21 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/05 17:26:10 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:39:24 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef enum e_token_type
 	TOK_AND,
 	TOK_OR,
 	TOK_PIPE,
+	TOK_OPEN_PAR,
+	TOK_CLOSE_PAR,
 }	t_token_type;
 
 //--------------------------------------------------
@@ -43,6 +45,8 @@ typedef struct s_token
 	t_token_type	type;
 	t_cmd			*prev;
 	t_cmd			*next;
+	struct	s_token	*prev_tok;
+	struct	s_token	*next_tok;
 }	t_token;
 
 
@@ -88,6 +92,13 @@ t_bool tok_parse(t_token *token, void *vpmt, size_t *pos);
  * @return t_bool TRUE if match
  */
 t_bool tok_iscontrole(char c);
+/**
+ * @brief Check if the given charcter is a parenthesis
+ * 
+ * @param c Character to check
+ * @return t_bool TRUE if a parentesis
+ */
+t_bool tok_is_par(char c);
 /**
  * @brief Test if he token a redirection token (>, >>, <, <<)
  * 

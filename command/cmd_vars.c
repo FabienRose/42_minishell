@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 08:38:20 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/07 17:14:20 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 14:54:16 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_bool cmd_check_setvar(t_cmd *cmd)
 	
 	if(!cmd)
 		return (FALSE);
+	if(!cmd->name || ft_strlen(cmd->name) == 0)
+		return (TRUE);
 	found = ft_strfrchr(cmd->name, '=');
 	if(!found)
 		return (TRUE);

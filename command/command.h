@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:06:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/07 16:28:12 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:53:29 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@
 //                 LOCAL INCLUDES
 //--------------------------------------------------
 #include "common.h"
+
+//--------------------------------------------------
+//                     ENUM
+//--------------------------------------------------
+typedef enum e_promptret
+{
+	PMT_NEUTRAL,
+	PMT_SUCCESS,
+	PMT_FAILED,
+	PMT_STOP,
+	PMT_ERROR,	
+}	t_promtret;
 
 //--------------------------------------------------
 //                   STRCUTURES
@@ -41,13 +53,13 @@ typedef struct s_cmd
 	t_bool	var_isset;
 	char	*var_name;
 	char	*var_data;
-	struct s_cmd **input_files;
-	struct s_cmd **output_files;
-	struct s_cmd **output_endfiles;
-	struct s_cmd **input_stdin;
-	struct s_cmd *pipe_to;
-	struct s_cmd *or_to;
-	struct s_cmd *and_to;
+	struct s_cmd **input_files; //TO REMOVE
+	struct s_cmd **output_files; //TO REMOVE
+	struct s_cmd **output_endfiles; //TO REMOVE
+	struct s_cmd **input_stdin; //TO REMOVE
+	struct s_cmd *pipe_to; //TO REMOVE
+	struct s_cmd *or_to; //TO REMOVE
+	struct s_cmd *and_to; //TO REMOVE
 } t_cmd;
 
 //--------------------------------------------------

@@ -5,6 +5,7 @@
 		"shell.h": "c",
 		"builtins.h": "c",
 		"prompt.h": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"token.h": "c"
 	}
 }

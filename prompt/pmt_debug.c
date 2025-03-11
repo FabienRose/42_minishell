@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:49:34 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 10:08:29 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:50:57 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,6 @@ void pmt_print(t_pmt* pmt)
 		printf("--- TOKEN (%li) : %p ---\n", pos, pmt->tokens[pos]);
 		tok_print(pmt->tokens[pos++]);
 	}
+	printf("\n\n====================== GROUPS ======================\n\n");
+	grp_debug(pmt->starting_group);
 }

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:03:41 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 14:25:01 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:46:51 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,7 @@ void tok_print(t_token *token)
 	printf("Type: %i\n", token->type);
 	printf("Prev: %p\n", token->prev);
 	printf("Next: %p\n", token->next);
+	printf("Prev token: %p\n", token->prev_tok);
+	printf("Next token: %p\n", token->next_tok);
+	printf("\n\n");
 }

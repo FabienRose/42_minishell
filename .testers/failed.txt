@@ -1,0 +1,14 @@
+#include "stdio.h"
+
+# define FONT_NRM			"\x1B[0m"
+# define FONT_RED 			"\x1B[31m"
+# define FONT_BOLD			"\033[1m"	
+
+int main(int argc, char **argv)
+{
+	if(argc > 1)
+		printf("%s%sFail: %s%s\n", FONT_BOLD, FONT_RED, argv[1], FONT_NRM);
+	else
+		printf("%s%sFail%s\n", FONT_BOLD, FONT_RED, FONT_NRM);
+	return 1;
+}

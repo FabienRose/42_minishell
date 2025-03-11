@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_tok.c                                          :+:      :+:    :+:   */
+/*   grp_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 10:22:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/09 17:46:22 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/11 15:08:00 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/11 16:28:31 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "groups.h"
 
-t_bool pmt_addtok(t_pmt* pmt, size_t *pos)
+#include "prompt/prompt.h"
+
+t_bool grp_parse(t_grp_parse *parse, t_grp* grp)
 {
-	t_token* ntoken;
+	t_pmt *pmt;
 
-	ntoken = tok_create();
-	if(!ntoken)
-		return (FALSE);
-	if(!ft_arraypush_d((void***)&(pmt->tokens), ntoken))
-		return (FALSE);
-	if(!tok_parse(ntoken, pmt, pos))
-		return (FALSE);
-	if(pmt->last_token)
+	(void)grp;
+	pmt = parse->l_pmt;
+	while(parse->token_pos < parse->total_token
+		&& pmt->tokens[parse->token_pos]->type != TOK_CLOSE_PAR)
 	{
-		pmt->last_token->next_tok = ntoken;
-		ntoken->prev_tok = pmt->last_token;
+		printf("Token: %p\n", pmt->tokens[parse->token_pos]);
+		parse->token_pos++;
 	}
-	pmt->last_token = ntoken;
 	return (TRUE);
 }

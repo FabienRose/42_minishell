@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_tok.c                                          :+:      :+:    :+:   */
+/*   grp_debug.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 10:22:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/09 17:46:22 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/09 16:59:27 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/09 16:59:49 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "groups.h"
 
-t_bool pmt_addtok(t_pmt* pmt, size_t *pos)
+void grp_debug(t_grp *grp)
 {
-	t_token* ntoken;
-
-	ntoken = tok_create();
-	if(!ntoken)
-		return (FALSE);
-	if(!ft_arraypush_d((void***)&(pmt->tokens), ntoken))
-		return (FALSE);
-	if(!tok_parse(ntoken, pmt, pos))
-		return (FALSE);
-	if(pmt->last_token)
-	{
-		pmt->last_token->next_tok = ntoken;
-		ntoken->prev_tok = pmt->last_token;
-	}
-	pmt->last_token = ntoken;
-	return (TRUE);
+	(void)grp;
 }
