@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:52:39 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/07 15:41:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:18:25 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 	char	*try_path;
 
 	i = 0;
+	(void)shell;
 	while (paths[i])
 	{
 		try_path = ft_strjoin(paths[i], "/");
 		cmd_path = ft_strjoin(try_path, cmd->name);
 		free(try_path);
-		execve(cmd_path, cmd_get_fullarray(cmd), shell->environement);
+		//execve(cmd_path, cmd_get_fullarray(cmd), shell->environement);
 		free(cmd_path);
 		i++;
 	}

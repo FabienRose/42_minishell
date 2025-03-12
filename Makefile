@@ -25,11 +25,6 @@ SAN_FLAGS=-fsanitize=address -fsanitize=leak
 
 #----- Sources -----
 SRCS=	./minishell.c \
-		./tokens/tok_util.c \
-		./tokens/tok_parse.c \
-		./tokens/tok_init.c \
-		./tokens/tok_clear.c \
-		./tokens/tok_debug.c \
 		./shell/shell_signals.c \
 		./shell/shell_clear.c \
 		./shell/shell_init.c \
@@ -49,16 +44,12 @@ SRCS=	./minishell.c \
 		./exec/set_and_execute.c \
 		./exec/exec_builtins.c \
 		./prompt/pmt_tilde.c \
-		./prompt/pmt_cmd.c \
-		./prompt/pmt_utils.c \
 		./prompt/pmt_checkers.c \
 		./prompt/pmt_vars.c \
 		./prompt/pmt_start.c \
 		./prompt/pmt_parse.c \
-		./prompt/pmt_tok.c \
 		./prompt/pmt_clear.c \
 		./prompt/pmt_debug.c \
-		./prompt/pmt_link.c \
 		./prompt/pmt_init.c \
 		./prompt/pmt_reader.c \
 		./directories/dir_init.c \
@@ -66,18 +57,6 @@ SRCS=	./minishell.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c \
-		./groups/grp_link.c \
-		./groups/grp_regroup.c \
-		./groups/grp_init.c \
-		./groups/grp_clear.c \
-		./groups/grp_debug.c \
-		./groups/grp_parse.c \
-		./command/cmd_debug.c \
-		./command/cmd_vars.c \
-		./command/cmd_args.c \
-		./command/cmd_util.c \
-		./command/cmd_init.c \
-		./command/cmd_clear.c \
 		./env/env.c \
 		./env/env_utils.c
 

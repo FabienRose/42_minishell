@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:49:34 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/12 15:41:44 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:09:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,5 @@
 
 void pmt_print(t_pmt* pmt)
 {
-	size_t pos;
-	printf("\n====================== COMMANDS ======================\n\n");
-	pos = 0;
-	while(pmt->cmds[pos])
-	{
-		printf("--- CMD (%li) : %p ---\n", pos, pmt->cmds[pos]);
-		cmd_print(pmt->cmds[pos++]);
-	}
-	printf("\n\n====================== TOKENS ======================\n\n");
-	pos = 0;
-	while(pmt->tokens[pos])
-	{
-		printf("--- TOKEN (%li) : %p ---\n", pos, pmt->tokens[pos]);
-		pmt->tokens[pos]->lastid = pos;
-		tok_print(pmt->tokens[pos++]);
-	}
-	printf("\n\n====================== GROUPS ======================\n\n");
-	grp_debug(pmt->starting_group, 0);
+	(void)pmt;
 }

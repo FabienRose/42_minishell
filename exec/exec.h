@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 11:05:48 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/07 15:11:57 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:19:17 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,26 @@ typedef struct s_fd
 	int		saved_stdin;
 	int		saved_stdout;
 }	t_fd;
-//--------------------------------------------------
 
+//TODO: to remove
+typedef struct s_cmd
+{
+	char *name;
+	char **arguments;
+	char **full_args;
+	int		previous_pipe;
+	t_bool	var_isset;
+	char	*var_name;
+	char	*var_data;
+	struct s_cmd **input_files;
+	struct s_cmd **output_files;
+	struct s_cmd **output_endfiles;
+	struct s_cmd **input_stdin;
+	struct s_cmd *pipe_to;
+	struct s_cmd *or_to;
+	struct s_cmd *and_to;
+} t_cmd;
+//--------------------------------------------------
 //                    FUNCTIONS
 //--------------------------------------------------
 

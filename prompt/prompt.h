@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:12:48 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/09 16:58:45 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:10:22 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,19 @@
 //--------------------------------------------------
 #include "common.h"
 
-#include "command/command.h"
-#include "tokens/token.h"
 #include "builtins/builtins.h"
 #include "exec/exec.h"
-#include "groups/groups.h"
+
+//--------------------------------------------------
+//                     ENUM
+//--------------------------------------------------
+typedef enum e_promptret
+{
+	PMT_SUCCESS,
+	PMT_FAILED,
+	PMT_STOP,
+	PMT_ERROR,	
+}	t_promtret;
 
 
 //--------------------------------------------------
@@ -42,12 +50,6 @@ typedef struct s_pmt
 	char			*disp;
 	char			*prompt;
 	t_pmt_reader	*reader;
-	t_grp			*starting_group;
-	t_cmd			**cmds;
-	t_cmd			*active_cmd;
-	t_cmd			*arg_cmd;
-	t_token			**tokens;
-	t_token			*last_token;
 	void			*l_shell;
 }	t_pmt;
 
@@ -143,36 +145,8 @@ t_bool pmt_onarg(t_pmt* pmt, size_t *pos);
  * @param pmt Promt to replace the '~' in
  * @return t_bool FALSE if Failed
  */
-t_bool pmt_ontilde
-(t_pmt* pmt);
+t_bool pmt_ontilde(t_pmt* pmt);
 
-//====================== LINK ======================
-/**
- * @brief Will link the commands together and also check the tokens validity
- * 
- * @param pmt 
- * @return t_promtret 
- */
-t_promtret pmt_link(t_pmt* pmt);
-
-//====================== CMD ======================
-/**
- * @brief Add a new command to the t_pmt and set it as active
- * 
- * @param pmt t_pmt in which the command wil be added
- * @return t_bool FASLE if failed
- */
-t_bool pmt_newcmd(t_pmt* pmt);
-
-//====================== TOKEN ======================
-/**
- * @brief Add a new token the the prompt and parse it
- * 
- * @param pmt Promt to add the token in
- * @param pos Position of the begining of the token (will increment the value)
- * @return t_bool FALSE if failed
- */
-t_bool pmt_addtok(t_pmt* pmt, size_t *pos);
 
 //====================== PARSE ======================
 /**

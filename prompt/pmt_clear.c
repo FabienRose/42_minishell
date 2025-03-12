@@ -6,27 +6,11 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/09 17:48:57 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:07:56 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prompt.h"
-
-void	pmt_clear_cmds(t_pmt *pmt)
-{
-	size_t pos;
-
-	if(!pmt->cmds)
-		return ;
-	pos = 0;
-	while(pmt->cmds[pos])
-	{
-		cmd_clear(&(pmt->cmds[pos]));
-		pos++;
-	}
-	free(pmt->cmds);
-	pmt->cmds = NULL;
-}
 
 void	pmt_clear(t_pmt **pmt)
 {
@@ -44,9 +28,6 @@ void	pmt_clear(t_pmt **pmt)
 			cpmt->prompt = NULL;
 		}
 		pmt_reader_clear(&(cpmt->reader));
-		pmt_clear_cmds(cpmt);
-		ft_arrayfree_d((void ***)&(cpmt->tokens), &tok_release);
-		grp_clear(&(cpmt->starting_group));
 		free(cpmt);
 	}
 	*pmt = NULL;
