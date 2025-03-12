@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 10:09:14 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/12 15:32:07 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:19:46 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_bool grp_regroup_split(t_grp* grp, size_t start_pos, size_t end_pos)
 	t_grp *ngrp;
 	
 	if(start_pos == end_pos)
-		return (TRUE);
+		return  (TRUE);
 	if(start_pos > end_pos)
 		return (FALSE);
 	ngrp = grp_create();
@@ -36,7 +36,7 @@ static t_bool grp_regroup_split(t_grp* grp, size_t start_pos, size_t end_pos)
 			return (FALSE);
 		end_pos--;
 	}
-	return (TRUE);
+	return (grp_regroup(ngrp, 0));
 }
 
 static t_bool grp_regroup_presplit(t_grp* grp, size_t *pos)
@@ -67,7 +67,6 @@ t_bool grp_regroup(t_grp* grp, int pass)
 				return (FALSE);
 		}
 		pos++;
-		grp_debug(grp, 0);
 	}
 	if(pass == 0)
 		return (grp_regroup(grp, 1));

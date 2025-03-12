@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:13:43 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/12 10:11:43 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:56:59 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@
 #include "tokens/token.h"
 
 //--------------------------------------------------
+//                    ENUM
+//--------------------------------------------------
+typedef enum e_grp_type
+{
+	GRP_COMMAND,
+	GRP_GROUP,
+	GRP_NONE,
+} t_grp_type;
+
+//--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
 typedef struct s_grp_parse
@@ -33,9 +43,14 @@ typedef struct s_grp_parse
 
 typedef struct s_grp
 {
-	struct s_grp **sub_grps;
+	struct s_grp	**sub_grps;
 	t_token			**tokens;
-	t_promtret	last_ret;
+	t_promtret		last_ret;
+	t_grp_type bcall_type;
+	t_grp_type acall_type;
+	void *bcall;
+	void *acall;
+	
 } t_grp;
 
 //--------------------------------------------------
@@ -69,6 +84,17 @@ t_bool grp_init(t_grp* grp);
  * @return t_bool FALSE if failed
  */
 t_bool grp_parse_init(t_grp_parse *parse, void *pmt);
+
+//====================== LINK ======================
+/**
+ * @brief Place the execution informtion to the right place inside the groupe
+ * 
+ * @param grp Targeted group
+ * @param placement -1 = BEFORE -- 1 = AFTER
+ * @param type Type of call
+ * @param target Target of the call (Can be t_cmd * or t_grp *)
+ */
+void grp_link(t_grp* grp, int placement, t_grp_type type, void *target);
 
 //====================== PARSE ======================
 /**

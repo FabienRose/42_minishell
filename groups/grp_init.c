@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:14:37 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/11 17:13:11 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:23:55 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ t_bool grp_init(t_grp* grp)
 	if(!grp->tokens)
 		return (FALSE);
 	grp->last_ret = PMT_NEUTRAL;
+	grp->acall = NULL;
+	grp->bcall = NULL;
+	grp->acall_type = GRP_NONE;
+	grp->bcall_type = GRP_NONE;
 	return (TRUE);
 }
 

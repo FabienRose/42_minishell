@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 08:32:35 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/11 18:13:57 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:40:04 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ t_bool	tok_init(t_token* token)
 	token->type = TOK_NONE;
 	token->prev = NULL;
 	token->next = NULL;
+	token->prev_grp = NULL;
+	token->next_grp = NULL;
 	token->prev_tok = NULL;
 	token->next_tok = NULL;
 	token->assigned_group = NULL;
+	token->lastid = 0;
 	return (TRUE);	
 }

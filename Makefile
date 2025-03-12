@@ -66,6 +66,7 @@ SRCS=	./minishell.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c \
+		./groups/grp_link.c \
 		./groups/grp_regroup.c \
 		./groups/grp_init.c \
 		./groups/grp_clear.c \
