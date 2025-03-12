@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:14:37 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/11 15:55:01 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:13:11 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,12 @@ t_grp *grp_create()
 }
 t_bool grp_init(t_grp* grp)
 {
-	grp->input_files = ft_calloc(sizeof(t_cmd *), 1);
-	if(!grp->input_files)
+	grp->sub_grps = ft_calloc(sizeof(t_grp *), 1);
+	if(!grp->sub_grps)
 		return (FALSE);
-	grp->output_files = ft_calloc(sizeof(t_cmd *), 1);
-	if(!grp->output_files)
+	grp->tokens = ft_calloc(sizeof(t_token *), 1);
+	if(!grp->tokens)
 		return (FALSE);
-	grp->output_endfiles = ft_calloc(sizeof(t_cmd *), 1);
-	if(!grp->output_endfiles)
-		return (FALSE);
-	grp->input_stdin = ft_calloc(sizeof(t_cmd *), 1);
-	if(!grp->input_stdin)
-		return (FALSE);
-	grp->pipe_to = NULL;
-	grp->or_to = NULL;
-	grp->and_to = NULL;
 	grp->last_ret = PMT_NEUTRAL;
 	return (TRUE);
 }

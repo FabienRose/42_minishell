@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 08:32:21 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/09 17:39:24 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/11 18:13:49 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_token
 	t_cmd			*next;
 	struct	s_token	*prev_tok;
 	struct	s_token	*next_tok;
+	void			*assigned_group;
 }	t_token;
 
 

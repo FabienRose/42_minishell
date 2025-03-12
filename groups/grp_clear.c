@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:14:43 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/09 14:34:58 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:14:50 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ void grp_clear(t_grp **grp)
 	if(!grp || !(*grp))
 		return ;
 	t_grp *c_grp = *grp;
-	ft_arrayfree((void **)&(c_grp->input_files));
-	ft_arrayfree((void **)&(c_grp->output_files));
-	ft_arrayfree((void **)&(c_grp->output_endfiles));
-	ft_arrayfree((void **)&(c_grp->input_stdin));
+	ft_arrayfree_d((void ***)&(c_grp->sub_grps), &grp_release);
+	ft_arrayfree((void**)&(c_grp->tokens));
 	free(c_grp);
 	*grp = NULL;
 }

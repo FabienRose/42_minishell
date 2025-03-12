@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:13:43 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/11 15:54:17 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 10:11:43 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 //--------------------------------------------------
 #include "common.h"
 #include "command/command.h"
+#include "tokens/token.h"
 
 //--------------------------------------------------
 //                   STRCUTURES
@@ -32,13 +33,8 @@ typedef struct s_grp_parse
 
 typedef struct s_grp
 {
-	struct s_grp **input_files;
-	struct s_grp **output_files;
-	struct s_grp **output_endfiles;
-	struct s_grp **input_stdin;
-	struct s_grp *pipe_to;
-	struct s_grp *or_to;
-	struct s_grp *and_to;
+	struct s_grp **sub_grps;
+	t_token			**tokens;
 	t_promtret	last_ret;
 } t_grp;
 
@@ -85,6 +81,16 @@ t_bool grp_parse_init(t_grp_parse *parse, void *pmt);
  */
 t_bool grp_parse(t_grp_parse *parse, t_grp* grp);
 
+//====================== REGROUP ======================
+/**
+ * @brief Group must have maximum one token, this function is used to created subgroups with the surplus
+ * 
+ * @param grp Group to check
+ * @param pass Pass check, 0 == OR - 1 == AND
+ * @return t_bool FALSE if failed
+ */
+t_bool grp_regroup(t_grp* grp, int pass);
+
 //====================== CLEAR ======================
 /**
  * @brief Common function to clear a group  (Calling  grp_clear)
@@ -105,6 +111,6 @@ void grp_clear(t_grp **grp);
  * 
  * @param grp Group to print
  */
-void grp_debug(t_grp *grp);
+void grp_debug(t_grp *grp, int tabs);
 
 #endif //GROUPS_H
