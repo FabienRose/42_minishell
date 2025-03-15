@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_parse.c                                        :+:      :+:    :+:   */
+/*   grp_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 10:54:30 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 10:55:43 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/15 10:07:09 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/15 10:47:32 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "groups.h"
 
-
-t_promptret pmt_parse(t_pmt* pmt)
+void grp_release(void *grp)
 {
-	if(ft_strlen(pmt->prompt) == 0)
-		return (PMT_SUCCESS);
-	return (grp_set_input(pmt->start_group, pmt->prompt));
+	grp_clear((t_grp **)&grp);
+}
+void grp_clear(t_grp **grp)
+{
+	t_grp *c_grp;
+
+	c_grp = *grp;
+	if(c_grp)
+	{
+		grp_read_clear(&(c_grp->reader));
+		if(c_grp->input)
+		{
+			free(c_grp->input);
+			c_grp->input = NULL;
+		}
+		free(c_grp);
+		*grp = NULL;
+	}
 }

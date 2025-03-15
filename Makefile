@@ -44,19 +44,24 @@ SRCS=	./minishell.c \
 		./exec/set_and_execute.c \
 		./exec/exec_builtins.c \
 		./prompt/pmt_tilde.c \
-		./prompt/pmt_checkers.c \
 		./prompt/pmt_vars.c \
 		./prompt/pmt_start.c \
 		./prompt/pmt_parse.c \
 		./prompt/pmt_clear.c \
 		./prompt/pmt_debug.c \
 		./prompt/pmt_init.c \
-		./prompt/pmt_reader.c \
 		./directories/dir_init.c \
 		./directories/dir_disp.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c \
+		./groups/grp_init.c \
+		./groups/grp_set.c \
+		./groups/grp_clear.c \
+		./groups/reader/grp_read_clear.c \
+		./groups/reader/grp_checkers.c \
+		./groups/reader/grp_read_init.c \
+		./groups/reader/grp_reader.c \
 		./env/env.c \
 		./env/env_utils.c
 

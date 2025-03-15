@@ -6,14 +6,13 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 08:54:31 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 09:23:57 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 10:43:03 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "groups_reader.h"
 
-
-t_bool pmt_isinquote(t_pmt_reader* reader)
+t_bool grp_isinquote(t_grp_reader* reader)
 {
 	if(!reader)
 		return (FALSE);

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_parse.c                                        :+:      :+:    :+:   */
+/*   grp_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 10:54:30 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 10:55:43 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/15 10:51:12 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/15 10:56:03 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "groups.h"
 
-
-t_promptret pmt_parse(t_pmt* pmt)
+t_promptret grp_set_input(t_grp *grp, const char *input)
 {
-	if(ft_strlen(pmt->prompt) == 0)
-		return (PMT_SUCCESS);
-	return (grp_set_input(pmt->start_group, pmt->prompt));
+	grp->input = ft_strdup(input);
+	if(!grp->input)
+		return (PMT_FAILED);
+	return (PMT_SUCCESS);
 }

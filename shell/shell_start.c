@@ -6,17 +6,17 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:44:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/27 12:01:15 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 10:59:36 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static t_promtret shell_nextprompt(t_shell* shell)
+static t_promptret shell_nextprompt(t_shell* shell)
 {
 	t_pmt		*current_pmt;
 	char		*head;
-	t_promtret	retvalue;
+	t_promptret	retvalue;
 	
 	head = shell_gethead(shell);
 	if(!head)
@@ -35,7 +35,7 @@ static t_promtret shell_nextprompt(t_shell* shell)
 
 t_bool shell_start(t_shell* shell)
 {
-	t_promtret	ret;
+	t_promptret	ret;
 	
 	if(!shell_update_loc(shell))
 		return (FALSE);

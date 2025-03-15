@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/12 18:07:56 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 10:49:30 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	pmt_clear(t_pmt **pmt)
 	t_pmt *cpmt = *pmt;
 	if(cpmt)
 	{
+		grp_clear(&(cpmt->start_group));
 		if(cpmt->disp)
 		{
 			free(cpmt->disp);
@@ -27,27 +28,7 @@ void	pmt_clear(t_pmt **pmt)
 			free(cpmt->prompt);
 			cpmt->prompt = NULL;
 		}
-		pmt_reader_clear(&(cpmt->reader));
 		free(cpmt);
 	}
 	*pmt = NULL;
-}
-
-void	pmt_reader_clear(t_pmt_reader **reader)
-{
-	t_pmt_reader *creader;
-
-	creader = *reader;
-	if(!reader || !creader)
-		return ;
-	if(creader->buffer)
-	{
-		free(creader->buffer);
-		creader->buffer = NULL;
-	}
-	if(creader)
-	{
-		free(creader);
-		*reader = NULL;
-	}
 }

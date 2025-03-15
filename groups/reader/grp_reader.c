@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_reader.c                                       :+:      :+:    :+:   */
+/*   grp_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:54:27 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 09:22:15 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 10:40:47 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "groups_reader.h"
 
-static t_bool pmt_reader_onquote(t_pmt_reader* reader, char c)
+static t_bool grp_reader_onquote(t_grp_reader* reader, char c)
 {
-	if(c == '\'' && !pmt_isinquote(reader))
+	if(c == '\'' && !grp_isinquote(reader))
 	{
 		reader->is_in_sq = TRUE;
 		return (TRUE);
 	}
-	else if(c == '\'' && pmt_isinquote(reader) && reader->is_in_sq)
+	else if(c == '\'' && grp_isinquote(reader) && reader->is_in_sq)
 	{
 		reader->is_in_sq = FALSE;
 		return (TRUE);
 	}
-	else if(c == '\"' && !pmt_isinquote(reader))
+	else if(c == '\"' && !grp_isinquote(reader))
 	{
 		reader->is_in_dq = TRUE;
 		return (TRUE);
 	}
-	else if(c == '\"' && pmt_isinquote(reader) && reader->is_in_dq)
+	else if(c == '\"' && grp_isinquote(reader) && reader->is_in_dq)
 	{
 		reader->is_in_dq = FALSE;
 		return (TRUE);
@@ -37,13 +37,13 @@ static t_bool pmt_reader_onquote(t_pmt_reader* reader, char c)
 	return (FALSE);
 }
 
-t_bool pmt_reader_addchar(t_pmt_reader* reader, char c)
+t_bool grp_reader_addchar(t_grp_reader* reader, char c)
 {
-	if(pmt_reader_onquote(reader, c))
+	if(grp_reader_onquote(reader, c))
 		return (TRUE);
 	if(reader->pos >= reader->size)
 	{
-		if(!pmt_reader_extendbuffer(reader))
+		if(!grp_reader_extendbuffer(reader))
 			return (FALSE);
 	}
 	reader->buffer[reader->pos] = c;
@@ -51,7 +51,7 @@ t_bool pmt_reader_addchar(t_pmt_reader* reader, char c)
 	return (TRUE);
 }
 
-t_bool pmt_reader_extendbuffer(t_pmt_reader* reader)
+t_bool grp_reader_extendbuffer(t_grp_reader* reader)
 {
 	char	*nbuffer;
 	size_t	i;
@@ -71,7 +71,7 @@ t_bool pmt_reader_extendbuffer(t_pmt_reader* reader)
 	return (TRUE);
 }
 
-char *pmt_reader_extract(t_pmt_reader *reader)
+char *grp_reader_extract(t_grp_reader *reader)
 {
 	char *nstr;
 

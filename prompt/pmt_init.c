@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/12 18:06:19 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 10:48:56 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static t_bool pmt_init_sub(t_pmt *pmt)
 {
 	if(!pmt)
 		return (FALSE);
+	pmt->start_group = grp_create();
+	if(!pmt->start_group)
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -44,41 +47,9 @@ t_bool	pmt_init(t_pmt* pmt, const char* disp, void *shell)
 	pmt->disp = ft_strdup(disp);
 	if(!pmt->disp)
 		return (FALSE);
-	pmt->reader = pmt_reader_new();
-	if(!pmt->reader)
-		return (FALSE);
 	if(!pmt_init_sub(pmt))
 		return (FALSE);
 	pmt->l_shell = shell;
 	pmt->prompt = NULL;
 	return (TRUE);
-}
-
-t_pmt_reader* pmt_reader_new()
-{
-	t_pmt_reader *nreader;
-
-	nreader = ft_calloc(sizeof(t_pmt_reader), 1);
-	if(!nreader)
-		return (NULL);
-	if(!pmt_reader_init(nreader))
-	{
-		pmt_reader_clear(&nreader);
-		return (NULL);
-	}
-	return (nreader);
-}
-
-t_bool pmt_reader_init(t_pmt_reader *reader)
-{
-	if(!reader)
-		return (FALSE);
-	reader->buffer = ft_calloc(sizeof(char), PROMT_BUFFER_SIZE + 1);
-	if(!reader->buffer)
-		return (FALSE);
-	reader->pos = 0;
-	reader->size = PROMT_BUFFER_SIZE;
-	reader->is_in_sq = FALSE;
-	reader->is_in_dq = FALSE;
-	return(TRUE);
 }
