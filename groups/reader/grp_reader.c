@@ -6,13 +6,13 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:54:27 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 10:40:47 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 12:23:27 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "groups_reader.h"
 
-static t_bool grp_reader_onquote(t_grp_reader* reader, char c)
+static t_bool grp_read_onquote(t_grp_reader* reader, char c)
 {
 	if(c == '\'' && !grp_isinquote(reader))
 	{
@@ -37,21 +37,38 @@ static t_bool grp_reader_onquote(t_grp_reader* reader, char c)
 	return (FALSE);
 }
 
-t_bool grp_reader_addchar(t_grp_reader* reader, char c)
+static t_bool grp_read_onpar(t_grp_reader* reader, char c)
 {
-	if(grp_reader_onquote(reader, c))
-		return (TRUE);
-	if(reader->pos >= reader->size)
+	if(c == '(')
+		reader->par_count++;
+	else if(c == ')')
 	{
-		if(!grp_reader_extendbuffer(reader))
+		if(reader->par_count == 0)
+		{
+			util_printerrorstr(reader->l_shell, "Unexpected token:  ')'");
 			return (FALSE);
+			reader->par_count--;
+		}
 	}
-	reader->buffer[reader->pos] = c;
-	reader->pos++;
 	return (TRUE);
 }
 
-t_bool grp_reader_extendbuffer(t_grp_reader* reader)
+t_promptret grp_read_addchar(t_grp_reader* reader, char c)
+{
+	grp_read_onquote(reader, c);
+	if(!grp_read_onpar(reader, c))
+		return (PMT_FAILED);
+	if(reader->pos >= reader->size)
+	{
+		if(!grp_read_extendbuffer(reader))
+			return (PMT_ERROR);
+	}
+	reader->buffer[reader->pos] = c;
+	reader->pos++;
+	return (PMT_SUCCESS);
+}
+
+t_bool grp_read_extendbuffer(t_grp_reader* reader)
 {
 	char	*nbuffer;
 	size_t	i;
@@ -71,7 +88,7 @@ t_bool grp_reader_extendbuffer(t_grp_reader* reader)
 	return (TRUE);
 }
 
-char *grp_reader_extract(t_grp_reader *reader)
+char *grp_read_extract(t_grp_reader *reader)
 {
 	char *nstr;
 

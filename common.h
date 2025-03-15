@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:42:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/15 10:55:02 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 12:14:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,32 @@ void	print_welcome(void);
 
 //====================== UTILS ======================
 	//--------------------- Errors ---------------------
+/**
+ * @brief Set an error message in the shell structure
+ * 
+ * @param shell Reference to the main shell structure
+ * @param msg Message to set
+ */
 void util_seterror(void *shell, const char *msg);
+/**
+ * @brief Remove any active error message
+ * 
+ * @param shell Reference to the main shell structure
+ */
 void util_clearerror(void *shell);
+/**
+ * @brief Print the active error message, if none setwill print perror
+ * 
+ * @param shell Reference to the main shell structure
+ */
 void util_printerror(void *shell);
+/**
+ * @brief Set Print and clear an error message
+ * 
+ * @param shell Reference to the main shell structure
+ * @param msg Message to set
+ */
+void util_printerrorstr(void *shell, const char *msg);
 
 	//--------------------- Strings ---------------------
 void util_printsplit(char **split);

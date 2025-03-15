@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 10:48:56 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 12:17:58 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_pmt*	pmt_new(const char* disp, void *shell)
 	return (npmt);
 }
 
-static t_bool pmt_init_sub(t_pmt *pmt)
+static t_bool pmt_init_sub(t_pmt *pmt, void *shell)
 {
 	if(!pmt)
 		return (FALSE);
-	pmt->start_group = grp_create();
+	pmt->start_group = grp_create(shell);
 	if(!pmt->start_group)
 		return (FALSE);
 	return (TRUE);
@@ -47,7 +47,7 @@ t_bool	pmt_init(t_pmt* pmt, const char* disp, void *shell)
 	pmt->disp = ft_strdup(disp);
 	if(!pmt->disp)
 		return (FALSE);
-	if(!pmt_init_sub(pmt))
+	if(!pmt_init_sub(pmt, shell))
 		return (FALSE);
 	pmt->l_shell = shell;
 	pmt->prompt = NULL;

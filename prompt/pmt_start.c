@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:57:43 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/15 10:59:36 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:48:08 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_promptret pmt_start(t_pmt* pmt)
 	{
 		add_history(pmt->prompt);
 		status = pmt_parse(pmt);
+		grp_debug(pmt->start_group, 0);
 		if(status != PMT_SUCCESS)
 			return (status);
 		return (pmt_exec(pmt));

@@ -58,12 +58,19 @@ SRCS=	./minishell.c \
 		./groups/grp_init.c \
 		./groups/grp_set.c \
 		./groups/grp_clear.c \
+		./groups/grp_debug.c \
 		./groups/reader/grp_read_clear.c \
 		./groups/reader/grp_checkers.c \
 		./groups/reader/grp_read_init.c \
 		./groups/reader/grp_reader.c \
 		./env/env.c \
-		./env/env_utils.c
+		./env/env_utils.c \
+		./token/tok_util.c \
+		./token/tok_parse.c \
+		./token/tok_init.c \
+		./token/tok_clear.c \
+		./token/tok_debug.c \
+		./token/tok_error.c
 
 #----- Objects -----
 OBJS=$(SRCS:.c=.o)

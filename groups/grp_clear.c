@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:07:09 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 10:47:32 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 13:07:21 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void grp_clear(t_grp **grp)
 	if(c_grp)
 	{
 		grp_read_clear(&(c_grp->reader));
+		tok_clear(&(c_grp->token));
 		if(c_grp->input)
 		{
 			free(c_grp->input);

@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grp_init.c                                         :+:      :+:    :+:   */
+/*   tok_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/15 10:07:05 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 12:39:35 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/02/28 08:32:35 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/15 13:04:02 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "groups.h"
-t_grp *grp_create(void *shell)
+#include "tokens.h"
+
+t_token	*tok_create(void *shell)
 {
-	t_grp *ngrp;
-	ngrp = ft_calloc(sizeof(t_grp), 1);
-	if(!ngrp)
+	t_token* ntoken;
+
+	ntoken = ft_calloc(sizeof(t_token), 1);
+	if(!ntoken)
 		return (NULL);
-	if(!grp_init(ngrp, shell))
+	if(!tok_init(ntoken, shell))
 	{
-		grp_clear(&ngrp);
+		tok_clear(&ntoken);
 		return (NULL);
 	}
-	return (ngrp);
+	return (ntoken);
 }
-t_bool grp_init(t_grp *grp, void *shell)
+t_bool	tok_init(t_token* token, void *shell)
 {
-	grp->reader = grp_read_create(shell);
-	if(!grp->reader)
+	if(!token)
 		return (FALSE);
-	grp->input = NULL;
-	grp->token = NULL;
-	grp->l_shell = shell;
-	return (TRUE);
+	token->input = ft_calloc(sizeof(char), 1);
+	if(!token->input)
+		return (FALSE);
+	token->type = TOK_NONE;
+	token->l_shell = shell;
+	return (TRUE);	
 }
