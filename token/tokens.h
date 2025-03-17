@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 11:35:02 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 13:04:59 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:29:08 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,6 @@ t_bool tok_checkvalidity(t_token* token);
  * 
  * @param token Token to print
  */
-void tok_print(t_token *token);
+void tok_print(t_token *token, char *tabs, int tab_count);
 
 #endif //TOKENS_H

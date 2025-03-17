@@ -58,8 +58,11 @@ SRCS=	./minishell.c \
 		./groups/grp_init.c \
 		./groups/grp_set.c \
 		./groups/grp_clear.c \
+		./groups/grp_uniq.c \
 		./groups/grp_debug.c \
+		./groups/grp_split.c \
 		./groups/reader/grp_read_clear.c \
+		./groups/reader/grp_read_extract.c \
 		./groups/reader/grp_checkers.c \
 		./groups/reader/grp_read_init.c \
 		./groups/reader/grp_reader.c \

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 12:39:23 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/17 18:24:54 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,13 @@ typedef struct s_grp
 {
 	t_grp_reader *reader;
 	char *input;
+	char *input_before;
+	char *input_after;
+	char *input_uniq;
 	t_token *token;
+	struct s_grp	*grp_before;
+	struct s_grp	*grp_after;
+	struct s_grp	*grp_uniq;
 	void *l_shell;
 }	t_grp;
 
@@ -53,6 +59,7 @@ t_grp *grp_create(void *shell);
 t_bool grp_init(t_grp *grp, void *shell);
 
 //====================== SETTERS ======================
+	//---------------------  Main ---------------------
 /**
  * @brief Main function  called to start parsing of a group data
  * 
@@ -61,6 +68,26 @@ t_bool grp_init(t_grp *grp, void *shell);
  * @return t_bool FALSE if Failed
  */
 t_promptret grp_set_input(t_grp *grp, const char *input);
+
+	//--------------------- Split ---------------------
+/**
+ * @brief Check within the input for a specific token and then split into two substring
+ * 
+ * @param grp Group to split in two
+ * @param token Target charcter (begining of the token)
+ * @param target_type t_token_type of the desired token
+ * @return t_promptret Return status of the function
+ */
+t_promptret grp_set_split(t_grp *grp, char token, t_token_type target_type);
+
+	//--------------------- Uniq ---------------------
+/**
+ * @brief Check if there is any sub group within parenthesis
+ * 
+ * @param grp Group to check
+ * @return t_promptret Return status of the function
+ */
+t_promptret grp_check_uniq(t_grp* grp);
 
 //====================== CLEAR ======================
 /**

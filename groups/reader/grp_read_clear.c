@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:07:09 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 10:43:32 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:40:50 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,13 @@ void grp_read_clear(t_grp_reader **grp_reader)
 		free(c_grp_reader);
 		*grp_reader = NULL;
 	}
+}
+
+void grp_read_reset(t_grp_reader *reader)
+{
+	ft_memset(reader->buffer, 0, reader->size);
+	reader->pos = 0;
+	reader->is_in_dq = FALSE;
+	reader->is_in_sq = FALSE;
+	reader->par_count = 0;
 }

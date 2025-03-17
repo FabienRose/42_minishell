@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 12:35:21 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/17 18:01:18 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,23 @@ t_bool grp_canapply(t_grp_reader* reader);
  */
 t_promptret grp_read_addchar(t_grp_reader* reader, char c);
 /**
+ * @brief Add a char only if the current par level is higher than specifed to the current reader buffer (cann call grp_read_extendbuffer)
+ * 
+ * @param reader t_grp_reader of the current prompt
+ * @param c character to add
+ * @param min_par Minimum level of parenthesis
+ * @return t_bool Return FALSE if malloc fail (called by grp_read_extendbuffer)
+ */
+t_promptret grp_read_addchar_at(t_grp_reader* reader, char c, size_t min_par);
+/**
  * @brief Resize the given reader buffer
  * 
  * @param reader t_grp_reader of the current prompt
  * @return t_bool Return FALSE if malloc fail (called by grp_read_extendbuffer)
  */
 t_bool grp_read_extendbuffer(t_grp_reader* reader);
+
+//====================== EXTRACT ======================
 /**
  * @brief Extract the current string in the reader buffer and reset the reader
  * 
@@ -107,5 +118,11 @@ void grp_read_release(void *grp_reader);
  * @param grp_reader Pointer of the pointer to the groupe reader structure 
  */
 void grp_read_clear(t_grp_reader **grp_reader);
+/**
+ * @brief Reset reader to 0 (Do not realloc);
+ * 
+ * @param reader Reader to reset
+ */
+void grp_read_reset(t_grp_reader *reader);
 
 #endif //GROUPS_READER_H
