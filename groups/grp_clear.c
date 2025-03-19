@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:07:09 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 15:22:26 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:22:15 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ static void grp_clear_subs(t_grp *c_grp)
 		free(c_grp->input_uniq);
 		c_grp->input_uniq = NULL;
 	}
+	if(c_grp->input_after_io)
+	{
+		free(c_grp->input_after_io);
+		c_grp->input_after_io = NULL;
+	}
 	grp_clear(&(c_grp->grp_before));
 	grp_clear(&(c_grp->grp_after));
 	grp_clear(&(c_grp->grp_uniq));
@@ -55,6 +60,7 @@ void grp_clear(t_grp **grp)
 		}
 		grp_clear_subs(c_grp);
 		cmd_clear(&c_grp->cmd);
+		io_clear(&c_grp->io);
 		free(c_grp);
 		*grp = NULL;
 	}

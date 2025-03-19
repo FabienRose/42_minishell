@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:51:12 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 15:07:17 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:45:37 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ t_promptret grp_set_input(t_grp *grp, const char *input)
 	else
 	{
 		status = grp_check_uniq(grp);
+		if(status != PMT_SUCCESS)
+			return (status);
+		status = grp_getio(grp);
 		if(status != PMT_SUCCESS)
 			return (status);
 		if(!grp->grp_uniq)

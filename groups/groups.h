@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 14:33:21 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 18:22:57 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "token/tokens.h"
 #include "reader/groups_reader.h"
 #include "commands/commands.h"
+#include "io/io.h"
 
 //--------------------------------------------------
 //                   STRCUTURES
@@ -32,11 +33,13 @@ typedef struct s_grp
 	char *input_before;
 	char *input_after;
 	char *input_uniq;
+	char *input_after_io;
 	t_token *token;
 	struct s_grp	*grp_before;
 	struct s_grp	*grp_after;
 	struct s_grp	*grp_uniq;
 	t_cmd			*cmd;
+	t_io			*io;
 	void *l_shell;
 }	t_grp;
 
@@ -92,13 +95,22 @@ t_promptret grp_set_split(t_grp *grp, char token, t_token_type target_type);
 t_promptret grp_check_uniq(t_grp* grp);
 
 	//--------------------- COMMANDS ---------------------
-	/**
-	 * @brief Split the active command
-	 * 
-	 * @param grp Group to check
-	 * @return t_promptret Return status of the function
-	 */
+/**
+ * @brief Split the active command
+ * 
+ * @param grp Group to check
+ * @return t_promptret Return status of the function
+ */
 t_promptret grp_getcmd(t_grp *grp);
+
+	//--------------------- IO ---------------------
+/**
+ * @brief Get and remove any flow redirection
+ * 
+ * @param grp Group to check
+ * @return t_promptret Return status of the function
+ */
+t_promptret grp_getio(t_grp *grp);
 
 //====================== CLEAR ======================
 /**
@@ -122,5 +134,10 @@ void grp_clear(t_grp **grp);
  * @param tab_count Group sub level indentation
  */
 void grp_debug(t_grp *grp, int tab_count);
+
+//====================== SUBS ======================
+//--------------------- io ---------------------
+t_bool grp_getio_merge(t_grp *grp);
+t_promptret grp_getio_applytoio(t_grp *grp, t_token *token);
 
 #endif //GROUPS_H

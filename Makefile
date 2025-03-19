@@ -61,8 +61,10 @@ SRCS=	./minishell.c \
 		./signatures/sgn_welcome.c \
 		./groups/grp_cmd.c \
 		./groups/grp_init.c \
+		./groups/grp_io_sub.c \
 		./groups/grp_set.c \
 		./groups/grp_clear.c \
+		./groups/grp_io.c \
 		./groups/grp_uniq.c \
 		./groups/grp_debug.c \
 		./groups/grp_split.c \
@@ -73,6 +75,9 @@ SRCS=	./minishell.c \
 		./groups/reader/grp_reader.c \
 		./env/env.c \
 		./env/env_utils.c \
+		./io/io_clear.c \
+		./io/io_debug.c \
+		./io/io_init.c \
 		./token/tok_util.c \
 		./token/tok_parse.c \
 		./token/tok_init.c \

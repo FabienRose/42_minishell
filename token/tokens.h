@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 11:35:02 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 14:18:09 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:33:51 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,13 @@ t_bool tok_parse(t_token *token, void *vgrp, size_t *pos);
  * @return t_bool TRUE if match
  */
 t_bool tok_iscontrole(char c);
+/**
+ * @brief Check if char is a IO controle charatcer (>, <)
+ * 
+ * @param c Character to chekc
+ * @return t_bool TRUE if match
+ */
+t_bool tok_isio(char c);
 /**
 * @brief Check if char is a sub controle charatcer (|, &)
 * 
