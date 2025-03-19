@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:51:12 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/17 17:40:50 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:07:17 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ static t_promptret grp_set_subcheck(t_grp *grp)
 {
 	t_promptret status;
 	
+	status = grp_set_split(grp, '&', TOK_AND);
+	if(status != PMT_SUCCESS)
+		return status;
 	if(!grp->token)
 	{
 		status = grp_set_split(grp, '|', TOK_OR);
@@ -56,9 +59,6 @@ t_promptret grp_set_input(t_grp *grp, const char *input)
 	grp->input = ft_strdup(input);
 	if(!grp->input)
 		return (PMT_FAILED);
-	status = grp_set_split(grp, '&', TOK_AND);
-	if(status != PMT_SUCCESS)
-		return status;
 	status = grp_set_subcheck(grp);
 	if(status != PMT_SUCCESS)
 		return status;
@@ -67,6 +67,12 @@ t_promptret grp_set_input(t_grp *grp, const char *input)
 	else
 	{
 		status = grp_check_uniq(grp);
+		if(status != PMT_SUCCESS)
+			return (status);
+		if(!grp->grp_uniq)
+			status = grp_getcmd(grp);
+		if(status != PMT_SUCCESS)
+			return (status);
 	}
 	return (status);
 }

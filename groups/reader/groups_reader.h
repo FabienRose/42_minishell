@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/17 18:01:18 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:56:54 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,10 @@ t_bool grp_canapply(t_grp_reader* reader);
  * 
  * @param reader t_grp_reader of the current prompt
  * @param c character to add
+ * @param no_quotes Removes quotes if one is found
  * @return t_bool Return FALSE if malloc fail (called by grp_read_extendbuffer)
  */
-t_promptret grp_read_addchar(t_grp_reader* reader, char c);
+t_promptret grp_read_addchar(t_grp_reader* reader, char c, t_bool no_quotes);
 /**
  * @brief Add a char only if the current par level is higher than specifed to the current reader buffer (cann call grp_read_extendbuffer)
  * 

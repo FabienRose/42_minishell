@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 11:35:02 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/17 15:29:08 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:18:09 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ t_bool tok_checkvalidity(t_token* token);
  * @brief Print debug information of the t_token
  * 
  * @param token Token to print
+ * @param tabs Tabs string to display before the informations
+ * @param tab_count The current sub group indentation
  */
 void tok_print(t_token *token, char *tabs, int tab_count);
 

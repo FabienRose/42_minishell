@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 11:48:29 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/06 11:52:12 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/19 14:20:14 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static t_bool	env_builtins(t_cmd *cmd, t_shell *shell)
+static t_bool	env_builtins(t_cmd_old *cmd, t_shell *shell)
 {
 	if (ft_strncmp(cmd->name, "export", 7) == 0)
 	{
@@ -32,7 +32,7 @@ static t_bool	env_builtins(t_cmd *cmd, t_shell *shell)
 	return (FALSE);
 }
 
-static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
+static t_bool	cd_builtins(t_cmd_old *cmd, t_shell *shell)
 {
 	if (ft_strncmp(cmd->name, "cd", 3) == 0)
 	{
@@ -55,7 +55,7 @@ static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
 	return (FALSE);
 }
 
-t_bool	exec_builtins(t_cmd *cmd, t_shell *shell)
+t_bool	exec_builtins(t_cmd_old *cmd, t_shell *shell)
 {
 	int		status;
 

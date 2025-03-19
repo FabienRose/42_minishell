@@ -30,6 +30,10 @@ SRCS=	./minishell.c \
 		./shell/shell_init.c \
 		./shell/shell_env.c \
 		./shell/shell_start.c \
+		./commands/cmd_debug.c \
+		./commands/cmd_add.c \
+		./commands/cmd_init.c \
+		./commands/cmd_clear.c \
 		./utils/util_string.c \
 		./utils/util_errors.c \
 		./builtins/pwd.c \
@@ -55,6 +59,7 @@ SRCS=	./minishell.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c \
+		./groups/grp_cmd.c \
 		./groups/grp_init.c \
 		./groups/grp_set.c \
 		./groups/grp_clear.c \

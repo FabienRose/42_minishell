@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:54:27 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/17 18:23:15 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:12:34 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ static t_bool grp_read_onpar(t_grp_reader* reader, char c)
 	return (TRUE);
 }
 
-t_promptret grp_read_addchar(t_grp_reader* reader, char c)
+t_promptret grp_read_addchar(t_grp_reader* reader, char c, t_bool no_quotes)
 {
-	grp_read_onquote(reader, c);
+	if(grp_read_onquote(reader, c) && no_quotes)
+		return (PMT_SUCCESS);
 	if(!grp_read_onpar(reader, c))
 		return (PMT_FAILED);
 	if(reader->pos >= reader->size)
@@ -78,7 +79,6 @@ t_promptret grp_read_addchar_at(t_grp_reader* reader, char c, size_t min_par)
 	grp_read_onquote(reader, c);
 	if(!grp_read_onpar(reader, c))
 		return (PMT_FAILED);
-	printf("Char %c -- %i -- %li\n", c, is_active, reader->par_count);
 	if(reader->par_count < min_par || !is_active)
 		return (PMT_SUCCESS);
 	if(reader->pos >= reader->size)

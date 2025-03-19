@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/17 18:24:54 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:33:21 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 #include "token/tokens.h"
 #include "reader/groups_reader.h"
+#include "commands/commands.h"
 
 //--------------------------------------------------
 //                   STRCUTURES
@@ -35,6 +36,7 @@ typedef struct s_grp
 	struct s_grp	*grp_before;
 	struct s_grp	*grp_after;
 	struct s_grp	*grp_uniq;
+	t_cmd			*cmd;
 	void *l_shell;
 }	t_grp;
 
@@ -88,6 +90,15 @@ t_promptret grp_set_split(t_grp *grp, char token, t_token_type target_type);
  * @return t_promptret Return status of the function
  */
 t_promptret grp_check_uniq(t_grp* grp);
+
+	//--------------------- COMMANDS ---------------------
+	/**
+	 * @brief Split the active command
+	 * 
+	 * @param grp Group to check
+	 * @return t_promptret Return status of the function
+	 */
+t_promptret grp_getcmd(t_grp *grp);
 
 //====================== CLEAR ======================
 /**

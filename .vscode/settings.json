@@ -13,6 +13,7 @@
 		"string_view": "c",
 		"initializer_list": "c",
 		"utility": "c",
-		"groups.h": "c"
+		"groups.h": "c",
+		"commands.h": "c"
 	}
 }

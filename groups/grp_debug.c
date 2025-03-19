@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 11:44:47 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/17 18:26:05 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:05:19 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ void grp_debug(t_grp *grp, int tab_count)
 	{
 		printf("%i %s ==TOKEN==\n", tab_count, tabs);
 		tok_print(grp->token, tabs, tab_count);
+	}
+	if(grp->cmd)
+	{
+		printf("%i %s ==COMMAND==\n", tab_count, tabs);
+		cmd_print(grp->cmd, tabs, tab_count);
 	}
 	grp_debug_sub(grp, tabs, tab_count);
 	free(tabs);

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 11:05:48 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/15 10:59:36 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:22:25 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_fd
 }	t_fd;
 
 //TODO: to remove
-typedef struct s_cmd
+typedef struct s_cmd_old
 {
 	char *name;
 	char **arguments;
@@ -48,24 +48,24 @@ typedef struct s_cmd
 	t_bool	var_isset;
 	char	*var_name;
 	char	*var_data;
-	struct s_cmd **input_files;
-	struct s_cmd **output_files;
-	struct s_cmd **output_endfiles;
-	struct s_cmd **input_stdin;
-	struct s_cmd *pipe_to;
-	struct s_cmd *or_to;
-	struct s_cmd *and_to;
-} t_cmd;
+	struct s_cmd_old **input_files;
+	struct s_cmd_old **output_files;
+	struct s_cmd_old **output_endfiles;
+	struct s_cmd_old **input_stdin;
+	struct s_cmd_old *pipe_to;
+	struct s_cmd_old *or_to;
+	struct s_cmd_old *and_to;
+} t_cmd_old;
 //--------------------------------------------------
 //                    FUNCTIONS
 //--------------------------------------------------
 
-t_bool	exec_builtins(t_cmd *cmd, t_shell *shell);
-t_bool	exec_cmd(t_cmd *cmd, t_shell *shell);
-t_promptret	set_and_execute(t_cmd *cmd, t_pmt *pmt);
-int		get_file_fd(t_cmd *cmd, char type);
-t_bool	set_fd(t_cmd *cmd, t_fd *fd);
+t_bool	exec_builtins(t_cmd_old *cmd, t_shell *shell);
+t_bool	exec_cmd(t_cmd_old *cmd, t_shell *shell);
+t_promptret	set_and_execute(t_cmd_old *cmd, t_pmt *pmt);
+int		get_file_fd(t_cmd_old *cmd, char type);
+t_bool	set_fd(t_cmd_old *cmd, t_fd *fd);
 t_bool	reset_fd(t_fd *fd);
-t_bool	redirect_fd_output(t_cmd *cmd);
-t_bool	redirect_fd_input(t_cmd *cmd);
+t_bool	redirect_fd_output(t_cmd_old *cmd);
+t_bool	redirect_fd_input(t_cmd_old *cmd);
 #endif //EXEC_H

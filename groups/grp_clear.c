@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:07:09 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/17 18:25:05 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:22:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void grp_clear(t_grp **grp)
 			c_grp->input = NULL;
 		}
 		grp_clear_subs(c_grp);
+		cmd_clear(&c_grp->cmd);
 		free(c_grp);
 		*grp = NULL;
 	}

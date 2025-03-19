@@ -6,13 +6,13 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:57:31 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/15 10:59:36 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:20:56 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-t_promptret	set_and_execute(t_cmd *cmd, t_pmt *pmt)
+t_promptret	set_and_execute(t_cmd_old *cmd, t_pmt *pmt)
 {
 	t_promptret	status;
 	t_fd	fd;

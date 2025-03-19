@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:47:37 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/17 17:21:18 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:03:12 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_promptret grp_set_split_ontoken(t_grp *grp, t_token_type target_type, s
 	{
 		tok_clear(&ntoken);
 		*pos = start_pos;
-		return (grp_read_addchar(grp->reader, grp->input[*pos]));
+		return (grp_read_addchar(grp->reader, grp->input[*pos], FALSE));
 	}
 	grp->token = ntoken;
 	return (grp_set_split_extract(grp));
@@ -69,7 +69,7 @@ t_promptret grp_set_split(t_grp *grp, char token, t_token_type target_type)
 		}
 		else
 		{
-			status = grp_read_addchar(grp->reader, grp->input[pos]);
+			status = grp_read_addchar(grp->reader, grp->input[pos], FALSE);
 			if(status != PMT_SUCCESS)
 				return (status);
 		}

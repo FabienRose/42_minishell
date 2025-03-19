@@ -6,13 +6,13 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:52:39 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/12 18:18:25 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:20:05 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
+t_bool	exec_path(char **paths, t_cmd_old *cmd, t_shell *shell)
 {
 	int		i;
 	char	*cmd_path;
@@ -32,7 +32,7 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 	return (FALSE);
 }
 
-t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
+t_bool	exec_cmd(t_cmd_old *cmd, t_shell *shell)
 {
 	pid_t	pid;
 	char	**paths;
