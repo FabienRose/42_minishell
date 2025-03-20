@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:51:12 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 16:45:37 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:07:48 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ t_promptret grp_set_subgroups(t_grp *grp)
 	grp->grp_before = grp_create(grp->l_shell);
 	if(!grp->grp_before)
 		return (PMT_ERROR);
-	status = grp_set_input(grp->grp_before, grp->input_before);
+	status = grp_set_input(grp->grp_before, grp->input_before, FALSE);
 	if(status != PMT_SUCCESS)
 		return (status);
 	grp->grp_after = grp_create(grp->l_shell);
 	if(!grp->grp_after)
 		return (PMT_ERROR);
-	status = grp_set_input(grp->grp_after, grp->input_after);
+	status = grp_set_input(grp->grp_after, grp->input_after, FALSE);
 	return (status);
 }
 static t_promptret grp_set_subcheck(t_grp *grp)
@@ -52,13 +52,13 @@ static t_promptret grp_set_subcheck(t_grp *grp)
 	return (PMT_SUCCESS);
 }
 
-t_promptret grp_set_input(t_grp *grp, const char *input)
+t_promptret grp_set_input(t_grp *grp, const char *input, t_bool is_first)
 {
 	t_promptret status;
 	
-	grp->input = ft_strdup(input);
-	if(!grp->input)
-		return (PMT_FAILED);
+	status = grp_parseinput(grp, input, is_first);
+	if(status != PMT_SUCCESS)
+		return status;
 	status = grp_set_subcheck(grp);
 	if(status != PMT_SUCCESS)
 		return status;

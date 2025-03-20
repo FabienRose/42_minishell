@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:30:18 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 18:11:34 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/20 10:54:16 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ t_promptret grp_getcmd(t_grp *grp)
 	status = grp_getcmd_applychar(grp, pos);
 	if(status != PMT_SUCCESS)
 		return (status);
+	if(!cmd_check_setvar(grp->cmd))
+		return  (PMT_ERROR);
 	return (PMT_SUCCESS);
 }

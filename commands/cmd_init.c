@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:34:56 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 11:01:13 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/20 10:49:16 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ t_bool cmd_init(t_cmd *cmd, void *shell)
 	cmd->full = ft_calloc(sizeof(char *), 1);
 	if(!cmd->full)
 		return (FALSE);
-	cmd->l_shell = shell;	
+	cmd->l_shell = shell;
+	cmd->var_isset = FALSE;
+	cmd->var_name = NULL;
+	cmd->var_data = NULL;
 	return (TRUE);
 }

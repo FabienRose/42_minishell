@@ -2,3 +2,5 @@
 (echo "1" && echo "2") > test.txt && echo "6" | cat || echo "5" | cat
 (echo "1" && echo "2") > test.txt || echo "6" | cat || echo "5" | cat
 echo "5" < test.txt>test hello
+arg=test
+echo $USER

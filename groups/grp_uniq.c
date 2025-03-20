@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:08:56 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/17 18:25:26 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:39:17 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_promptret grp_check_uniq(t_grp* grp)
 		grp->grp_uniq = grp_create(grp->l_shell);
 		if(!grp->grp_uniq)
 			return (PMT_ERROR);
-		status = grp_set_input(grp->grp_uniq, grp->input_uniq);
+		status = grp_set_input(grp->grp_uniq, grp->input_uniq, FALSE);
 	}
 	return (status);
 }

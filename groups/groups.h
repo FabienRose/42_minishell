@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 18:22:57 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:58:49 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,23 @@ t_grp *grp_create(void *shell);
  */
 t_bool grp_init(t_grp *grp, void *shell);
 
+//====================== VARS & TILD ======================
+/**
+ * @brief Copy the given input and will replace any variable or tilde contain in it (only if is_first is set)
+ * 
+ * @param grp Grp to set the input into
+ * @param input String of the input
+ * @param is_first TRUE if we need to set variables
+ */
+t_promptret grp_parseinput(t_grp* grp, const char *input, t_bool is_first);
+/**
+ * @brief Will add a tild information (HOME) into the reader buffer
+ * 
+ * @param grp Group containing the reader
+ * @return t_promptret Status of the function
+ */
+t_promptret grp_addtild(t_grp* grp);
+
 //====================== SETTERS ======================
 	//---------------------  Main ---------------------
 /**
@@ -70,9 +87,10 @@ t_bool grp_init(t_grp *grp, void *shell);
  * 
  * @param grp Group to parse in
  * @param input Input string of the group
+ * @param is_first TRUE if we need to set variables
  * @return t_bool FALSE if Failed
  */
-t_promptret grp_set_input(t_grp *grp, const char *input);
+t_promptret grp_set_input(t_grp *grp, const char *input, t_bool is_first);
 
 	//--------------------- Split ---------------------
 /**

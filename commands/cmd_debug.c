@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:10:54 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 15:20:05 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/20 10:57:09 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,10 @@ void cmd_print(t_cmd* cmd, char *tabs, int tab_count)
 	{
 		printf("%i %s       %li: %s\n", tab_count, tabs, pos, cmd->full[pos]);
 		pos++;
+	}
+	if(cmd->var_isset)
+	{
+		printf("%i %s    Var Name: %s\n", tab_count, tabs, cmd->var_name);
+		printf("%i %s    Var Data: %s\n", tab_count, tabs, cmd->var_data);
 	}
 }

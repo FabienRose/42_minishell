@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:35:08 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 14:16:53 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/20 10:53:18 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct s_cmd
 	char **args;
 	char **full;
 	void	*l_shell;
+	t_bool	var_isset;
+	char	*var_name;
+	char	*var_data;
 }	t_cmd;
 
 //--------------------------------------------------
@@ -58,6 +61,15 @@ t_bool cmd_init(t_cmd *cmd, void *shell);
  * @return t_bool FALSE if failed
  */
 t_bool cmd_add(t_cmd* cmd, char *data);
+
+//====================== VARS ======================
+/**
+ * @brief Check if the command actually required to set an environmental variable
+ * 
+ * @param cmd command to check
+ * @return t_bool FALSE if failed
+ */
+t_bool cmd_check_setvar(t_cmd *cmd);
 
 //====================== CLEAR ======================
 /**
