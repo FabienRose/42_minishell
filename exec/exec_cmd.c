@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:52:39 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/07 15:41:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:27:09 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	pid_t	pid;
+	int 	status;
 	char	**paths;
 
 	paths = ft_split(getenv("PATH"), ':');
@@ -49,9 +50,10 @@ t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
 	{
 		exec_path(paths, cmd, shell);
 		ft_split_release(&paths);
-		exit(1);
+		exit(127);
 	}
 	ft_split_release(&paths);
-	waitpid(pid, NULL, 0);
+	waitpid(pid, &status, 0);
+	printf("Exit status: %i\n", WEXITSTATUS(status));
 	return (TRUE);
 }
