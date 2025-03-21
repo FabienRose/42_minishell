@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:16:35 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/20 16:12:03 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:44:06 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_promptret grp_parseinput_getvalue(t_grp* grp, const char *input, size_t *pos)
 	len = 0;
 	while(input[*pos])
 	{
-		if(!ft_isalnum(input[*pos]) && input[*pos] != '_')
+		if(!ft_isalnum(input[*pos]) && input[*pos] != '_' && input[*pos] != '?')
 			break;
 		if(!ft_realloc((void **)&(var_name), len, len + 2))
 		{
