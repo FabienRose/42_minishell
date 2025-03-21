@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/20 15:58:49 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:00:01 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@
 //--------------------------------------------------
 typedef struct s_grp
 {
-	t_grp_reader *reader;
-	char *input;
-	char *input_before;
-	char *input_after;
-	char *input_uniq;
-	char *input_after_io;
-	t_token *token;
+	t_grp_reader 	*reader;
+	char 			*input;
+	char 			*input_before;
+	char 			*input_after;
+	char 			*input_uniq;
+	char 			*input_after_io;
+	
+	t_token 		*token;
 	struct s_grp	*grp_before;
 	struct s_grp	*grp_after;
 	struct s_grp	*grp_uniq;

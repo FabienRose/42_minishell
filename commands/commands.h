@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:35:08 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/20 10:53:18 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:58:45 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 //--------------------------------------------------
 typedef struct s_cmd
 {
-	char *name;
-	char **args;
-	char **full;
+	char 	*name;
+	char 	**args;
+	char	**full;
 	void	*l_shell;
 	t_bool	var_isset;
 	char	*var_name;

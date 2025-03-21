@@ -12,6 +12,8 @@ Need to rename some function as the name is too common	emple unset or export
 
 >>>>>>>>>> CANNOT CREATE ARG STARTING WITH A NUMBER OR OTHER CHACTERS <<<<<<<<<<
 
+>>>>>>>>>> LEAKS ON TOKEN ERROR <<<<<<<<<<
+
 >>>>>>>>>> CHECK VAR SET POSIIBILITIES <<<<<<<<<<
 Check those in order
 arg= test;
