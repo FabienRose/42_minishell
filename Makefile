@@ -63,6 +63,7 @@ SRCS=	./minishell.c \
 		./groups/grp_cmd.c \
 		./groups/grp_tild.c \
 		./groups/grp_init.c \
+		./groups/grp_vars_util.c \
 		./groups/grp_io_sub.c \
 		./groups/grp_set.c \
 		./groups/grp_clear.c \

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/21 15:00:01 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:52:17 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,15 @@ t_promptret grp_parseinput(t_grp* grp, const char *input, t_bool is_first);
  * @return t_promptret Status of the function
  */
 t_promptret grp_addtild(t_grp* grp);
+
+	
+/**
+ * @brief Add the last result value into the reader
+ * 
+ * @param grp Target groupe containing the reader
+ * @return t_promptret Status of the function
+ */
+t_promptret grp_apply_lastresult(t_grp* grp);
 
 //====================== SETTERS ======================
 	//---------------------  Main ---------------------

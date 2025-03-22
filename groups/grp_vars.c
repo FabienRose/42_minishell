@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:16:35 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/21 15:44:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:57:42 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_promptret grp_parseinput_apply(t_grp* grp, char *name)
 	
 	if(ft_strlen(name) == 0)
 		return (grp_read_addchar(grp->reader, '$', FALSE));
+	if(ft_strlen(name) == 1 && name[0] == '?')
+		return grp_apply_lastresult(grp);
 	env_value = getenv(name);
 	if(!env_value)
 		return (PMT_SUCCESS);
