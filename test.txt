@@ -1,18 +1,26 @@
-DEBUG.TXT
-Makefile
-builtins
-command
-common.h
-directories
-env
-exec
-libft
-minishell.c
-prompt
-shell
-signatures
-test.txt
-test2.txt
-text2.txt
-tokens
-utils
+total 92
+-rw-r--r--  1 kgauthie kgauthie  568 Mar 21 15:30 DEBUG.TXT
+-rw-r--r--  1 kgauthie kgauthie  575 Mar 12 11:35 ERROR_CASES.TXT
+-rw-r--r--  1 kgauthie kgauthie 8368 Mar 21 15:36 Makefile
+-rw-r--r--  1 kgauthie kgauthie  242 Mar 21 15:30 TO_TEST
+drwxr-xr-x  2 kgauthie kgauthie 4096 Mar  7 15:44 builtins
+drwxr-xr-x  2 kgauthie kgauthie 4096 Mar 21 15:30 commands
+-rw-r--r--  1 kgauthie kgauthie 3432 Mar 21 15:30 common.h
+drwxr-xr-x  2 kgauthie kgauthie 4096 Feb 27 16:23 directories
+drwxr-xr-x  2 kgauthie kgauthie 4096 Mar  7 15:44 env
+drwxr-xr-x  2 kgauthie kgauthie 4096 Mar 21 15:30 exec
+drwxr-xr-x  3 kgauthie kgauthie 4096 Mar 21 15:30 groups
+drwxr-xr-x  2 kgauthie kgauthie 4096 Mar 21 15:30 io
+drwxr-xr-x 11 kgauthie kgauthie 4096 Mar 21 15:37 libft
+-rw-r--r--  1 kgauthie kgauthie 1350 Feb 27 16:23 minishell.c
+drwxr-xr-x  2 kgauthie kgauthie 4096 Mar 21 15:30 prompt
+drwxr-xr-x  2 kgauthie kgauthie 4096 Mar 21 15:30 shell
+drwxr-xr-x  2 kgauthie kgauthie 4096 Feb 27 16:23 signatures
+-rw-r--r--  1 kgauthie kgauthie    0 Mar 21 15:30 test
+-rw-r--r--  1 kgauthie kgauthie    0 Mar 21 15:38 test.txt
+-rw-r--r--  1 kgauthie kgauthie  669 Mar  7 15:44 test2.txt
+-rw-r--r--  1 kgauthie kgauthie 1067 Mar 12 09:56 text.txt
+-rw-r--r--  1 kgauthie kgauthie    0 Mar  7 15:44 text2.txt
+drwxr-xr-x  2 kgauthie kgauthie 4096 Mar 21 15:30 token
+drwxr-xr-x  2 kgauthie kgauthie 4096 Mar 21 15:30 utils
+5

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:13:06 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/21 17:59:51 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/15 12:13:48 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,11 @@ void util_printerror(void *shell)
 	}
 	else
 		printf("%s%sError: %s%s\n", FONT_RED, FONT_BOLD, cast_shell->last_error, FONT_NRM);
+}
+
+void util_printerrorstr(void *shell, const char *msg)
+{
+	util_seterror(shell, msg);
+	util_printerror(shell);
+	util_clearerror(shell);
 }

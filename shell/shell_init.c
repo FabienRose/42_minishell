@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 12:00:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/28 08:02:37 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:57:58 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ t_bool shell_init(t_shell *shell)
 	if(!copy_environ(shell))
 		return (FALSE);
 	shell->initialized = TRUE;
+	shell->last_return = 0;
 	return (TRUE);
 }

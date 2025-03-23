@@ -5,6 +5,15 @@
 		"shell.h": "c",
 		"builtins.h": "c",
 		"prompt.h": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"token.h": "c",
+		"stdio.h": "c",
+		"groups_reader.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"utility": "c",
+		"groups.h": "c",
+		"commands.h": "c"
 	}
 }

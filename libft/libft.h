@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:11:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/07 15:22:19 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/12 10:31:33 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,15 @@ t_bool ft_arraypush_df(void ***arr, void *(*create)(void), void(*del)(void *));
 
 	//--------------------- Pop ---------------------
 /**
- * @brief Remove the first element of the array and risize this latter
+ * @brief Remove the element at N position of the array and resize this latter
+ * 
+ * @param arr Pointer to the array to resize
+ * @param pos Position of the element to remove
+ * @return void* Pointer to of the first element (Extracted);
+ */
+void *ft_arraypopat_d(void ***arr, size_t pos);
+/**
+ * @brief Remove the first element of the array and resize this latter
  * 
  * @param arr Pointer to the array to resize
  * @return void* Pointer to of the first element (Extracted);

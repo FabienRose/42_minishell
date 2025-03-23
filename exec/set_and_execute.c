@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   set_and_execute.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 14:57:31 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/21 16:27:19 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/22 21:51:17 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/22 21:51:17 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-t_promtret	set_and_execute(t_cmd *cmd, t_pmt *pmt)
+t_promptret	set_and_execute(t_cmd_old *cmd, t_pmt *pmt)
 {
-	t_promtret	status;
+	t_promptret	status;
 	t_fd	fd;
 
 	status = PMT_SUCCESS;

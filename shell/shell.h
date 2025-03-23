@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/01 17:26:51 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:43:25 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_shell
 	struct	sigaction	sa;
 	char				**environement;
 	t_bool				initialized;
+	int					last_return;
 }	t_shell;
 
 //--------------------------------------------------
