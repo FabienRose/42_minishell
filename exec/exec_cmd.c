@@ -12,7 +12,7 @@
 
 #include "exec.h"
 
-t_bool	exec_path(char **paths, t_cmd_old *cmd, t_shell *shell)
+t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 {
 	int		i;
 	char	*cmd_path;
@@ -25,14 +25,14 @@ t_bool	exec_path(char **paths, t_cmd_old *cmd, t_shell *shell)
 		try_path = ft_strjoin(paths[i], "/");
 		cmd_path = ft_strjoin(try_path, cmd->name);
 		free(try_path);
-		//execve(cmd_path, cmd_get_fullarray(cmd), shell->environement);
+		execve(cmd_path, cmd->full, shell->environement);
 		free(cmd_path);
 		i++;
 	}
 	return (FALSE);
 }
 
-t_bool	exec_cmd(t_cmd_old *cmd, t_shell *shell)
+t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	pid_t	pid;
 	int 	status;
