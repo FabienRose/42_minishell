@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 01:06:55 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 01:06:55 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/26 11:57:57 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/26 12:12:43 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_promptret handle_pipe(t_grp *grp)
 		close(fd.pipe_fd[1]);
 		exit(set_and_execute(grp->grp_before));
 	}
-	else 
+	else
 	{
 		close(fd.pipe_fd[1]);
 		dup2(fd.pipe_fd[0], STDIN_FILENO);
@@ -39,7 +39,7 @@ t_promptret handle_pipe(t_grp *grp)
 		waitpid(pid, NULL, 0);
 		reset_fd(&fd);
 	}
-	return status;
+	return (status);
 }
 
 t_promptret exec_uniq(t_grp *grp)
@@ -51,14 +51,21 @@ t_promptret exec_uniq(t_grp *grp)
         if (pid == 0) 
             exit(set_and_execute(grp->grp_uniq));
         waitpid(pid, &return_status, 0);
-	return return_status;
+	return (return_status);
 }
 
 t_promptret	set_and_execute(t_grp *grp)
 {
 	t_promptret	status;
-	
+
 	status = PMT_SUCCESS;
+	//1: GESTION DES REDIRECTIONS
+	if (grp->io)
+	{
+		printf("Redirection a implementer.\n");
+	}
+
+	//2: GESTION DES COMMANDES
 	if (grp->cmd)
 	{
 		if (exec_builtins(grp->cmd, grp->l_shell) == PMT_SUCCESS)
@@ -68,23 +75,26 @@ t_promptret	set_and_execute(t_grp *grp)
 		else
 			status = PMT_FAILED;
 	}
-	else if (grp->grp_uniq) 
-        status = exec_uniq(grp);
+	else if (grp->grp_uniq)
+		status = exec_uniq(grp);
 
+	//3: GESTION DES OPERATEURS
 	if (grp->token)
 	{
 		if (grp->token->type == TOK_PIPE)
-			return handle_pipe(grp);
+			return (handle_pipe(grp));
 		else if (grp->token->type == TOK_AND)
 		{
 			status = set_and_execute(grp->grp_before);
-			if (status == PMT_SUCCESS && grp->grp_after)
+			if (((t_shell *)grp->l_shell)->last_return
+				== PMT_SUCCESS && grp->grp_after)
 				status = set_and_execute(grp->grp_after);
 		}
 		else if (grp->token->type == TOK_OR)
 		{
 			status = set_and_execute(grp->grp_before);
-			if (status == PMT_FAILED && grp->grp_after)
+			if (((t_shell *)grp->l_shell)->last_return
+				== PMT_FAILED && grp->grp_after)
 				status = set_and_execute(grp->grp_after);
 		}
 	}

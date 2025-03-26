@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*   set_and_execute.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 01:17:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 01:26:34 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/26 11:46:20 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/26 11:46:20 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
 	}
 	ft_split_release(&paths);
 	waitpid(pid, &status, 0);
-	printf("Exit status: %i\n", WEXITSTATUS(status));
+	shell->last_return = WEXITSTATUS(status);
 	return (TRUE);
 }
