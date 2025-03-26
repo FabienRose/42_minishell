@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 12:02:33 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/25 12:02:33 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/25 23:46:24 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/25 23:49:17 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
-/*
+
 t_bool	reset_fd(t_fd *fd)
 {
 	dup2(fd->saved_stdin, STDIN_FILENO);
@@ -20,7 +20,7 @@ t_bool	reset_fd(t_fd *fd)
 	close(fd->saved_stdout);
 	return (TRUE);
 }
-
+/*
 t_bool	set_fd(t_cmd *cmd, t_fd *fd)
 {
 	fd->saved_stdin = dup(STDIN_FILENO);
