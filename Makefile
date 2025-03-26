@@ -6,7 +6,10 @@
 
 #----- C language compiler -----
 CPL=cc
-CPL_FLAGS=-Wall -Wextra -Werror
+CPL_FLAGS=-Wall -Wextra -Werror   -I/usr/local/opt/readline/include # -I to remove
+
+#----- Linker flags (ajout des bibliothèques) to remove -----
+LDFLAGS=-L/usr/local/opt/readline/lib -lreadline -lcurses
 
 #----- Program informations -----
 PNAME=minishell
@@ -170,12 +173,13 @@ endef
 
 #----- Main Rules -----
 all: $(PNAME)
+#LDFLAGS to remove
 
 $(PNAME): $(DEPS_LIST) $(SMK_OBJS_DIR)/ $(SMK_OBJS)
 	$(eval NB_BARPOS := $(AMK_NB_FILES))
 	$(call init_bar)
 	$(call next_bar)
-	@$(CPL) $(CPL_FLAGS) $(if $(SAN_ACTIVE), $(SAN_FLAGS)) $(DEPS_LIST) $(SMK_OBJS) $(DEPS_CALLS) $(EXT_DEPS) -o $@
+	@$(CPL) $(CPL_FLAGS) $(if $(SAN_ACTIVE), $(SAN_FLAGS)) $(DEPS_LIST) $(SMK_OBJS) $(DEPS_CALLS) $(EXT_DEPS) $(LDFLAGS) -o $@
 	$(call final_bar)
 	@printf "\n\033[s"
 

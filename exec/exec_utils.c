@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 14:47:44 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/19 14:20:23 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/25 23:46:24 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/25 23:49:17 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_bool	reset_fd(t_fd *fd)
 	close(fd->saved_stdout);
 	return (TRUE);
 }
-
-t_bool	set_fd(t_cmd_old *cmd, t_fd *fd)
+/*
+t_bool	set_fd(t_cmd *cmd, t_fd *fd)
 {
 	fd->saved_stdin = dup(STDIN_FILENO);
 	fd->saved_stdout = dup(STDOUT_FILENO);
@@ -46,7 +46,7 @@ t_bool	set_fd(t_cmd_old *cmd, t_fd *fd)
 	return (TRUE);
 }
 
-int	get_file_fd(t_cmd_old *cmd, char type)
+int	get_file_fd(t_cmd *cmd, char type)
 {
 	int	file_fd;
 	int	i;
@@ -79,7 +79,7 @@ int	get_file_fd(t_cmd_old *cmd, char type)
 	return (file_fd);
 }
 
-t_bool	redirect_fd_output(t_cmd_old *cmd)
+t_bool	redirect_fd_output(t_cmd *cmd)
 {
 	int	file_fd;
 
@@ -99,7 +99,7 @@ t_bool	redirect_fd_output(t_cmd_old *cmd)
 	return (FALSE);
 }
 
-t_bool	redirect_fd_input(t_cmd_old *cmd)
+t_bool	redirect_fd_input(t_cmd *cmd)
 {
 	int	file_fd;
 
@@ -115,3 +115,4 @@ t_bool	redirect_fd_input(t_cmd_old *cmd)
 	}
 	return (TRUE);
 }
+*/

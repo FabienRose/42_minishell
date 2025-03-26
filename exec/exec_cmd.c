@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*   set_and_execute.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 14:52:39 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/19 14:20:05 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/26 11:46:20 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/26 11:46:20 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-t_bool	exec_path(char **paths, t_cmd_old *cmd, t_shell *shell)
+t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 {
 	int		i;
 	char	*cmd_path;
@@ -25,16 +25,17 @@ t_bool	exec_path(char **paths, t_cmd_old *cmd, t_shell *shell)
 		try_path = ft_strjoin(paths[i], "/");
 		cmd_path = ft_strjoin(try_path, cmd->name);
 		free(try_path);
-		//execve(cmd_path, cmd_get_fullarray(cmd), shell->environement);
+		execve(cmd_path, cmd->full, shell->environement);
 		free(cmd_path);
 		i++;
 	}
 	return (FALSE);
 }
 
-t_bool	exec_cmd(t_cmd_old *cmd, t_shell *shell)
+t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	pid_t	pid;
+	int 	status;
 	char	**paths;
 
 	paths = ft_split(getenv("PATH"), ':');
@@ -50,9 +51,10 @@ t_bool	exec_cmd(t_cmd_old *cmd, t_shell *shell)
 	{
 		exec_path(paths, cmd, shell);
 		ft_split_release(&paths);
-		exit(1);
+		exit(127);
 	}
 	ft_split_release(&paths);
-	waitpid(pid, NULL, 0);
+	waitpid(pid, &status, 0);
+	shell->last_return = WEXITSTATUS(status);
 	return (TRUE);
 }

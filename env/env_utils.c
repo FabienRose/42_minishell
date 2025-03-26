@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 15:10:06 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/28 15:10:06 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/25 15:30:55 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/25 15:32:58 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,8 @@ char	*create_env(char *variable, char *value)
 	return (entry);
 }
 
-char	**resize_environ(int new_size)
+char	**resize_environ(char **environ, int new_size)
 {
-	extern char	**environ;
 	char		**new_environ;
 	int			i;
 
@@ -94,7 +93,7 @@ char	**resize_environ(int new_size)
 	i = 0;
 	while (environ[i] && i < new_size - 1)
 	{
-		new_environ[i] = ft_strdup(environ[i]);
+		new_environ[i] = environ[i];
 		if (!new_environ[i])
 		{
 			while (i-- > 0)
@@ -104,5 +103,6 @@ char	**resize_environ(int new_size)
 		}
 		i++;
 	}
+	free(environ);
 	return (new_environ);
 }

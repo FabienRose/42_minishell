@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 14:57:43 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/22 15:05:29 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/25 12:14:23 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/25 12:14:59 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_promptret pmt_exec(t_pmt* pmt)
 	
 	pmt_print(pmt);
 	(void)status;
-	return PMT_SUCCESS;
+	status = PMT_SUCCESS;
 	// if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 	// 	return PMT_ERROR;
-	// status = set_and_execute(pmt->cmds[0], pmt);
-	// return (status);
+	status = set_and_execute(pmt->start_group);
+	return (status);
 }

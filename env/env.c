@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 17:21:52 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/28 17:42:48 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/25 15:21:23 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/25 15:34:36 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_bool	set_environement(t_shell *minishell, char *variable,
 	i = 0;
 	while (minishell->environement[i])
 		i++;
-	minishell->environement = resize_environ(i + 2);
+	minishell->environement = resize_environ(minishell->environement, i + 2);
 	if (!minishell->environement)
 	{
 		free(entry);
