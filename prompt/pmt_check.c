@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_clear.c                                        :+:      :+:    :+:   */
+/*   pmt_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/21 11:03:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/26 16:18:38 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/26 15:51:43 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/26 17:55:18 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prompt.h"
 
-void	pmt_clear(t_pmt **pmt)
+t_promptret pmt_checkinput(t_pmt *pmt)
 {
-	t_pmt *cpmt = *pmt;
-	if(cpmt)
+	size_t pos;
+	t_promptret status;
+
+	pos = 0;
+	status = PMT_SUCCESS;
+	while(pmt->prompt[pos])
 	{
-		grp_clear(&(cpmt->start_group));
-		if(cpmt->disp)
-		{
-			free(cpmt->disp);
-			cpmt->disp = NULL;
-		}
-		chk_clear(&(cpmt->checker));
-		if(cpmt->prompt)
-		{
-			free(cpmt->prompt);
-			cpmt->prompt = NULL;
-		}
-		free(cpmt);
+		status = chk_onchar(pmt->checker, pmt->prompt[pos]);
+		if(status != PMT_SUCCESS)
+			break;
+		pos++;
 	}
-	*pmt = NULL;
+	if(status != PMT_SUCCESS)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(pmt->checker->last_msg, 2);
+		ft_putstr_fd("\n", 2);
+	}
+	return (status);
 }

@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_clear.c                                        :+:      :+:    :+:   */
+/*   chk_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/21 11:03:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/26 16:18:38 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/26 17:42:45 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/26 17:55:13 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "checker.h"
 
-void	pmt_clear(t_pmt **pmt)
+void chk_unexpteced_ctoken(t_chk *chk, char c)
 {
-	t_pmt *cpmt = *pmt;
-	if(cpmt)
+	if(chk->last_msg)
 	{
-		grp_clear(&(cpmt->start_group));
-		if(cpmt->disp)
-		{
-			free(cpmt->disp);
-			cpmt->disp = NULL;
-		}
-		chk_clear(&(cpmt->checker));
-		if(cpmt->prompt)
-		{
-			free(cpmt->prompt);
-			cpmt->prompt = NULL;
-		}
-		free(cpmt);
+		free(chk->last_msg);
+		chk->last_msg = NULL;
 	}
-	*pmt = NULL;
+	chk->last_msg = ft_strdup("Syntax error near unexpected token ` '");
+	if(!chk->last_msg)
+		return ;
+	chk->last_msg[36] = c;
 }

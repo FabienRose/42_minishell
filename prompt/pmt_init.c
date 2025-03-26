@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:03:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 12:17:58 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:18:05 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ t_bool	pmt_init(t_pmt* pmt, const char* disp, void *shell)
 	if(!pmt->disp)
 		return (FALSE);
 	if(!pmt_init_sub(pmt, shell))
+		return (FALSE);
+	pmt->checker = chk_create();
+	if(!pmt->checker)
 		return (FALSE);
 	pmt->l_shell = shell;
 	pmt->prompt = NULL;

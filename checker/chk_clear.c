@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_clear.c                                        :+:      :+:    :+:   */
+/*   chk_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/21 11:03:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/26 16:18:38 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/26 16:08:06 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/26 17:42:05 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "checker.h"
 
-void	pmt_clear(t_pmt **pmt)
+void	chk_release(void *chk)
 {
-	t_pmt *cpmt = *pmt;
-	if(cpmt)
+	return (chk_clear((t_chk **)&chk));
+}
+
+void	chk_clear(t_chk **chk)
+{
+	t_chk	*cchk;
+
+	cchk = *chk;
+	if (cchk)
 	{
-		grp_clear(&(cpmt->start_group));
-		if(cpmt->disp)
+		if(cchk->last_msg)
 		{
-			free(cpmt->disp);
-			cpmt->disp = NULL;
+			free(cchk->last_msg);
+			cchk->last_msg = NULL;
 		}
-		chk_clear(&(cpmt->checker));
-		if(cpmt->prompt)
-		{
-			free(cpmt->prompt);
-			cpmt->prompt = NULL;
-		}
-		free(cpmt);
+		free(cchk);
+		*chk = NULL;
 	}
-	*pmt = NULL;
 }

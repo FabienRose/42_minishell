@@ -1,0 +1,59 @@
+%%42HEADER%%
+
+#ifndef %%HGUARD%%
+# define %%HGUARD%%
+
+//--------------------------------------------------
+//				  LOCAL INCLUDES
+//--------------------------------------------------
+# include "common.h"
+
+//--------------------------------------------------
+//					  STRUCTURE
+//--------------------------------------------------
+typedef struct s_%%HMSHORT%%
+{
+	
+}	t_%%HMSHORT%%;
+
+//--------------------------------------------------
+//					  FUNCTIONS
+//--------------------------------------------------
+//====================== INIT ======================
+/**
+ * @brief Create and initialize a new %%HMNAME%% strutcure
+ * @brief (Generical function signature)
+ * 
+ * @return void* Newly created %%HMNAME%% structure
+ */
+void	*%%HMSHORT%%_new(void);
+/**
+ * @brief Create and initialize a new %%HMNAME%% strutcure
+ * 
+ * @return t_%%HMSHORT%%* Newly created %%HMNAME%% structure
+ */
+t_%%HMSHORT%%	*%%HMSHORT%%_create(void);
+/**
+ * @brief Initialize a new %%HMNAME%% structure
+ * 
+ * @param %%HMSHORT%% %%HMNAME%% struct to initialize
+ * @return t_bool FALSE if failed
+ */
+t_bool	%%HMSHORT%%_init(t_%%HMSHORT%% *%%HMSHORT%%);
+
+//====================== CLEAR ======================
+/**
+ * @brief Clear and release a %%HMNAME%% structure
+ * @brief (Generical function signature)
+ * 
+ * @param %%HMSHORT%% %%HMNAME%% structure to clear
+ */
+void	%%HMSHORT%%_release(void *%%HMSHORT%%);
+/**
+ * @brief Clear and release a %%HMNAME%% structure
+ * 
+ * @param %%HMSHORT%% Pointer of pointer of a %%HMNAME%% structure to clear
+ */
+void	%%HMSHORT%%_clear(t_%%HMSHORT%% **%%HMSHORT%%);
+
+#endif //%%HGUARD%%
