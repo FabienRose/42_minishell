@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_and_execute.c                                  :+:      :+:    :+:   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 11:46:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 11:46:20 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/26 17:12:48 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/26 17:15:53 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,28 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 
 	i = 0;
 	(void)shell;
-	while (paths[i])
+	if (cmd->name)
 	{
-		try_path = ft_strjoin(paths[i], "/");
-		cmd_path = ft_strjoin(try_path, cmd->name);
-		free(try_path);
-		execve(cmd_path, cmd->full, shell->environement);
-		free(cmd_path);
-		i++;
+		if (ft_strchr(cmd->name, '/'))
+		{
+			execve(cmd->name, cmd->full, shell->environement);
+			ft_putstr_fd("Minishell: no such file or directory: ", 2);
+			ft_putstr_fd(cmd->name, 2);
+			ft_putstr_fd("\n", 2);
+			return (FALSE);
+		}
+		while (paths[i])
+		{
+			try_path = ft_strjoin(paths[i], "/");
+			cmd_path = ft_strjoin(try_path, cmd->name);
+			free(try_path);
+			execve(cmd_path, cmd->full, shell->environement);
+			free(cmd_path);
+			i++;
+		}
+		ft_putstr_fd("Minishell: command not found: ", 2);
+		ft_putstr_fd(cmd->name, 2);
+		ft_putstr_fd("\n", 2);
 	}
 	return (FALSE);
 }
@@ -35,7 +49,7 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	pid_t	pid;
-	int 	status;
+	int		status;
 	char	**paths;
 
 	paths = ft_split(getenv("PATH"), ':');

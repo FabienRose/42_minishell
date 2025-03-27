@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 23:46:24 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/25 23:49:17 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/27 07:37:12 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/27 07:41:29 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,86 @@ int	get_file_fd(t_cmd *cmd, char type)
 	return (file_fd);
 }
 
-t_bool	redirect_fd_output(t_cmd *cmd)
+*/
+
+int	get_outfile_fd(t_grp *grp, char type)
+{
+	int	file_fd;
+	int	i;
+
+	i = 0;
+	while (grp->io->output_files[i] || grp->io->output_endfiles[i])
+	{
+		if (type == '>')
+			file_fd = open(grp->io->output_files[i], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		else if (type == 'a')
+			file_fd = open(grp->io->output_endfiles[i], O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (file_fd == -1)
+		{
+			ft_putstr_fd("minishell: ", 2);
+			if (type == '>')
+				ft_putstr_fd(grp->io->output_files[i], 2);
+			else if (type == 'a')
+				ft_putstr_fd(grp->io->output_endfiles[i], 2);
+			perror(": ");
+			return (-1);
+		}
+		i++;
+	}
+	return (file_fd);
+}
+
+int	get_infile_fd(t_grp *grp)
+{
+	int	i;
+	int	file_fd;
+
+	i = 0;
+	while (grp->io->input_files[i])
+	{
+		file_fd = open(grp->io->input_files[i], O_RDONLY);
+		if (file_fd == -1)
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(grp->io->input_files[i], 2);
+			perror(": ");
+			return (-1);
+		}
+		i++;
+	}
+	return (file_fd);
+}
+
+t_bool	redirect_fd_input(t_grp *grp)
 {
 	int	file_fd;
 
-	if (cmd->output_files[0] || cmd->output_endfiles[0])
+	if (grp->io->input_files[0])
 	{
-		file_fd = get_file_fd(cmd, 'o');
+		file_fd = get_infile_fd(grp);
+		if (file_fd == -1)
+			return (FALSE);
+		if (dup2(file_fd, STDIN_FILENO) == -1)
+		{
+			close(file_fd);
+			return (FALSE);
+		}
+		close(file_fd);
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
+t_bool	redirect_fd_output(t_grp *grp)
+{
+	int	file_fd;
+
+	if (grp->io->output_files[0] || grp->io->output_endfiles[0])
+	{
+		if (grp->io->output_files[0])
+			file_fd = get_outfile_fd(grp, '>');
+		else
+			file_fd = get_outfile_fd(grp, 'a');
 		if (file_fd == -1)
 			return (FALSE);
 		if (dup2(file_fd, STDOUT_FILENO) == -1)
@@ -98,21 +171,3 @@ t_bool	redirect_fd_output(t_cmd *cmd)
 	}
 	return (FALSE);
 }
-
-t_bool	redirect_fd_input(t_cmd *cmd)
-{
-	int	file_fd;
-
-	if (cmd->input_files[0])
-	{
-		file_fd = get_file_fd(cmd, 'i');
-		if (file_fd == -1)
-			return (FALSE);
-		if (dup2(file_fd, STDIN_FILENO) == -1)
-			return (FALSE);
-		close(file_fd);
-		return (TRUE);
-	}
-	return (TRUE);
-}
-*/

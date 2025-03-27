@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_builtins.c                                    :+:      :+:    :+:   */
+/*   set_and_execute.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 11:52:13 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/25 20:15:25 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/27 07:25:16 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/27 07:35:05 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ t_promptret	set_and_execute(t_grp *grp);
 int		get_file_fd(t_cmd *cmd, char type);
 t_bool	set_fd(t_cmd *cmd, t_fd *fd);
 t_bool	reset_fd(t_fd *fd);
-t_bool	redirect_fd_output(t_cmd *cmd);
-t_bool	redirect_fd_input(t_cmd *cmd);
+t_bool	redirect_fd_output(t_grp *grp);
+t_bool	redirect_fd_input(t_grp *grp);
 #endif //EXEC_H

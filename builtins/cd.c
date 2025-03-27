@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 12:12:15 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/28 13:01:17 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/26 17:40:46 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/26 17:47:27 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ t_bool	change_directory(t_shell *shell, char **arg)
 	if (arg[1])
 	{
 		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
+		shell->last_return = 1;
 		return (FALSE);
 	}
 	path = define_path(arg[0]);
 	if (chdir(path) == -1)
 	{
 		perror(ft_strjoin("minishell: cd: ", path));
+		shell->last_return = 1;
 		free(path);
 		return (FALSE);
 	}

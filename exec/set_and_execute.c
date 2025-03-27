@@ -1,70 +1,76 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_and_execute.c                                  :+:      :+:    :+:   */
+/*   workspace.json                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 11:57:57 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 12:12:43 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/27 09:15:43 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/27 09:15:43 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-t_promptret handle_pipe(t_grp *grp)
+t_promptret	handle_pipe(t_grp *grp, t_promptret status)
 {
-	t_promptret status;
-	t_fd fd;
-	pid_t pid;
+	t_fd	pipe_fd;
+	pid_t	pid;
 
-	fd.saved_stdin = dup(STDIN_FILENO);
-	fd.saved_stdout = dup(STDOUT_FILENO);
-	if (pipe(fd.pipe_fd) == -1)
+	pipe_fd.saved_stdin = dup(STDIN_FILENO);
+	pipe_fd.saved_stdout = dup(STDOUT_FILENO);
+	if (pipe(pipe_fd.pipe_fd) == -1)
 		return (PMT_ERROR);
 	pid = fork();
-	if (pid == 0) 
+	if (pid == 0)
 	{
-		close(fd.pipe_fd[0]);
-		dup2(fd.pipe_fd[1], STDOUT_FILENO);
-		close(fd.pipe_fd[1]);
+		close(pipe_fd.pipe_fd[0]);
+		dup2(pipe_fd.pipe_fd[1], STDOUT_FILENO);
+		close(pipe_fd.pipe_fd[1]);
 		exit(set_and_execute(grp->grp_before));
 	}
 	else
 	{
-		close(fd.pipe_fd[1]);
-		dup2(fd.pipe_fd[0], STDIN_FILENO);
-		close(fd.pipe_fd[0]);
+		close(pipe_fd.pipe_fd[1]);
+		dup2(pipe_fd.pipe_fd[0], STDIN_FILENO);
+		close(pipe_fd.pipe_fd[0]);
 		status = set_and_execute(grp->grp_after);
 		waitpid(pid, NULL, 0);
-		reset_fd(&fd);
+		reset_fd(&pipe_fd);
 	}
 	return (status);
 }
 
-t_promptret exec_uniq(t_grp *grp)
+t_promptret	exec_uniq(t_grp *grp)
 {
-	pid_t pid;
-	int return_status;
+	pid_t	pid;
+	int		return_status;
 
 	pid = fork();
-        if (pid == 0) 
-            exit(set_and_execute(grp->grp_uniq));
-        waitpid(pid, &return_status, 0);
+	if (pid == 0)
+		exit(set_and_execute(grp->grp_uniq));
+	waitpid(pid, &return_status, 0);
 	return (return_status);
 }
 
 t_promptret	set_and_execute(t_grp *grp)
 {
 	t_promptret	status;
+	t_fd		io_fd;
 
 	status = PMT_SUCCESS;
 	//1: GESTION DES REDIRECTIONS
 	if (grp->io)
 	{
-		printf("Redirection a implementer.\n");
+		io_fd.saved_stdin = dup(STDIN_FILENO);
+		io_fd.saved_stdout = dup(STDOUT_FILENO);
+		if (grp->io->input_files)
+			redirect_fd_input(grp);
+		if (grp->io->output_files)
+			redirect_fd_output(grp);
+		if (grp->io->output_endfiles)
+			redirect_fd_output(grp);
 	}
-
 	//2: GESTION DES COMMANDES
 	if (grp->cmd)
 	{
@@ -82,7 +88,7 @@ t_promptret	set_and_execute(t_grp *grp)
 	if (grp->token)
 	{
 		if (grp->token->type == TOK_PIPE)
-			return (handle_pipe(grp));
+			return (handle_pipe(grp, status));
 		else if (grp->token->type == TOK_AND)
 		{
 			status = set_and_execute(grp->grp_before);
@@ -98,6 +104,8 @@ t_promptret	set_and_execute(t_grp *grp)
 				status = set_and_execute(grp->grp_after);
 		}
 	}
+	if (grp->io)
+		reset_fd(&io_fd);
 	return (status);
 }
 
