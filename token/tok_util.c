@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 09:21:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 16:33:12 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:44:31 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_bool tok_is_redir(t_token *token)
 	if(token->type == TOK_READ_STDIN
 		|| token->type == TOK_REDIR_IN
 		|| token->type == TOK_REDIR_OUT
-		|| token->type == TOK_REDIR_IN)
+		|| token->type == TOK_REDIR_OUTEND)
 		return (TRUE);
 	return (FALSE);
 }

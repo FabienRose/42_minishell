@@ -25,72 +25,72 @@ SAN_FLAGS=-fsanitize=address -fsanitize=leak
 
 #----- Sources -----
 SRCS=	./minishell.c \
-		./shell/shell_signals.c \
-		./shell/shell_clear.c \
-		./shell/shell_init.c \
-		./shell/shell_env.c \
-		./shell/shell_start.c \
-		./commands/cmd_debug.c \
-		./commands/cmd_add.c \
-		./commands/cmd_vars.c \
-		./commands/cmd_init.c \
-		./commands/cmd_clear.c \
-		./utils/util_string.c \
-		./utils/util_errors.c \
-		./builtins/pwd.c \
-		./builtins/print_env.c \
+		./builtins/builtin_utils.c \
 		./builtins/cd.c \
 		./builtins/echo.c \
-		./builtins/unset.c \
-		./builtins/builtin_utils.c \
 		./builtins/export.c \
+		./builtins/print_env.c \
+		./builtins/pwd.c \
+		./builtins/unset.c \
+		./directories/dir_clear.c \
+		./directories/dir_disp.c \
+		./directories/dir_init.c \
+		./directories/dir_nav.c \
+		./env/env.c \
+		./env/env_utils.c \
+		./exec/exec_builtins.c \
 		./exec/exec_cmd.c \
 		./exec/exec_utils.c \
 		./exec/set_and_execute.c \
-		./exec/exec_builtins.c \
-		./prompt/pmt_start.c \
+		./prompt/pmt_debug.c \
 		./prompt/pmt_parse.c \
 		./prompt/pmt_check.c \
 		./prompt/pmt_clear.c \
-		./prompt/pmt_debug.c \
 		./prompt/pmt_init.c \
-		./directories/dir_init.c \
-		./directories/dir_disp.c \
-		./directories/dir_clear.c \
-		./directories/dir_nav.c \
+		./prompt/pmt_start.c \
+		./shell/shell_clear.c \
+		./shell/shell_env.c \
+		./shell/shell_init.c \
+		./shell/shell_signals.c \
+		./shell/shell_start.c \
 		./signatures/sgn_welcome.c \
+		./utils/util_string.c \
+		./utils/util_errors.c \
+		./commands/cmd_add.c \
+		./commands/cmd_clear.c \
+		./commands/cmd_debug.c \
+		./commands/cmd_vars.c \
+		./commands/cmd_init.c \
+		./groups/grp_clear.c \
 		./groups/grp_cmd.c \
-		./groups/grp_tild.c \
+		./groups/grp_debug.c \
 		./groups/grp_init.c \
-		./groups/grp_vars_util.c \
+		./groups/grp_io.c \
 		./groups/grp_io_sub.c \
 		./groups/grp_set.c \
-		./groups/grp_clear.c \
-		./groups/grp_vars.c \
-		./groups/grp_io.c \
-		./groups/grp_uniq.c \
-		./groups/grp_debug.c \
 		./groups/grp_split.c \
+		./groups/grp_tild.c \
+		./groups/grp_uniq.c \
+		./groups/grp_vars.c \
+		./groups/grp_vars_util.c \
+		./groups/reader/grp_checkers.c \
 		./groups/reader/grp_read_clear.c \
 		./groups/reader/grp_read_extract.c \
-		./groups/reader/grp_checkers.c \
 		./groups/reader/grp_read_init.c \
 		./groups/reader/grp_reader.c \
-		./checker/chk_check.c \
-		./checker/chk_init.c \
-		./checker/chk_error.c \
-		./checker/chk_clear.c \
-		./env/env.c \
-		./env/env_utils.c \
 		./io/io_clear.c \
 		./io/io_debug.c \
 		./io/io_init.c \
-		./token/tok_util.c \
-		./token/tok_parse.c \
-		./token/tok_init.c \
 		./token/tok_clear.c \
 		./token/tok_debug.c \
-		./token/tok_error.c
+		./token/tok_error.c \
+		./token/tok_init.c \
+		./token/tok_parse.c \
+		./token/tok_util.c \
+		./checker/chk_check.c \
+		./checker/chk_clear.c \
+		./checker/chk_error.c \
+		./checker/chk_init.c
 
 #----- Objects -----
 OBJS=$(SRCS:.c=.o)
