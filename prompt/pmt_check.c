@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 15:51:43 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/26 17:55:18 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:18:14 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_promptret pmt_checkinput(t_pmt *pmt)
 			break;
 		pos++;
 	}
+	if(status == PMT_SUCCESS)
+		status = chk_finalcheck(pmt->checker);
 	if(status != PMT_SUCCESS)
 	{
 		ft_putstr_fd("minishell: ", 2);

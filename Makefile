@@ -90,7 +90,8 @@ SRCS=	./minishell.c \
 		./checker/chk_check.c \
 		./checker/chk_clear.c \
 		./checker/chk_error.c \
-		./checker/chk_init.c
+		./checker/chk_init.c \
+		./checker/chk_exit.c
 
 #----- Objects -----
 OBJS=$(SRCS:.c=.o)

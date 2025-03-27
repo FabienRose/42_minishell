@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:08:06 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/26 17:46:12 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:17:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,15 @@ t_bool	chk_init(t_chk *chk);
  */
 t_promptret chk_onchar(t_chk *chk, char c);
 
+//====================== CHECKER ======================
+/**
+ * @brief Check the final status of the checker to check if there is any error a the end of the prompt
+ * 
+ * @param chk Checker structure
+ * @return t_promptret PMT_FAILED if there is any error detected;
+ */
+t_promptret chk_finalcheck(t_chk* chk);
+
 //====================== ERROR ======================
 /**
  * @brief Set last_msg "Unexpected token" for a sigle char token
@@ -72,6 +81,14 @@ t_promptret chk_onchar(t_chk *chk, char c);
  * @param c Char to print
  */
 void chk_unexpteced_ctoken(t_chk *chk, char c);
+
+/**
+ * @brief Set a custom last error message
+ * 
+ * @param chk Checker struct to set themessage in
+ * @param msg Message to set (will be dup)
+ */
+void chk_custom_message(t_chk *chk, const char *msg);
 
 //====================== CLEAR ======================
 /**

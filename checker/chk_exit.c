@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chk_error.c                                        :+:      :+:    :+:   */
+/*   chk_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 17:42:45 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/27 15:08:07 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/27 15:03:48 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/27 15:20:35 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void chk_unexpteced_ctoken(t_chk *chk, char c)
+t_promptret chk_finalcheck(t_chk* chk)
 {
-	if(chk->last_msg)
+	if(chk->par_count > 0)
 	{
-		free(chk->last_msg);
-		chk->last_msg = NULL;
+		chk_custom_message(chk, "Unclosed parenthesis");
+		return (PMT_FAILED);
 	}
-	chk->last_msg = ft_strdup("Syntax error near unexpected token ` '");
-	if(!chk->last_msg)
-		return ;
-	chk->last_msg[36] = c;
-}
-
-void chk_custom_message(t_chk *chk, const char *msg)
-{
-	if(chk->last_msg)
+	if(chk->in_dq || chk->in_sq)
 	{
-		free(chk->last_msg);
-		chk->last_msg = NULL;
+		chk_custom_message(chk, "Unclosed quotes");
+		return (PMT_FAILED);
 	}
-	chk->last_msg = ft_strdup(msg);
-	if(!chk->last_msg)
-		return ;
+	return (PMT_SUCCESS);
 }
