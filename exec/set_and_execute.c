@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   workspace.json                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/27 09:15:43 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/27 09:15:43 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/26 11:57:57 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/26 15:47:18 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_promptret	set_and_execute(t_grp *grp)
 			redirect_fd_output(grp);
 	}
 	//2: GESTION DES COMMANDES
-	if (grp->cmd)
+	if (grp->cmd && grp->cmd->name)
 	{
 		if (exec_builtins(grp->cmd, grp->l_shell) == PMT_SUCCESS)
 			status = PMT_SUCCESS;

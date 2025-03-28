@@ -1,0 +1,30 @@
+%%42HEADER%%
+
+#include "%%HMNAME%%.h"
+
+void	*%%HMSHORT%%_new(void)
+{
+	return (%%HMSHORT%%_create());
+}
+
+t_%%HMSHORT%%	*%%HMSHORT%%_create(void)
+{
+	t_%%HMSHORT%%	*n%%HMSHORT%%;
+
+	n%%HMSHORT%% = ft_calloc(sizeof(t_%%HMSHORT%%), 1);
+	if (!n%%HMSHORT%%)
+		return (NULL);
+	if (!%%HMSHORT%%_init(n%%HMSHORT%%))
+	{
+		%%HMSHORT%%_clear(&n%%HMSHORT%%);
+		return (NULL);
+	}
+	return (n%%HMSHORT%%);
+}
+
+t_bool	%%HMSHORT%%_init(t_%%HMSHORT%% *%%HMSHORT%%)
+{
+	if (!%%HMSHORT%%)
+		return (FALSE);
+	return (TRUE);
+}

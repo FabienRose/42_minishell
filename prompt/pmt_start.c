@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 15:12:41 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 15:12:55 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/28 13:07:58 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/28 13:07:58 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_promptret pmt_start(t_pmt* pmt)
 	if(pmt->prompt && ft_strlen(pmt->prompt) > 0  && pmt->prompt[0] != '\n')
 	{
 		add_history(pmt->prompt);
+		status = pmt_checkinput(pmt);
+		if(status != PMT_SUCCESS)
+			return (status);
 		status = pmt_parse(pmt);
 		grp_debug(pmt->start_group, 0);
 		if(status != PMT_SUCCESS)

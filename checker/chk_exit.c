@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_clear.c                                        :+:      :+:    :+:   */
+/*   chk_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/21 11:03:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/26 16:18:38 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/27 15:03:48 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/27 15:20:35 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "checker.h"
 
-void	pmt_clear(t_pmt **pmt)
+t_promptret chk_finalcheck(t_chk* chk)
 {
-	t_pmt *cpmt = *pmt;
-	if(cpmt)
+	if(chk->par_count > 0)
 	{
-		grp_clear(&(cpmt->start_group));
-		if(cpmt->disp)
-		{
-			free(cpmt->disp);
-			cpmt->disp = NULL;
-		}
-		chk_clear(&(cpmt->checker));
-		if(cpmt->prompt)
-		{
-			free(cpmt->prompt);
-			cpmt->prompt = NULL;
-		}
-		free(cpmt);
+		chk_custom_message(chk, "Unclosed parenthesis");
+		return (PMT_FAILED);
 	}
-	*pmt = NULL;
+	if(chk->in_dq || chk->in_sq)
+	{
+		chk_custom_message(chk, "Unclosed quotes");
+		return (PMT_FAILED);
+	}
+	return (PMT_SUCCESS);
 }

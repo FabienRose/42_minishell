@@ -1,0 +1,20 @@
+%%42HEADER%%
+
+#include "%%HMNAME%%.h"
+
+void	%%HMSHORT%%_release(void *%%HMSHORT%%)
+{
+	return (%%HMSHORT%%_clear((t_%%HMSHORT%% **)&%%HMSHORT%%));
+}
+
+void	%%HMSHORT%%_clear(t_%%HMSHORT%% **%%HMSHORT%%)
+{
+	t_%%HMSHORT%%	*c%%HMSHORT%%;
+
+	c%%HMSHORT%% = *%%HMSHORT%%;
+	if (c%%HMSHORT%%)
+	{
+		free(c%%HMSHORT%%);
+		*%%HMSHORT%% = NULL;
+	}
+}

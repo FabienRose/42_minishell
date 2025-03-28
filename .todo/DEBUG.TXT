@@ -21,3 +21,5 @@ arg= ls;echo $arg
 arg= 
 arg= ls;echo $arg
 arg = test
+
+>>>>>>>>>> $echo crash <<<<<<<<<<
