@@ -75,6 +75,7 @@ SRCS=	./minishell.c \
 		./groups/grp_uniq.c \
 		./groups/grp_debug.c \
 		./groups/grp_split.c \
+		./groups/grp_wildcards.c \
 		./groups/reader/grp_read_clear.c \
 		./groups/reader/grp_read_extract.c \
 		./groups/reader/grp_checkers.c \

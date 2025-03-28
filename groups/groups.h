@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 11:30:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 11:43:54 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/28 11:43:38 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/28 11:43:38 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "reader/groups_reader.h"
 #include "commands/commands.h"
 #include "io/io.h"
-
+#include "builtins/builtins.h"
 //--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
@@ -167,5 +167,15 @@ void grp_debug(t_grp *grp, int tab_count);
 //--------------------- io ---------------------
 t_bool grp_getio_merge(t_grp *grp);
 t_promptret grp_getio_applytoio(t_grp *grp, t_token *token);
+
+//====================== WILDCARDS ======================
+/**
+ * @brief Expand wildcards in a given string
+ * 
+ * @param grp Group to add arguments to
+ * @param extract Extract to expand
+ * @return t_promptret PMT_SUCCESS if success, PMT_ERROR if failed
+ */
+t_promptret	grp_expand_wildcard(t_grp *grp, char *extract);
 
 #endif //GROUPS_H
