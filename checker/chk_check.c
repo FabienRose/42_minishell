@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   chk_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 16:29:35 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/27 15:32:21 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/28 13:24:16 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/28 20:46:52 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-#include
 
 static void chk_onquote(t_chk *chk, char c)
 {

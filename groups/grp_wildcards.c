@@ -5,32 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 12:47:04 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/28 12:47:04 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/28 20:42:40 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/28 20:53:49 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "groups.h"
 
-t_bool	wildcard_match(char *name, char *extract)
+static t_bool	check_segments(char **seg, char *name, char *extract)
 {
-	char	*first_star;
-	char	*last_star;
-	size_t	prefix_len;
-	size_t	suffix_len;
-	size_t	name_prefix_len;
+	char	*pos;
+	int		i;
 
-	first_star = ft_strchr(extract, '*');
-	last_star = ft_strrchr(extract, '*');
-	prefix_len = first_star - extract;
-	suffix_len = ft_strlen(last_star + 1);
-	name_prefix_len = ft_strlen(name) - suffix_len;
-	if (prefix_len > 0 && ft_strncmp(name, extract, prefix_len) != 0)
-		return (FALSE);
-	if (suffix_len > 0 && ft_strncmp(name + name_prefix_len,
-			last_star + 1, suffix_len) != 0)
+	pos = name;
+	i = 0;
+	while (seg[i])
+	{
+		if (i == 0 && extract[0] != '*' && ft_strncmp(name, seg[0],
+				ft_strlen(seg[0])) != 0)
+			return (FALSE);
+		if (i == 0 && extract[0] != '*')
+			pos += ft_strlen(seg[0]);
+		else
+		{
+			pos = ft_strnstr(pos, seg[i], ft_strlen(pos));
+			if (!pos)
+				return (FALSE);
+			pos += ft_strlen(seg[i]);
+		}
+		i++;
+	}
+	if (i > 0 && extract[ft_strlen(extract) - 1] != '*' && *pos != '\0')
 		return (FALSE);
 	return (TRUE);
+}
+
+t_bool	wildcard_match(char *name, char *extract)
+{
+	char	**segments;
+	t_bool	result;
+
+	segments = ft_split(extract, '*');
+	if (!segments)
+		return (FALSE);
+	result = check_segments(segments, name, extract);
+	ft_split_release(&segments);
+	return (result);
 }
 
 t_bool	match_arg_push(char ***argument, char *extract)
