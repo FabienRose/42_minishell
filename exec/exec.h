@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_and_execute.c                                  :+:      :+:    :+:   */
+/*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/27 07:25:16 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/27 07:35:05 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/29 19:07:10 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/29 19:07:10 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 //                   STRCUTURES
 //--------------------------------------------------
 
-struct					s_pmt;
-typedef struct s_pmt	t_pmt;
-struct					s_shell;
-typedef struct s_shell	t_shell;
+struct						s_pmt;
+typedef struct s_pmt		t_pmt;
+struct						s_shell;
+typedef struct s_shell		t_shell;
 
-typedef enum e_promptret t_promptret;
+typedef enum e_promptret	t_promptret;
 
 typedef struct s_fd
 {
@@ -42,12 +42,13 @@ typedef struct s_fd
 //                    FUNCTIONS
 //--------------------------------------------------
 
-t_bool	exec_builtins(t_cmd *cmd, t_shell *shell);
-t_bool	exec_cmd(t_cmd *cmd, t_shell *shell);
+t_bool		exec_builtins(t_cmd *cmd, t_shell *shell);
+t_bool		exec_cmd(t_cmd *cmd, t_shell *shell);
 t_promptret	set_and_execute(t_grp *grp);
-int		get_file_fd(t_cmd *cmd, char type);
-t_bool	set_fd(t_cmd *cmd, t_fd *fd);
-t_bool	reset_fd(t_fd *fd);
-t_bool	redirect_fd_output(t_grp *grp);
-t_bool	redirect_fd_input(t_grp *grp);
+t_bool		reset_fd(t_fd *fd);
+t_promptret	redirect_fd_output(t_grp *grp);
+t_promptret	redirect_fd_input(t_grp *grp);
+t_bool		get_outfile_fd(t_grp *grp, char type, int *file_fd);
+int			get_infile_fd(t_grp *grp);
+int			get_stdin_fd(t_grp *grp);
 #endif //EXEC_H

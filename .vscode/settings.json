@@ -16,6 +16,7 @@
 		"groups.h": "c",
 		"commands.h": "c",
 		"libft.h": "c",
-		"tokens.h": "c"
+		"tokens.h": "c",
+		"exec.h": "c"
 	}
 }
