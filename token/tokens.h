@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 11:35:02 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 16:33:51 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 12:07:46 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_bool	tok_init(t_token* token, void *shell);
  * @param pos Pos of the current character in the prompt of the given t_pmt struct (Will increment it)
  * @return t_bool FALSE if failed.
  */
-t_bool tok_parse(t_token *token, void *vgrp, size_t *pos);
+t_bool tok_parse(t_token *token, char *input, size_t *pos);
 
 //====================== UTIL ======================
 /**
@@ -136,6 +136,14 @@ void	tok_release(void *token);
  * @return t_bool TRUE if valid
  */
 t_bool tok_checkvalidity(t_token* token);
+
+/**
+ * @brief Print the current token as unexpected
+ * 
+ * @param token Token to print
+ * @param is_uniq if a error token occure on a uniq the error must show ')'
+ */
+void tok_unvalid(t_token* token, t_bool is_uniq);
 
 //====================== DEBUG ======================
 /**

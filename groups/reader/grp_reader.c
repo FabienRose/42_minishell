@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:54:27 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 15:12:34 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:46:36 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_promptret grp_read_addchar(t_grp_reader* reader, char c, t_bool no_quotes)
 	return (PMT_SUCCESS);
 }
 
-t_promptret grp_read_addchar_at(t_grp_reader* reader, char c, size_t min_par)
+t_promptret grp_read_addchar_at(t_grp_reader* reader, char c, size_t min_par, t_bool *set)
 {
 	t_bool is_active;
 	
@@ -86,6 +86,8 @@ t_promptret grp_read_addchar_at(t_grp_reader* reader, char c, size_t min_par)
 		if(!grp_read_extendbuffer(reader))
 			return (PMT_ERROR);
 	}
+	if(set)
+		*set = TRUE;
 	reader->buffer[reader->pos] = c;
 	reader->pos++;
 	return (PMT_SUCCESS);

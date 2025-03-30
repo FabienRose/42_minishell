@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 11:44:47 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 16:22:32 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:22:15 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void grp_debug(t_grp *grp, int tab_count)
 	if(!tabs)
 		return;
 	ft_memset(tabs, '*', tab_count * 4);
-	printf("%i %s GRP: %p\n", tab_count, tabs, grp);
+	printf("%i %s GRP: %p (Unique: %i)\n", tab_count, tabs, grp, grp->is_uniq);
 	printf("%i %s Input: %s\n", tab_count, tabs, grp->input);
 	printf("%i %s Input before: %s\n", tab_count, tabs, grp->input_before);
 	printf("%i %s Input after: %s\n", tab_count, tabs, grp->input_after);
 	printf("%i %s Input uniq: %s\n", tab_count, tabs, grp->input_uniq);
+	printf("%i %s Input after Uniq: %s\n", tab_count, tabs, grp->input_after_uniq);
 	printf("%i %s Input after IO: %s\n", tab_count, tabs, grp->input_after_io);
 	grp_debug_structs(grp, tabs, tab_count);
 	grp_debug_sub(grp, tabs, tab_count);

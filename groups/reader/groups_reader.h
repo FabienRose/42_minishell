@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 14:56:54 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:33:46 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,10 @@ t_promptret grp_read_addchar(t_grp_reader* reader, char c, t_bool no_quotes);
  * @param reader t_grp_reader of the current prompt
  * @param c character to add
  * @param min_par Minimum level of parenthesis
+ * @param set is set to TRUE if somethin has been added
  * @return t_bool Return FALSE if malloc fail (called by grp_read_extendbuffer)
  */
-t_promptret grp_read_addchar_at(t_grp_reader* reader, char c, size_t min_par);
+t_promptret grp_read_addchar_at(t_grp_reader* reader, char c, size_t min_par, t_bool *set);
 /**
  * @brief Resize the given reader buffer
  * 

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:07:05 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 16:21:45 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:22:02 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_bool grp_init(t_grp *grp, void *shell)
 	grp->input_before = NULL;
 	grp->input_after = NULL;
 	grp->input_uniq = NULL;
+	grp->input_after_uniq = NULL;
 	grp->input_after_io = NULL;
 	grp->token = NULL;
 	grp->grp_before = NULL;
@@ -40,5 +41,6 @@ t_bool grp_init(t_grp *grp, void *shell)
 	grp->grp_uniq = NULL;
 	grp->cmd = NULL;
 	grp->l_shell = shell;
+	grp->is_uniq = FALSE;
 	return (TRUE);
 }

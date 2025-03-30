@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:11:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/12 10:31:33 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:16:12 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,15 @@ t_bool	ft_isprint(int c);
  * @return t_bool TRUE if is space
  */
 t_bool	ft_isspace(int c);
+
+	//--------------------- Strings ---------------------
+/**
+ * @brief Check if the given string only possess spaces or empty
+ * 
+ * @param str String to check
+ * @return t_bool TRUE if onl;y posses spaces or empty
+ */
+t_bool ft_isonlyspace(char *str);
 
 //--------------------------------------------------
 //                  CONVERTIONS
@@ -273,6 +282,14 @@ char	**ft_split(char const *s, char c);
 void	ft_split_release(char ***arr);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+/**
+ * @brief Remove a charcter in the middle of a string
+ * 
+ * @param rstr Pointer toward the string
+ * @param at Position in the of the chacter to remove;
+ * @return t_bool FALSE if failed
+ */
+t_bool	ft_strpopat(char **rstr, size_t at);
 
 //--------------------------------------------------
 //                		FILES

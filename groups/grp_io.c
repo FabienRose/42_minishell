@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:21:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 18:31:38 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 12:21:48 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ static t_promptret grp_getio_applytoken(t_grp *grp, t_token *token, size_t *pos)
 	t_promptret	status;
 
 	found = FALSE;
-	while(grp->input[*pos])
+	while(grp->input_after_uniq[*pos])
 	{
 		if(grp_canapply(grp->reader) 
-			&& (ft_isspace(grp->input[*pos]) || tok_iscontrole(grp->input[*pos])) 
+			&& (ft_isspace(grp->input_after_uniq[*pos]) || tok_iscontrole(grp->input_after_uniq[*pos])) 
 			&& found)
 			break;
 		else if(grp_canapply(grp->reader) 
-		&& (ft_isspace(grp->input[*pos]) || tok_iscontrole(grp->input[*pos])))
+		&& (ft_isspace(grp->input_after_uniq[*pos]) || tok_iscontrole(grp->input_after_uniq[*pos])))
 			(void)found;
 		else
 		{
-			status = grp_read_addchar(grp->reader, grp->input[*pos], TRUE);
+			status = grp_read_addchar(grp->reader, grp->input_after_uniq[*pos], TRUE);
 			if(status != PMT_SUCCESS)
 				return (status);
 			found = TRUE;
@@ -64,15 +64,16 @@ static t_promptret grp_getio_ontoken(t_grp *grp, size_t *pos)
 
 	start_pos = *pos;
 	ntoken = tok_create(grp->l_shell);
-	if(!ntoken || !tok_parse(ntoken, grp, pos))
+	if(!ntoken || !tok_parse(ntoken, grp->input_after_uniq, pos))
 		return (grp_getio_ontoken_ret(&ntoken, PMT_ERROR));
+	tok_print(ntoken, "", 0);
 	if(!tok_checkvalidity(ntoken))
 		return (grp_getio_ontoken_ret(&ntoken, PMT_FAILED));
 	if(!tok_is_redir(ntoken))
 	{
 		tok_clear(&ntoken);
 		*pos = start_pos;
-		return (grp_read_addchar(grp->reader, grp->input[*pos], FALSE));
+		return (grp_read_addchar(grp->reader, grp->input_after_uniq[*pos], FALSE));
 	}
 	if(!grp_getio_merge(grp))
 	{
@@ -95,12 +96,12 @@ t_promptret grp_getio(t_grp *grp)
 	if(!grp->input_after_io)
 		return (PMT_ERROR);
 	pos = 0;
-	while(grp->input[pos])
+	while(grp->input_after_uniq[pos])
 	{
-		if(tok_isio(grp->input[pos]) && grp_canapply(grp->reader))
+		if(tok_isio(grp->input_after_uniq[pos]) && grp_canapply(grp->reader))
 			status = grp_getio_ontoken(grp, &pos);
 		else
-			status = grp_read_addchar(grp->reader, grp->input[pos], FALSE);
+			status = grp_read_addchar(grp->reader, grp->input_after_uniq[pos], FALSE);
 		if(status != PMT_SUCCESS)
 			return (status);
 		pos++;

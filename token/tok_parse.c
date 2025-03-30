@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 09:21:17 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/27 14:44:50 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 12:07:39 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,16 @@ static t_bool tok_parse_settype(t_token* token)
 	return (TRUE);
 }
 
-t_bool tok_parse(t_token *token, void *vgrp, size_t *pos)
+t_bool tok_parse(t_token *token, char *input, size_t *pos)
 {
-	t_grp* grp;
-
-	grp = (t_grp*)vgrp;
-	while(grp->input[*pos] 
-		&& tok_iscontrole(grp->input[*pos]))
+	while(input[*pos] 
+		&& tok_iscontrole(input[*pos]))
 	{
-		if(ft_strlen(token->input) > 0 && tok_is_par(grp->input[*pos]))
+		if(ft_strlen(token->input) > 0 && tok_is_par(input[*pos]))
 			break;
-		if(!ft_strpush(&(token->input), grp->input[*pos]))
+		if(ft_strlen(token->input) >= 2)
+			break;
+		if(!ft_strpush(&(token->input), input[*pos]))
 			return (FALSE);
 		(*pos)++;
 	}

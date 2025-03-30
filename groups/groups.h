@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   groups.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:30:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 11:43:54 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/30 14:45:36 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_grp
 	char 			*input_before;
 	char 			*input_after;
 	char 			*input_uniq;
+	char 			*input_after_uniq;
 	char 			*input_after_io;
 	
 	t_token 		*token;
@@ -41,6 +42,8 @@ typedef struct s_grp
 	struct s_grp	*grp_uniq;
 	t_cmd			*cmd;
 	t_io			*io;
+
+	t_bool			is_uniq;
 	void *l_shell;
 }	t_grp;
 
@@ -121,6 +124,15 @@ t_promptret grp_set_split(t_grp *grp, char token, t_token_type target_type);
  * @return t_promptret Return status of the function
  */
 t_promptret grp_check_uniq(t_grp* grp);
+
+	//--------------------- Check ---------------------
+/**
+ * @brief Check if there is any remaining data after a uniq parse and a io parse
+ * 
+ * @param grp Groupe to check 
+ * @return t_promptret PMT_FAILED if something is found
+ */
+t_promptret grp_check_residue(t_grp *grp);
 
 	//--------------------- COMMANDS ---------------------
 /**

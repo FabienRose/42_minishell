@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:47:37 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 15:03:12 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 12:08:16 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,16 @@ static t_promptret grp_set_split_ontoken(t_grp *grp, t_token_type target_type, s
 	ntoken = tok_create(grp->l_shell);
 	if(!ntoken)
 		return (PMT_ERROR);
-	if(!tok_parse(ntoken, grp, pos))
+	if(!tok_parse(ntoken, grp->input, pos))
+	{
+		tok_clear(&ntoken);
 		return (PMT_ERROR);
+	}
 	if(!tok_checkvalidity(ntoken))
+	{
+		tok_clear(&ntoken);
 		return (PMT_FAILED);
+	}
 	if(ntoken->type != target_type)
 	{
 		tok_clear(&ntoken);

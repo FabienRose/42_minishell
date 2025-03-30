@@ -6,12 +6,11 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:29:35 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/27 15:32:21 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:11:11 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-#include
 
 static void chk_onquote(t_chk *chk, char c)
 {
@@ -23,9 +22,9 @@ static void chk_onquote(t_chk *chk, char c)
 			chk->in_dq = TRUE;
 	}
 	else if(c == '\'' && chk->in_sq)
-		chk->in_sq = TRUE;
+		chk->in_sq = FALSE;
 	else if(c == '\"' && chk->in_dq)
-		chk->in_dq = TRUE;
+		chk->in_dq = FALSE;
 }
 
 static t_promptret chk_onpar(t_chk *chk, char c)

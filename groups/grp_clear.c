@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:07:09 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 16:22:15 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:35:03 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ void grp_release(void *grp)
 	grp_clear((t_grp **)&grp);
 }
 
+static void grp_clear_subs2(t_grp *c_grp)
+{
+	if(c_grp->input_after_uniq)
+	{
+		free(c_grp->input_after_uniq);
+		c_grp->input_after_uniq = NULL;
+	}
+	grp_clear(&(c_grp->grp_before));
+	grp_clear(&(c_grp->grp_after));
+	grp_clear(&(c_grp->grp_uniq));
+}
 static void grp_clear_subs(t_grp *c_grp)
 {
 	if(c_grp->input_before)
@@ -39,9 +50,7 @@ static void grp_clear_subs(t_grp *c_grp)
 		free(c_grp->input_after_io);
 		c_grp->input_after_io = NULL;
 	}
-	grp_clear(&(c_grp->grp_before));
-	grp_clear(&(c_grp->grp_after));
-	grp_clear(&(c_grp->grp_uniq));
+	grp_clear_subs2(c_grp);
 }
 
 void grp_clear(t_grp **grp)
