@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:08:56 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/30 11:48:52 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:32:51 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ static t_promptret grp_check_uniq_loop(t_grp* grp)
 	}
 	return (PMT_SUCCESS);
 }
+
+static t_promptret grp_check_uniq_create(t_grp* grp)
+{
+	grp->grp_uniq = grp_create(grp->l_shell);
+	if(!grp->grp_uniq)
+		return (PMT_ERROR);
+	grp->grp_uniq->is_uniq = TRUE;
+	return (grp_set_input(grp->grp_uniq, grp->input_uniq, FALSE));
+}
+
 t_promptret grp_check_uniq(t_grp* grp)
 {
 	t_promptret status;
@@ -60,11 +70,10 @@ t_promptret grp_check_uniq(t_grp* grp)
 	}
 	if(grp->input_uniq)
 	{
-		grp->grp_uniq = grp_create(grp->l_shell);
-		if(!grp->grp_uniq)
-			return (PMT_ERROR);
-		grp->grp_uniq->is_uniq = TRUE;
-		status = grp_set_input(grp->grp_uniq, grp->input_uniq, FALSE);
+		status = grp_check_double(grp);
+		if(status != PMT_SUCCESS)
+			return (status);
+		status = grp_check_uniq_create(grp);
 	}
 	return (status);
 }

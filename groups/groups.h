@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:30:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/30 14:45:36 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:15:42 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,13 @@ t_promptret grp_check_uniq(t_grp* grp);
  * @return t_promptret PMT_FAILED if something is found
  */
 t_promptret grp_check_residue(t_grp *grp);
+/**
+ * @brief Will check there is no uniq insid a uniq (Double parentesis) without a io
+ * 
+ * @param grp Group to check
+ * @return t_promptret PMT_FAILED if double
+ */
+t_promptret grp_check_double(t_grp *grp);
 
 	//--------------------- COMMANDS ---------------------
 /**

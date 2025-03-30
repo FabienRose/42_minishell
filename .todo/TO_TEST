@@ -13,3 +13,4 @@ echo 5 &&&& echo 6
 (echo 5 && echo 6) (echo 5 && echo 6) && echo 8
 (echo 5 && echo 6) && (echo 5 && echo 6) && echo 8
 cat << test
+((echo 5 && echo 6))

@@ -59,6 +59,7 @@ SRCS=	./minishell.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c \
+		./groups/grp_checks_2.c \
 		./groups/grp_checks.c \
 		./groups/grp_cmd.c \
 		./groups/grp_tild.c \
