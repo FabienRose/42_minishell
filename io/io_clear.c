@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:56:08 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 15:59:13 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:47:46 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void io_clear(t_io **io)
 		c_io = *io;
 		ft_arrayfree_d((void ***)&(c_io->input_files), &io_clear_str);
 		ft_arrayfree_d((void ***)&(c_io->input_stdin), &io_clear_str);
+		ft_arrayfree_d((void ***)&(c_io->input_stdin_safewords), &io_clear_str);
 		ft_arrayfree_d((void ***)&(c_io->output_files), &io_clear_str);
 		ft_arrayfree_d((void ***)&(c_io->output_endfiles), &io_clear_str);
 		free(c_io);

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:41:02 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 16:10:15 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:47:37 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ t_bool io_init(t_io* io)
 		return (FALSE);
 	io->input_stdin = ft_calloc(sizeof(char *), 1);
 	if(!io->input_stdin)
+		return (FALSE);
+	io->input_stdin_safewords = ft_calloc(sizeof(char *), 1);
+	if(!io->input_stdin_safewords)
 		return (FALSE);
 	io->output_files = ft_calloc(sizeof(char *), 1);
 	if(!io->output_files)

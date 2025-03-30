@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:22:16 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 18:22:29 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:49:31 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_promptret grp_getio_applytoio(t_grp *grp, t_token *token)
 	if(token->type == TOK_REDIR_IN)
 		target_arr = &(grp->io->input_files);
 	else if(token->type == TOK_READ_STDIN)
-		target_arr = &(grp->io->input_stdin);
+		target_arr = &(grp->io->input_stdin_safewords);
 	else if(token->type == TOK_REDIR_OUT)
 		target_arr = &(grp->io->output_files);
 	else if(token->type == TOK_REDIR_OUTEND)

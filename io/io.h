@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:32:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 16:07:05 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:46:59 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_io
 	char **output_files;
 	char **output_endfiles;
 	char **input_stdin;
+	char **input_stdin_safewords;
 }	t_io;
 
 

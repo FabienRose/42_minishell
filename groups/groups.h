@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:30:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/30 15:15:42 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:58:52 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,13 @@ t_promptret grp_getcmd(t_grp *grp);
  * @return t_promptret Return status of the function
  */
 t_promptret grp_getio(t_grp *grp);
+/**
+ * @brief Get required data on the standard input
+ * 
+ * @param grp Groupe to check in
+ * @return t_promptret Status of the function 
+ */
+t_promptret grp_io_stdin(t_grp *grp);
 
 //====================== CLEAR ======================
 /**
