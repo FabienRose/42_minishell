@@ -6,7 +6,7 @@
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:40:52 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 17:40:52 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/31 13:49:35 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static t_bool	env_builtins(t_cmd *cmd, t_shell *shell)
 {
 	if (ft_strncmp(cmd->name, "export", 7) == 0)
 	{
+		export(shell, cmd->args);
 		shell->last_return = 0;
 		return (TRUE);
 	}

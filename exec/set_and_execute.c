@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/29 21:13:11 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/29 21:21:27 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/31 18:33:33 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/31 18:43:21 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,12 @@ t_promptret	handle_io(t_grp *grp, t_fd *io_fd)
 	status = PMT_SUCCESS;
 	io_fd->saved_stdin = dup(STDIN_FILENO);
 	io_fd->saved_stdout = dup(STDOUT_FILENO);
-	if (grp->io->input_files[0])
+	if (grp->io->input_stdin[0] || grp->io->input_files[0])
 		status = redirect_fd_input(grp);
-	if (grp->io->input_stdin[0])
-		status = redirect_fd_input(grp);
-	if (grp->io->output_files[0])
+	if (grp->io->output_files[0] || grp->io->output_endfiles[0])
 		status = redirect_fd_output(grp);
-	if (grp->io->output_endfiles[0])
-		status = redirect_fd_output(grp);
+	if (status == PMT_ERROR)
+		return (PMT_ERROR);
 	return (status);
 }
 
@@ -103,7 +101,7 @@ t_promptret	set_and_execute(t_grp *grp)
 	status = PMT_SUCCESS;
 	if (grp->io)
 		status = handle_io(grp, &io_fd);
-	if (grp->cmd && grp->cmd->name)
+	if (grp->cmd && grp->cmd->name && status == PMT_SUCCESS)
 	{
 		if (exec_builtins(grp->cmd, grp->l_shell) == PMT_SUCCESS)
 			status = PMT_SUCCESS;
@@ -115,9 +113,7 @@ t_promptret	set_and_execute(t_grp *grp)
 	else if (grp->grp_uniq)
 		status = exec_uniq(grp);
 	if (grp->token)
-	{
-		handle_token(grp);
-	}
+		status = handle_token(grp);
 	if (grp->io)
 		reset_fd(&io_fd);
 	return (status);
