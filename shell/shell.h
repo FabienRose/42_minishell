@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/26 11:30:23 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:15:08 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ typedef struct s_shell
 {
 	char				*last_error;
 	t_dir				*current_dir;
-	struct	sigaction	sa;
+	struct	sigaction	squit;
+	struct	sigaction	sint_default;
+	struct	sigaction	sint_stdin;
 	char				**environement;
 	t_bool				initialized;
 	int					last_return;
@@ -65,11 +67,38 @@ t_bool shell_start(t_shell* shell);
  */
 t_bool shell_init_sig(t_shell* ptr);
 /**
+ * @brief Function called by the sigaction system when ctrl + '\' is pressed
+ * 
+ * @param sig Signal ID
+ */
+void	shell_sig_handler_quit (int sig);
+/**
  * @brief Function called by the sigaction system
  * 
  * @param sig Signal ID
  */
 void	shell_sig_handler(int sig);
+/**
+ * @brief Function called by the sigaction system (When listening to stdin)
+ * 
+ * @param sig Signal ID
+ */
+void	shell_sig_handler_stdin(int sig);
+
+/**
+ * @brief Will switch the current SIGINT to the the shell_sig_handler function
+ * 
+ * @param shell Shell in which the sa is
+ * @return t_bool FALSE if failed
+ */
+t_bool shell_sig_switchdefault(t_shell *shell);
+/**
+ * @brief Will switch the current SIGINT to the the shell_sig_handler_stdin function
+ * 
+ * @param shell Shell in which the sa is
+ * @return t_bool FALSE if failed
+ */
+t_bool shell_sig_switchstdin(t_shell *shell);
 
 //====================== ENV ======================
 /**

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:14:53 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/06 12:14:53 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/30 21:57:20 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_bool	check_n_flag(char *arg)
 	return (TRUE);
 }
 
-t_bool	echo(char **args)
+t_bool	blt_echo(char **args)
 {
 	int		i;
 	t_bool	n_flag;

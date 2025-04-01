@@ -25,6 +25,7 @@ SAN_FLAGS=-fsanitize=address -fsanitize=leak
 
 #----- Sources -----
 SRCS=	./minishell.c \
+		./shell/shell_signals_sub.c \
 		./shell/shell_signals.c \
 		./shell/shell_clear.c \
 		./shell/shell_init.c \
@@ -123,7 +124,7 @@ DEPS_LIST=$(LIBFT_PATH)$(LIBFT_NAME)
 DEPS_CALLS=$(LIBFT_CALL) 
 
 #----- External -----
-EXT_DEPS=-lreadline
+EXT_DEPS=-lreadline -ltinfo
 
 #--------------------------------------------------
 #      LOADING BAR - ADVANCED MAKEFILE (AMK)

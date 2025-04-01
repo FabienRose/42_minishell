@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:25:46 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/25 14:33:41 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/30 21:57:25 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
 	}
 	else if (ft_strncmp(cmd->name, "echo", 5) == 0)
 	{
-		echo(cmd->args);
+		blt_echo(cmd->args);
 		return (TRUE);
 	}
 	return (FALSE);

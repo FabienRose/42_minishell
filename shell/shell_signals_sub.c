@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   shell_signals_sub.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 12:00:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/01 15:30:38 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/01 15:08:23 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/04/01 15:30:50 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "shell.h"
 
-t_bool shell_init(t_shell *shell)
+t_bool shell_sig_switchstdin(t_shell *shell)
 {
-	shell->last_error = NULL;
-	shell->current_dir = NULL;
-	if(!shell_init_sig(shell))
+	if(sigaction(SIGINT, &(shell->sint_stdin), NULL) == -1)
 		return (FALSE);
-	shell->environement = NULL;
-	if(!copy_environ(shell))
+	return (TRUE);
+}
+
+t_bool shell_sig_switchdefault(t_shell *shell)
+{
+	if(sigaction(SIGINT, &(shell->sint_default), NULL) == -1)
 		return (FALSE);
-	shell->initialized = TRUE;
-	shell->last_return = 0;
-	gv_onint = 0;
 	return (TRUE);
 }

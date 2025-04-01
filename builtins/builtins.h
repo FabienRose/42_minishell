@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:00:55 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/01 13:00:55 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/03/30 21:56:31 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_shell	t_shell;
 //--------------------------------------------------
 
 t_bool	change_directory(t_shell *shell, char **arg);
-t_bool	echo(char **args);
+t_bool	blt_echo(char **args);
 t_bool	pwd(char **arguments);
 t_bool	export(t_shell *shell, char **arg);
 void	bubble_sort(char **array);
