@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 13:07:58 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/28 13:07:58 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/31 22:16:19 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/31 22:16:19 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ t_promptret pmt_exec(t_pmt* pmt)
 	status = PMT_SUCCESS;
 	// if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 	// 	return PMT_ERROR;
-	status = set_and_execute(pmt->start_group);
+	status = exec_setup(pmt->start_group);
 	return (status);
 }

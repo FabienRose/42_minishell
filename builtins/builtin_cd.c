@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_builtins.c                                    :+:      :+:    :+:   */
+/*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 17:40:46 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 17:47:27 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/01 09:53:46 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/01 09:53:46 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*define_path(char *arg)
 	return (path);
 }
 
-t_bool	change_directory(t_shell *shell, char **arg)
+t_bool	builtin_change_directory(t_shell *shell, char **arg)
 {
 	char	*path;
 
@@ -50,8 +50,8 @@ t_bool	change_directory(t_shell *shell, char **arg)
 		free(path);
 		return (FALSE);
 	}
-	set_environement(shell, "OLDPWD", getenv("PWD"), FALSE);
-	set_environement(shell, "PWD", getcwd(NULL, 0), TRUE);
+	set_environment(shell, "OLDPWD", getenv("PWD"), FALSE);
+	set_environment(shell, "PWD", getcwd(NULL, 0), TRUE);
 	free(path);
 	return (TRUE);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 17:40:52 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/31 13:49:35 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/01 10:03:17 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/01 10:04:04 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static t_bool	env_builtins(t_cmd *cmd, t_shell *shell)
 {
 	if (ft_strncmp(cmd->name, "export", 7) == 0)
 	{
-		export(shell, cmd->args);
+		builtin_export(shell, cmd->args);
 		shell->last_return = 0;
 		return (TRUE);
 	}
 	else if (ft_strncmp(cmd->name, "unset", 6) == 0)
 	{
-		unset(shell, cmd->args);
+		builtin_unset(shell, cmd->args);
 		shell->last_return = 0;
 		return (TRUE);
 	}
@@ -39,7 +39,7 @@ static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
 {
 	if (ft_strncmp(cmd->name, "cd", 3) == 0)
 	{
-		if (!change_directory(shell, cmd->args))
+		if (!builtin_change_directory(shell, cmd->args))
 			return (TRUE);
 		shell->last_return = 0;
 		shell_update_loc(shell);
@@ -47,7 +47,7 @@ static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
 	}
 	else if (ft_strncmp(cmd->name, "pwd", 4) == 0)
 	{
-		if (!pwd(cmd->args))
+		if (!builtin_pwd(cmd->args))
 		{
 			shell->last_return = 1;
 			return (FALSE);
@@ -57,7 +57,7 @@ static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
 	}
 	else if (ft_strncmp(cmd->name, "echo", 5) == 0)
 	{
-		echo(cmd->args);
+		builtin_echo(cmd->args);
 		shell->last_return = 0;
 		return (TRUE);
 	}

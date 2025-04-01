@@ -57,16 +57,16 @@ SRCS=	./minishell.c \
 		./token/tok_parse.c \
 		./exec/exec_builtins.c \
 		./exec/exec_utils.c \
-		./exec/set_and_execute.c \
+		./exec/exec_setup.c \
 		./exec/exec_cmd.c \
 		./exec/exec_fd.c \
-		./builtins/print_env.c \
-		./builtins/cd.c \
-		./builtins/unset.c \
-		./builtins/echo.c \
-		./builtins/export.c \
+		./builtins/builtin_print_env.c \
+		./builtins/builtin_unset.c \
+		./builtins/builtin_cd.c \
+		./builtins/builtin_export.c \
+		./builtins/builtin_echo.c \
+		./builtins/builtin_pwd.c \
 		./builtins/builtin_utils.c \
-		./builtins/pwd.c \
 		./prompt/pmt_init.c \
 		./prompt/pmt_start.c \
 		./prompt/pmt_debug.c \

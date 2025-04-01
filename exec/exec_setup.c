@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_and_execute.c                                  :+:      :+:    :+:   */
+/*   exec_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 18:33:33 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/31 18:43:21 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/31 22:17:20 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/31 22:17:35 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ t_promptret	handle_pipe(t_grp *grp, t_promptret status)
 		close(pipe_fd.pipe_fd[0]);
 		dup2(pipe_fd.pipe_fd[1], STDOUT_FILENO);
 		close(pipe_fd.pipe_fd[1]);
-		exit(set_and_execute(grp->grp_before));
+		exit(exec_setup(grp->grp_before));
 	}
 	else
 	{
 		close(pipe_fd.pipe_fd[1]);
 		dup2(pipe_fd.pipe_fd[0], STDIN_FILENO);
 		close(pipe_fd.pipe_fd[0]);
-		status = set_and_execute(grp->grp_after);
+		status = exec_setup(grp->grp_after);
 		waitpid(pid, NULL, 0);
 		reset_fd(&pipe_fd);
 	}
@@ -48,7 +48,7 @@ t_promptret	exec_uniq(t_grp *grp)
 
 	pid = fork();
 	if (pid == 0)
-		exit(set_and_execute(grp->grp_uniq));
+		exit(exec_setup(grp->grp_uniq));
 	waitpid(pid, &return_status, 0);
 	return (return_status);
 }
@@ -62,17 +62,17 @@ t_promptret	handle_token(t_grp *grp)
 		return (handle_pipe(grp, status));
 	else if (grp->token->type == TOK_AND)
 	{
-		status = set_and_execute(grp->grp_before);
+		status = exec_setup(grp->grp_before);
 		if (((t_shell *)grp->l_shell)->last_return
 			== PMT_SUCCESS && grp->grp_after)
-			status = set_and_execute(grp->grp_after);
+			status = exec_setup(grp->grp_after);
 	}
 	else if (grp->token->type == TOK_OR)
 	{
-		status = set_and_execute(grp->grp_before);
+		status = exec_setup(grp->grp_before);
 		if (((t_shell *)grp->l_shell)->last_return
 			== PMT_FAILED && grp->grp_after)
-			status = set_and_execute(grp->grp_after);
+			status = exec_setup(grp->grp_after);
 	}
 	return (status);
 }
@@ -93,7 +93,7 @@ t_promptret	handle_io(t_grp *grp, t_fd *io_fd)
 	return (status);
 }
 
-t_promptret	set_and_execute(t_grp *grp)
+t_promptret	exec_setup(t_grp *grp)
 {
 	t_promptret	status;
 	t_fd		io_fd;

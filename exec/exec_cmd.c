@@ -24,7 +24,7 @@ t_bool	path_loop(char **paths, t_cmd *cmd, t_shell *shell)
 		try_path = ft_strjoin(paths[i], "/");
 		cmd_path = ft_strjoin(try_path, cmd->name);
 		free(try_path);
-		execve(cmd_path, cmd->full, shell->environement);
+		execve(cmd_path, cmd->full, shell->environment);
 		free(cmd_path);
 		i++;
 	}
@@ -37,7 +37,7 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 	{
 		if (ft_strchr(cmd->name, '/'))
 		{
-			execve(cmd->name, cmd->full, shell->environement);
+			execve(cmd->name, cmd->full, shell->environment);
 			ft_putstr_fd("Minishell: no such file or directory: ", 2);
 			ft_putstr_fd(cmd->name, 2);
 			ft_putstr_fd("\n", 2);
