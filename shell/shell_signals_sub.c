@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:08:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/01 15:30:50 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:31:18 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 t_bool shell_sig_switchstdin(t_shell *shell)
 {
 	if(sigaction(SIGINT, &(shell->sint_stdin), NULL) == -1)
+		return (FALSE);
+	return (TRUE);
+}
+t_bool shell_sig_switchexec(t_shell *shell)
+{
+	if(sigaction(SIGINT, &(shell->sint_exec), NULL) == -1)
 		return (FALSE);
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:30:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/30 15:58:52 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:16:37 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ typedef struct s_grp
 	void *l_shell;
 }	t_grp;
 
+typedef struct s_grp_varreader
+{
+	size_t pos;
+	size_t end;
+	t_bool has_sq;
+	t_bool has_dq;
+}	t_grp_varreader;
+
 //--------------------------------------------------
 //                    FUNCTIONS
 //--------------------------------------------------
@@ -84,7 +92,15 @@ t_promptret grp_parseinput(t_grp* grp, const char *input, t_bool is_first);
  */
 t_promptret grp_addtild(t_grp* grp);
 
-	
+	//--------------------- UTIL ---------------------
+/**
+ * @brief Proccess a variable as needed
+ * 
+ * @param grp Group related to the variable
+ * @param value Variable data
+ * @return char* Copy of the data
+ */
+char *grp_var_process(t_grp* grp, char *value);
 /**
  * @brief Add the last result value into the reader
  * 

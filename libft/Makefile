@@ -41,6 +41,7 @@ SRCS=	./array/ft_arraypush.c \
 		./memory/ft_memcmp.c \
 		./memory/ft_memchr.c \
 		./memory/ft_calloc.c \
+		./strings/ft_strinsert.c \
 		./strings/ft_strpush.c \
 		./strings/ft_strmapi.c \
 		./strings/ft_strncmp.c \

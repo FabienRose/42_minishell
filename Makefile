@@ -29,6 +29,7 @@ SRCS=	./minishell.c \
 		./shell/shell_signals.c \
 		./shell/shell_clear.c \
 		./shell/shell_init.c \
+		./shell/shell_signals_hdl.c \
 		./shell/shell_env.c \
 		./shell/shell_start.c \
 		./commands/cmd_debug.c \

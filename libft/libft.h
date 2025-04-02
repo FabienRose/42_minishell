@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:11:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/30 11:16:12 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:55:42 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ typedef unsigned char	t_bool;
 # define FALSE 0
 
 //====================== PRINT ======================
-# define FONT_NRM			"\x1B[0m"
-# define FONT_RED 			"\x1B[31m"
-# define FONT_GRN 			"\x1B[32m"
-# define FONT_YEL 			"\x1B[33m"
-# define FONT_BLU 			"\x1B[34m"
-# define FONT_MAG 			"\x1B[35m"
-# define FONT_CYN 			"\x1B[36m"
-# define FONT_WHT 			"\x1B[37m"
-# define FONT_BOLD			"\033[1m"	 	 
-# define FONT_UNDERLINE		"\033[4m"	 
-# define FONT_NO_UNDERLINE	"\033[24m"	 
+# define FONT_NRM			"\001\x1B[0m\002"
+# define FONT_RED 			"\001\x1B[31m\002"
+# define FONT_GRN 			"\001\x1B[32m\002"
+# define FONT_YEL 			"\001\x1B[33m\002"
+# define FONT_BLU 			"\001\x1B[34m\002"
+# define FONT_MAG 			"\001\x1B[35m\002"
+# define FONT_CYN 			"\001\x1B[36m\002"
+# define FONT_WHT 			"\001\x1B[37m\002"
+# define FONT_BOLD			"\001\033[1m\002"	 	 
+# define FONT_UNDERLINE		"\001\033[4m\002"	 
+# define FONT_NO_UNDERLINE	"\001\033[24m\002"	 
 
 
 //--------------------------------------------------
@@ -290,6 +290,15 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
  * @return t_bool FALSE if failed
  */
 t_bool	ft_strpopat(char **rstr, size_t at);
+/**
+ * @brief Insert a charcter in the middle of a string
+ * 
+ * @param p_str Pointer of the string to change
+ * @param at Position to add the character
+ * @param c Character to add
+ * @return t_bool FALSE if failed
+ */
+t_bool ft_strinsert(char **p_str, size_t at, char c);
 
 //--------------------------------------------------
 //                		FILES

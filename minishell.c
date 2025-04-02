@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:53:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/27 16:11:30 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:53:58 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	return (0);
+	return (data.last_return);
 	//TODO: Check memory error on resize_environ with strdup
 }

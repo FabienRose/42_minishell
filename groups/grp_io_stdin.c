@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:50:21 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/01 16:06:23 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:13:58 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_promptret grp_io_stdin_read(t_grp *grp, char *safeword)
 	output = readline("> ");
 	if(!output)
 		return (grp_io_stdin_error(safeword));
-	if(gv_onint)
+	if(g_onint)
 		return(grp_io_stdin_sigint(grp, &output));
 	while(ft_strncmp(output, safeword, len + 1) != 0)
 	{
@@ -56,7 +56,7 @@ static t_promptret grp_io_stdin_read(t_grp *grp, char *safeword)
 		output = readline("> ");
 		if(!output)
 			return(grp_io_stdin_error(safeword));
-		if(gv_onint)
+		if(g_onint)
 			return(grp_io_stdin_sigint(grp, &output));
 	}
 	if(output)
@@ -81,12 +81,19 @@ t_promptret grp_io_stdin(t_grp *grp)
 		status = grp_io_stdin_read(grp, grp->io->input_stdin_safewords[pos]);
 		if(status != PMT_SUCCESS)
 			break;
-		if(gv_onint)
+		if(g_onint)
 			break;
 		pos++;
 	}
-	gv_onint = 0;
 	if(!shell_sig_switchdefault(grp->l_shell))
+	{
+		g_onint = 0;
 		return (PMT_ERROR);
+	}
+	if(g_onint)
+	{
+		g_onint = 0;
+		return (PMT_FAILED);
+	}
 	return (status);
 }

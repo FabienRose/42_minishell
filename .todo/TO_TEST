@@ -16,3 +16,6 @@ cat << test
 ((echo 5 && echo 6))
 hello << test
 hello << test << sarah
+export arg='ls libft "  test  " && wc -l'
+$arg
+(((cat) > test.txt ) > test.txt) > text.txt

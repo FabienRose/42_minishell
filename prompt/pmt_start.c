@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:14:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/28 17:33:50 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:13:58 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ t_promptret pmt_start(t_pmt* pmt)
 	
 	if(!pmt || !pmt->disp)
 		return PMT_ERROR;
+	if(g_onint)
+		printf("\n");
+	g_onint = 0;
 	pmt->prompt = readline(pmt->disp);
 	if(pmt->prompt && ft_strlen(pmt->prompt) > 0  && pmt->prompt[0] != '\n')
 	{
@@ -47,6 +50,10 @@ t_promptret pmt_exec(t_pmt* pmt)
 	status = PMT_SUCCESS;
 	// if(!pmt || ft_arraylen_d((void **)(pmt->cmds)) == 0)
 	// 	return PMT_ERROR;
+	if(!shell_sig_switchexec(pmt->l_shell))
+		return(PMT_ERROR);
 	status = set_and_execute(pmt->start_group);
+	if(!shell_sig_switchdefault(pmt->l_shell))
+		return(PMT_ERROR);
 	return (status);
 }

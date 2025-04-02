@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:57:57 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/26 15:47:18 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:11:04 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ t_promptret exec_uniq(t_grp *grp)
 	int return_status;
 
 	pid = fork();
-        if (pid == 0) 
-            exit(set_and_execute(grp->grp_uniq));
-        waitpid(pid, &return_status, 0);
+	if (pid == 0) 
+		exit(set_and_execute(grp->grp_uniq));
+	waitpid(pid, &return_status, 0);
 	return (return_status);
 }
 
@@ -70,10 +70,7 @@ t_promptret	set_and_execute(t_grp *grp)
 	{
 		if (exec_builtins(grp->cmd, grp->l_shell) == PMT_SUCCESS)
 			status = PMT_SUCCESS;
-		else if (exec_cmd(grp->cmd, grp->l_shell))
-			status = PMT_SUCCESS;
-		else
-			status = PMT_FAILED;
+		status = exec_cmd(grp->cmd, grp->l_shell);
 	}
 	else if (grp->grp_uniq)
 		status = exec_uniq(grp);
