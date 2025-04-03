@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 22:20:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/31 23:32:07 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/02 14:02:29 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/02 14:02:29 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_bool		exec_builtins(t_cmd *cmd, t_shell *shell);
  * @param shell Reference to the main shell structure
  * @return t_bool TRUE if the command is a builtins, FALSE otherwise
  */
-t_bool		exec_cmd(t_cmd *cmd, t_shell *shell);
+t_promptret	exec_cmd(t_cmd *cmd, t_shell *shell);
 	//--------------------- Redirections ---------------------
 /**
  * @brief Redirect the output of a command

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_setup.c                                       :+:      :+:    :+:   */
+/*   workspace.json                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 22:17:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/31 22:17:35 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/02 22:11:17 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/02 22:11:17 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ t_promptret	handle_pipe(t_grp *grp, t_promptret status)
 		close(pipe_fd.pipe_fd[0]);
 		dup2(pipe_fd.pipe_fd[1], STDOUT_FILENO);
 		close(pipe_fd.pipe_fd[1]);
-		exit(exec_setup(grp->grp_before));
+		exec_setup(grp->grp_before);
+		return (PMT_STOP);
 	}
 	else
 	{
@@ -48,7 +49,10 @@ t_promptret	exec_uniq(t_grp *grp)
 
 	pid = fork();
 	if (pid == 0)
-		exit(exec_setup(grp->grp_uniq));
+	{
+		exec_setup(grp->grp_uniq);
+		return (PMT_STOP);
+	}
 	waitpid(pid, &return_status, 0);
 	return (return_status);
 }
@@ -105,7 +109,7 @@ t_promptret	exec_setup(t_grp *grp)
 	{
 		if (exec_builtins(grp->cmd, grp->l_shell) == PMT_SUCCESS)
 			status = PMT_SUCCESS;
-		else if (exec_cmd(grp->cmd, grp->l_shell))
+		else if (exec_cmd(grp->cmd, grp->l_shell) == PMT_SUCCESS)
 			status = PMT_SUCCESS;
 		else
 			status = PMT_FAILED;

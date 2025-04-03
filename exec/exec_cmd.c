@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/29 17:39:01 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/29 18:31:42 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/02 14:22:56 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/02 14:23:12 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 	return (FALSE);
 }
 
-t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
+t_promptret	exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	pid_t	pid;
 	int		status;
@@ -59,21 +59,25 @@ t_bool	exec_cmd(t_cmd *cmd, t_shell *shell)
 
 	paths = ft_split(getenv("PATH"), ':');
 	if (!paths)
-		return (FALSE);
+		return (PMT_ERROR);
 	pid = fork();
 	if (pid == -1)
 	{
 		ft_split_release(&paths);
-		return (FALSE);
+		return (PMT_ERROR);
 	}
 	if (pid == 0)
 	{
 		exec_path(paths, cmd, shell);
 		ft_split_release(&paths);
-		exit(127);
+		shell->last_return = 127;
+		return (PMT_STOP);
 	}
 	ft_split_release(&paths);
 	waitpid(pid, &status, 0);
 	shell->last_return = WEXITSTATUS(status);
-	return (TRUE);
+	if (shell->last_return == 0)
+		return (PMT_SUCCESS);
+	else
+		return (PMT_FAILED);
 }

@@ -6,7 +6,7 @@
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:53:46 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/01 09:53:46 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/02 12:31:13 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ t_bool	builtin_change_directory(t_shell *shell, char **arg)
 	path = define_path(arg[0]);
 	if (chdir(path) == -1)
 	{
-		perror(ft_strjoin("minishell: cd: ", path));
+		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd(path, 2);
+		perror("");
 		shell->last_return = 1;
 		free(path);
 		return (FALSE);
