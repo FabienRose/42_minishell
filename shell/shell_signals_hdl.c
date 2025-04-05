@@ -6,22 +6,11 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:06:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/02 15:13:58 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:15:23 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-
-void	shell_sig_handler_quit (int sig)
-{
-	if(sig == SIGQUIT)
-	{
-		rl_on_new_line();
-		rl_redisplay();
-		ft_putstr_fd("  \b\b", 1);
-	}
-}
 
 void	shell_sig_handler(int sig)
 {
@@ -47,6 +36,5 @@ void	shell_sig_handler_stdin(int sig)
 	if(sig == SIGINT)
 	{
 		g_onint = 1;
-		rl_done = 1;
 	}
 }

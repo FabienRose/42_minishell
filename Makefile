@@ -61,6 +61,7 @@ SRCS=	./minishell.c \
 		./directories/dir_clear.c \
 		./directories/dir_nav.c \
 		./signatures/sgn_welcome.c \
+		./groups/grp_io_stdin_sub.c \
 		./groups/grp_checks_2.c \
 		./groups/grp_checks.c \
 		./groups/grp_cmd.c \
@@ -72,6 +73,7 @@ SRCS=	./minishell.c \
 		./groups/grp_io_stdin.c \
 		./groups/grp_clear.c \
 		./groups/grp_vars.c \
+		./groups/grp_io_stdin_parse.c \
 		./groups/grp_io.c \
 		./groups/grp_uniq.c \
 		./groups/grp_debug.c \

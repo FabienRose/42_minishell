@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 15:47:16 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/02 12:07:53 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/05 17:09:35 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char *grp_var_process(t_grp* grp, char *value)
 	output = ft_strdup(value);
 	if(!output)
 		return (NULL);
-	if(grp->reader->is_in_dq)
+	if(grp->reader->is_in_dq || grp->no_varsplit)
 		return (output);
 	reader.pos = 0;
 	reader.end = 0;

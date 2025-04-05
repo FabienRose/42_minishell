@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/02 14:31:43 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:15:38 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_shell
 {
 	char				*last_error;
 	t_dir				*current_dir;
-	struct	sigaction	squit;
 	struct	sigaction	sint_default;
 	struct	sigaction	sint_exec;
 	struct	sigaction	sint_stdin;
@@ -74,6 +73,12 @@ t_bool shell_init_sig(t_shell* ptr);
  */
 void	shell_sig_handler_quit (int sig);
 /**
+ * @brief Function called by the sigaction system when ctrl + '\' is pressed during std_in 
+ * 
+ * @param sig Signal ID
+ */
+void	shell_sig_handler_quitnprompt (int sig);
+/**
  * @brief Function called by the sigaction system
  * 
  * @param sig Signal ID
@@ -113,6 +118,13 @@ t_bool shell_sig_switchexec(t_shell *shell);
  * @return t_bool FALSE if failed
  */
 t_bool shell_sig_switchstdin(t_shell *shell);
+/**
+ * @brief Restor SIGINT into it's normal function
+ * 
+ * @param shell Shell in which the sa is
+ * @return t_bool FALSED on fail
+ */
+t_bool shell_sig_switchkill(t_shell *shell);
 
 //====================== ENV ======================
 /**

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:14:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/02 15:13:58 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/05 13:59:25 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_promptret pmt_start(t_pmt* pmt)
 		if(status != PMT_SUCCESS)
 			return (status);
 		status = pmt_parse(pmt);
-		grp_debug(pmt->start_group, 0);
 		printf("Return status: %i\n", status);
 		if(status != PMT_SUCCESS)
 			return (status);
+		grp_debug(pmt->start_group, 0);
 		return (pmt_exec(pmt));
 	}
 	if(!pmt->prompt)

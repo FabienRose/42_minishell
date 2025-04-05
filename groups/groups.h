@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:30:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/01 17:16:37 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/05 17:05:47 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_grp
 	t_io			*io;
 
 	t_bool			is_uniq;
+	t_bool			no_varsplit;
 	void *l_shell;
 }	t_grp;
 
@@ -174,6 +175,35 @@ t_promptret grp_getcmd(t_grp *grp);
  * @return t_promptret Return status of the function
  */
 t_promptret grp_getio(t_grp *grp);
+/**
+ * @brief Reset the stdin array inside the groupe
+ * 
+ * @param grp Group to reset
+ * @return t_promptret Status of the function
+ */
+t_promptret grp_io_stdin_reset(t_grp *grp);
+/**
+ * @brief Call we canceling on ctrl + C
+ * 
+ * @param grp Groupe called with
+ * @param output Output to clear
+ * @return t_promptret Return status of the function
+ */
+t_promptret grp_io_stdin_sigint(t_grp *grp, char **output);
+/**
+ * @brief Print the error message with safeword
+ * 
+ * @param safeword Word to print
+ * @return t_promptret Return status of the function
+ */
+t_promptret grp_io_stdin_error(char *safeword);
+/**
+ * @brief Check if any of the input has variable
+ * 
+ * @param grp Group to parse
+ * @return t_promptret Return status of the function
+ */
+t_promptret grp_io_stdin_parse(t_grp *grp);
 /**
  * @brief Get required data on the standard input
  * 

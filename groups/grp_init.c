@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:07:05 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/28 18:22:02 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/05 17:06:01 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ t_bool grp_init(t_grp *grp, void *shell)
 	grp->cmd = NULL;
 	grp->l_shell = shell;
 	grp->is_uniq = FALSE;
+	grp->no_varsplit = FALSE;
 	return (TRUE);
 }
