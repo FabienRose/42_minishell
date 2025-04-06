@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 10:03:17 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/01 10:04:04 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/06 17:00:14 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/06 17:03:10 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
 	return (FALSE);
 }
 
-t_bool	exec_builtins(t_cmd *cmd, t_shell *shell)
+t_promptret	exec_builtins(t_cmd *cmd, t_shell *shell)
 {
 	int		status;
 
@@ -72,6 +72,8 @@ t_bool	exec_builtins(t_cmd *cmd, t_shell *shell)
 		status = PMT_SUCCESS;
 	else if (cd_builtins(cmd, shell))
 		status = PMT_SUCCESS;
+	else if (strncmp(cmd->name, "exit", 5) == 0)
+		status = PMT_STOP;
 	else
 		status = PMT_FAILED;
 	return (status);

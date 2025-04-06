@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 18:32:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/31 18:32:18 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/06 17:38:21 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/06 17:38:34 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	get_outfile_order(t_grp *grp, int *file_fd, int is_append)
 t_promptret	redirect_fd_output(t_grp *grp)
 {
 	int		file_fd;
-	char 	*last_out;
+	char	*last_out;
 	int		is_append;
 
 	file_fd = -1;
@@ -103,4 +103,13 @@ t_promptret	redirect_fd_output(t_grp *grp)
 	return (PMT_FAILED);
 }
 
-
+t_promptret	save_fd(t_fd *fd)
+{
+	fd->saved_stdin = dup(STDIN_FILENO);
+	if (fd->saved_stdin == -1)
+		return (PMT_ERROR);
+	fd->saved_stdout = dup(STDOUT_FILENO);
+	if (fd->saved_stdout == -1)
+		return (PMT_ERROR);
+	return (PMT_SUCCESS);
+}

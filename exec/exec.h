@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:02:29 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/02 14:02:29 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/06 17:52:45 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/06 17:54:20 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_fd
 //--------------------------------------------------
 	//--------------------- Setup ---------------------
 /**
- * @brief Execute a group containing either a token or a command with or without redirections
+ * @brief Execute a group: token or command with or without redirections
  * 
  * @param grp Group to execute
  * @return t_promptret Status of the execution
@@ -56,7 +56,7 @@ t_promptret	exec_setup(t_grp *grp);
  * @param shell Reference to the main shell structure
  * @return t_bool TRUE if the command is a builtins, FALSE otherwise
  */
-t_bool		exec_builtins(t_cmd *cmd, t_shell *shell);
+t_promptret	exec_builtins(t_cmd *cmd, t_shell *shell);
 /**
  * @brief Execute a command
  * 
@@ -109,4 +109,12 @@ int			get_stdin_fd(t_grp *grp);
  * @return t_bool TRUE if the file descriptors are reset, FALSE otherwise
  */
 t_bool		reset_fd(t_fd *fd);
+/**
+ * @brief Save the file descriptors
+ * 
+ * @param fd File descriptors to save in
+ * @return t_promptret Status of the saving
+ */
+t_promptret	save_fd(t_fd *fd);
+
 #endif //EXEC_H
