@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:06:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/28 18:33:46 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:34:23 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //--------------------------------------------------
 //                 LOCAL INCLUDES
 //--------------------------------------------------
-#include "common.h"
+# include "common.h"
 
 //--------------------------------------------------
 //                   STRCUTURES
@@ -42,7 +42,7 @@ typedef struct s_grp_reader
  * @param shell Referebce to the main shell structure
  * @return t_grp_reader* Newly created group reader 
  */
-t_grp_reader *grp_read_create(void *shell);
+t_grp_reader	*grp_read_create(void *shell);
 /**
  * @brief Initialize a group reader structure
  * 
@@ -50,8 +50,7 @@ t_grp_reader *grp_read_create(void *shell);
  * @param shell Referebce to the main shell structure
  * @return t_bool FALSE if failed
  */
-t_bool grp_read_init(t_grp_reader *grp_reader, void *shell);
-
+t_bool			grp_read_init(t_grp_reader *grp_reader, void *shell);
 
 //====================== CHECKERS ======================
 /**
@@ -60,28 +59,31 @@ t_bool grp_read_init(t_grp_reader *grp_reader, void *shell);
  * @param reader t_grp_reader to check
  * @return t_bool TRUE if within quotes
  */
-t_bool grp_isinquote(t_grp_reader* reader);
+t_bool			grp_isinquote(t_grp_reader *reader);
 /**
  * @brief Check if a token can be applied
  * 
  * @param reader Reference to teh current reader
  * @return t_bool TRUE if can apply
  */
-t_bool grp_canapply(t_grp_reader* reader);
+t_bool			grp_canapply(t_grp_reader *reader);
 
 //====================== MANAGE ======================
 
 /**
- * @brief Add a char to the current reader buffer (cann call grp_read_extendbuffer)
+ * @brief Add a char to the current reader 
+ * buffer (cann call grp_read_extendbuffer)
  * 
  * @param reader t_grp_reader of the current prompt
  * @param c character to add
  * @param no_quotes Removes quotes if one is found
  * @return t_bool Return FALSE if malloc fail (called by grp_read_extendbuffer)
  */
-t_promptret grp_read_addchar(t_grp_reader* reader, char c, t_bool no_quotes);
+t_promptret		grp_read_addchar(t_grp_reader *reader,
+					char c, t_bool no_quotes);
 /**
- * @brief Add a char only if the current par level is higher than specifed to the current reader buffer (cann call grp_read_extendbuffer)
+ * @brief Add a char only if the current par level is higher 
+ * than specifed to the current reader buffer (cann call grp_read_extendbuffer)
  * 
  * @param reader t_grp_reader of the current prompt
  * @param c character to add
@@ -89,14 +91,15 @@ t_promptret grp_read_addchar(t_grp_reader* reader, char c, t_bool no_quotes);
  * @param set is set to TRUE if somethin has been added
  * @return t_bool Return FALSE if malloc fail (called by grp_read_extendbuffer)
  */
-t_promptret grp_read_addchar_at(t_grp_reader* reader, char c, size_t min_par, t_bool *set);
+t_promptret		grp_read_addchar_at(t_grp_reader *reader, char c,
+					size_t min_par, t_bool *set);
 /**
  * @brief Resize the given reader buffer
  * 
  * @param reader t_grp_reader of the current prompt
  * @return t_bool Return FALSE if malloc fail (called by grp_read_extendbuffer)
  */
-t_bool grp_read_extendbuffer(t_grp_reader* reader);
+t_bool			grp_read_extendbuffer(t_grp_reader *reader);
 
 //====================== EXTRACT ======================
 /**
@@ -105,7 +108,7 @@ t_bool grp_read_extendbuffer(t_grp_reader* reader);
  * @param reader t_grp_reader to extract from.
  * @return char* extracted string
  */
-char *grp_read_extract(t_grp_reader *reader);
+char			*grp_read_extract(t_grp_reader *reader);
 
 //====================== CLEAR ======================
 /**
@@ -113,18 +116,18 @@ char *grp_read_extract(t_grp_reader *reader);
  * 
  * @param grp_reader Group reader to free
  */
-void grp_read_release(void *grp_reader);
+void			grp_read_release(void *grp_reader);
 /**
  * @brief Clear and release a group reader structure
  * 
  * @param grp_reader Pointer of the pointer to the groupe reader structure 
  */
-void grp_read_clear(t_grp_reader **grp_reader);
+void			grp_read_clear(t_grp_reader **grp_reader);
 /**
  * @brief Reset reader to 0 (Do not realloc);
  * 
  * @param reader Reader to reset
  */
-void grp_read_reset(t_grp_reader *reader);
+void			grp_read_reset(t_grp_reader *reader);
 
 #endif //GROUPS_READER_H

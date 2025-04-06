@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:38:37 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/04 10:12:26 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:09:28 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ static char	**ft_split_sub(char **final_str, char const *s, char c)
 	return (final_str);
 }
 
-void ft_split_release(char	***arr)
+void	ft_split_release(char	***arr)
 {
 	size_t	pos;
 
 	pos = 0;
-	if(!arr || !(*arr))
+	if (!arr || !(*arr))
 		return ;
 	while ((*arr)[pos])
 	{

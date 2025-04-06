@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 00:26:12 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/01 00:26:17 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/06 13:23:01 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_bool	update_existing_env(t_shell *minishell, char *variable, char *entry)
 	while (minishell->environment[i])
 	{
 		if (ft_strncmp(minishell->environment[i], variable, var_len) == 0
-			&& (minishell->environment[i][var_len] == '=' || minishell->environment[i][var_len] == '\0'))
+			&& (minishell->environment[i][var_len] == '='
+			|| minishell->environment[i][var_len] == '\0'))
 		{
 			if (!has_equals)
 				return (TRUE);

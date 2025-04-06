@@ -6,18 +6,18 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:24:06 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/23 11:29:50 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:33:08 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 
-void util_printsplit(char **split)
+void	util_printsplit(char **split)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	while(split[i])
+	while (split[i])
 	{
 		printf("%-4lu--> %s\n", i, split[i]);
 		i++;

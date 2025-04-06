@@ -6,15 +6,15 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 08:29:22 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/26 08:33:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:08:03 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool ft_isspace(int c)
+t_bool	ft_isspace(int c)
 {
-	if(c == ' '
+	if (c == ' '
 		|| c == '\f'
 		|| c == '\n'
 		|| c == '\r'

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:32:53 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/30 15:46:59 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:21:38 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@
 //--------------------------------------------------
 //                 LOCAL INCLUDES
 //--------------------------------------------------
-#include "common.h"
+# include "common.h"
 
 //--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
 typedef struct s_io
 {
-	char **input_files;
-	char **output_files;
-	char **output_endfiles;
-	char **input_stdin;
-	char **input_stdin_safewords;
+	char	**input_files;
+	char	**output_files;
+	char	**output_endfiles;
+	char	**input_stdin;
+	char	**input_stdin_safewords;
 }	t_io;
-
 
 //--------------------------------------------------
 //                    FUNCTIONS
@@ -40,14 +39,14 @@ typedef struct s_io
  * 
  * @return t_io* Newly created IO structure
  */
-t_io *io_create();
+t_io	*io_create(void);
 /**
  * @brief Initialize a new IO structure
  * 
  * @param io IO Struct to initialize
  * @return t_bool FALSE if failed
  */
-t_bool io_init(t_io* io);
+t_bool	io_init(t_io *io);
 
 //====================== CLEAR ======================
 /**
@@ -55,7 +54,7 @@ t_bool io_init(t_io* io);
  * 
  * @param io IO structure to clear
  */
-void io_clear(t_io **io);
+void	io_clear(t_io **io);
 
 //====================== DEBUG ======================
 /**
@@ -65,6 +64,6 @@ void io_clear(t_io **io);
  * @param tabs Tabs string to display before the informations
  * @param tab_count The current sub group indentation
  */
-void io_print(t_io* io, char *tabs, int tab_count);
+void	io_print(t_io *io, char *tabs, int tab_count);
 
 #endif //IO_H

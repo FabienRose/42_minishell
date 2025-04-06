@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/05 18:15:38 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:41:42 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct s_shell
 	t_dir				*current_dir;
 	char				**environment;
 	char				***original_env;
-	struct	sigaction	sint_default;
-	struct	sigaction	sint_exec;
-	struct	sigaction	sint_stdin;
+	struct sigaction	sint_default;
+	struct sigaction	sint_exec;
+	struct sigaction	sint_stdin;
 	t_bool				initialized;
 	int					last_return;
 }	t_shell;
@@ -57,7 +57,7 @@ t_bool	shell_init(t_shell *shell, char ***environ);
  * @param shell Global shell structure
  * @return t_bool FALSE if Failed
  */
-t_bool shell_start(t_shell* shell);
+t_bool	shell_start(t_shell *shell);
 
 //====================== SIGNALS ======================
 /**
@@ -66,21 +66,9 @@ t_bool shell_start(t_shell* shell);
  * @param ptr to the main t_shell structure
  * @return t_bool = FALSE if fail
  */
-t_bool shell_init_sig(t_shell* ptr);
+t_bool	shell_init_sig(t_shell *ptr);
 /**
  * @brief Function called by the sigaction system when ctrl + '\' is pressed
- * 
- * @param sig Signal ID
- */
-void	shell_sig_handler_quit (int sig);
-/**
- * @brief Function called by the sigaction system when ctrl + '\' is pressed during std_in 
- * 
- * @param sig Signal ID
- */
-void	shell_sig_handler_quitnprompt (int sig);
-/**
- * @brief Function called by the sigaction system
  * 
  * @param sig Signal ID
  */
@@ -104,28 +92,30 @@ void	shell_sig_handler_stdin(int sig);
  * @param shell Shell in which the sa is
  * @return t_bool FALSE if failed
  */
-t_bool shell_sig_switchdefault(t_shell *shell);
+t_bool	shell_sig_switchdefault(t_shell *shell);
 /**
- * @brief Will switch the current SIGINT to the the shell_sig_handler_exec function
+ * @brief Will switch the current SIGINT
+ * to the the shell_sig_handler_exec function
  * 
  * @param shell Shell in which the sa is
  * @return t_bool FALSE if failed
  */
-t_bool shell_sig_switchexec(t_shell *shell);
+t_bool	shell_sig_switchexec(t_shell *shell);
 /**
- * @brief Will switch the current SIGINT to the the shell_sig_handler_stdin function
+ * @brief Will switch the current SIGINT
+ * to the the shell_sig_handler_stdin function
  * 
  * @param shell Shell in which the sa is
  * @return t_bool FALSE if failed
  */
-t_bool shell_sig_switchstdin(t_shell *shell);
+t_bool	shell_sig_switchstdin(t_shell *shell);
 /**
  * @brief Restor SIGINT into it's normal function
  * 
  * @param shell Shell in which the sa is
  * @return t_bool FALSED on fail
  */
-t_bool shell_sig_switchkill(t_shell *shell);
+t_bool	shell_sig_switchkill(t_shell *shell);
 
 //====================== ENV ======================
 /**
@@ -133,14 +123,14 @@ t_bool shell_sig_switchkill(t_shell *shell);
  * 
  * @return char* Header to display (data is malloc)
  */
-char *shell_gethead(t_shell *shell);
+char	*shell_gethead(t_shell *shell);
 /**
  * @brief Call to update the shell->current_dir with PWD
  * 
  * @param shell Global shell structure
  * @return t_bool FALSE if Failed
  */
-t_bool shell_update_loc(t_shell *shell);
+t_bool	shell_update_loc(t_shell *shell);
 
 //====================== CLEAR ======================
 /**
@@ -148,6 +138,6 @@ t_bool shell_update_loc(t_shell *shell);
  * 
  * @param shell A pointer to the struct
  */
-void shell_clear(t_shell *shell);
+void	shell_clear(t_shell *shell);
 
 #endif //SHELL_H

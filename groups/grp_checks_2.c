@@ -6,15 +6,15 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:14:20 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/30 15:30:46 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:49:19 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "groups.h"
 
-t_promptret grp_check_double(t_grp *grp)
+t_promptret	grp_check_double(t_grp *grp)
 {
-	if(grp->is_uniq
+	if (grp->is_uniq
 		&& grp->input_uniq
 		&& !grp->io)
 	{

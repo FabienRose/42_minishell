@@ -3,40 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:58:31 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/25 14:58:53 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/06 15:34:48 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
 
-t_cmd *cmd_create(void *shell)
+t_cmd	*cmd_create(void *shell)
 {
-	t_cmd *ncmd;
+	t_cmd	*ncmd;
 
 	ncmd = ft_calloc(sizeof(t_cmd), 1);
-	if(!ncmd)
+	if (!ncmd)
 		return (NULL);
-	if(!cmd_init(ncmd, shell))
+	if (!cmd_init(ncmd, shell))
 	{
 		cmd_clear(&ncmd);
 		return (NULL);
 	}
-	return ncmd;
+	return (ncmd);
 }
 
-t_bool cmd_init(t_cmd *cmd, void *shell)
+t_bool	cmd_init(t_cmd *cmd, void *shell)
 {
-	if(!cmd)
+	if (!cmd)
 		return (FALSE);
 	cmd->name = NULL;
 	cmd->args = ft_calloc(sizeof(char *), 1);
-	if(!cmd->args)
+	if (!cmd->args)
 		return (FALSE);
 	cmd->full = ft_calloc(sizeof(char *), 1);
-	if(!cmd->full)
+	if (!cmd->full)
 		return (FALSE);
 	cmd->l_shell = shell;
 	cmd->var_isset = FALSE;

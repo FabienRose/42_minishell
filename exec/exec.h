@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:02:29 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/02 14:02:29 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/06 15:06:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef struct s_fd
 //--------------------------------------------------
 	//--------------------- Setup ---------------------
 /**
- * @brief Execute a group containing either a token or a command with or without redirections
+ * @brief Execute a group containing either a token or a 
+ * command with or without redirections
  * 
  * @param grp Group to execute
  * @return t_promptret Status of the execution

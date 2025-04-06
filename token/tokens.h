@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 11:35:02 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/30 12:07:46 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:16:58 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 //--------------------------------------------------
 //                 LOCAL INCLUDES
 //--------------------------------------------------
-#include "common.h"
-
+# include "common.h"
 
 //--------------------------------------------------
 //                     ENUMS
@@ -64,18 +63,20 @@ t_token	*tok_create(void *shell);
  * @param shell Referebce to the main shell structure
  * @return t_bool FALSE if fail
  */
-t_bool	tok_init(t_token* token, void *shell);
+t_bool	tok_init(t_token *token, void *shell);
 
 //====================== PARSE======================
 /**
- * @brief Parse the current token and check the following chars to defines its type
+ * @brief Parse the current token and check 
+ * the following chars to defines its type
  * 
  * @param token Token to parse in
  * @param vpmt Ref to the current t_pmt struct
- * @param pos Pos of the current character in the prompt of the given t_pmt struct (Will increment it)
+ * @param pos Pos of the current character in the prompt 
+ * of the given t_pmt struct (Will increment it)
  * @return t_bool FALSE if failed.
  */
-t_bool tok_parse(t_token *token, char *input, size_t *pos);
+t_bool	tok_parse(t_token *token, char *input, size_t *pos);
 
 //====================== UTIL ======================
 /**
@@ -84,35 +85,35 @@ t_bool tok_parse(t_token *token, char *input, size_t *pos);
  * @param c Character to chekc
  * @return t_bool TRUE if match
  */
-t_bool tok_iscontrole(char c);
+t_bool	tok_iscontrole(char c);
 /**
  * @brief Check if char is a IO controle charatcer (>, <)
  * 
  * @param c Character to chekc
  * @return t_bool TRUE if match
  */
-t_bool tok_isio(char c);
+t_bool	tok_isio(char c);
 /**
 * @brief Check if char is a sub controle charatcer (|, &)
 * 
 * @param c Character to chekc
 * @return t_bool TRUE if match
 */
-t_bool tok_issubcontrole(char c);
+t_bool	tok_issubcontrole(char c);
 /**
  * @brief Check if the given charcter is a parenthesis
  * 
  * @param c Character to check
  * @return t_bool TRUE if a parentesis
  */
-t_bool tok_is_par(char c);
+t_bool	tok_is_par(char c);
 /**
  * @brief Test if he token a redirection token (>, >>, <, <<)
  * 
  * @param token token to test
  * @return t_bool TRUE if one of the above
  */
-t_bool tok_is_redir(t_token *token);
+t_bool	tok_is_redir(t_token *token);
 
 //====================== CLEAR ======================
 /**
@@ -135,7 +136,7 @@ void	tok_release(void *token);
  * @param token Token to check
  * @return t_bool TRUE if valid
  */
-t_bool tok_checkvalidity(t_token* token);
+t_bool	tok_checkvalidity(t_token *token);
 
 /**
  * @brief Print the current token as unexpected
@@ -143,7 +144,7 @@ t_bool tok_checkvalidity(t_token* token);
  * @param token Token to print
  * @param is_uniq if a error token occure on a uniq the error must show ')'
  */
-void tok_unvalid(t_token* token, t_bool is_uniq);
+void	tok_unvalid(t_token *token, t_bool is_uniq);
 
 //====================== DEBUG ======================
 /**
@@ -153,6 +154,6 @@ void tok_unvalid(t_token* token, t_bool is_uniq);
  * @param tabs Tabs string to display before the informations
  * @param tab_count The current sub group indentation
  */
-void tok_print(t_token *token, char *tabs, int tab_count);
+void	tok_print(t_token *token, char *tabs, int tab_count);
 
 #endif //TOKENS_H

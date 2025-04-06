@@ -6,24 +6,24 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 12:59:36 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/28 18:00:15 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:11:29 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokens.h"
 
-t_bool tok_checkvalidity(t_token* token)
+t_bool	tok_checkvalidity(t_token *token)
 {
-	char *error_msg;
+	char	*error_msg;
 
-	if(!token)
+	if (!token)
 		return (FALSE);
-	if(token->type == TOK_NONE)
+	if (token->type == TOK_NONE)
 	{
 		error_msg = ft_strdup("syntax error near unexpected token `");
-		if(!error_msg)
+		if (!error_msg)
 			return (FALSE);
-		if(!ft_strmerge(&error_msg, token->input, "'", NULL))
+		if (!ft_strmerge(&error_msg, token->input, "'", NULL))
 		{
 			free(error_msg);
 			return (FALSE);
@@ -37,21 +37,21 @@ t_bool tok_checkvalidity(t_token* token)
 	return (TRUE);
 }
 
-void tok_unvalid(t_token* token, t_bool is_uniq)
+void	tok_unvalid(t_token *token, t_bool is_uniq)
 {
-	char *error_msg;
-	t_bool check;
+	char	*error_msg;
+	t_bool	check;
 
-	if(!token)
+	if (!token)
 		return ;
 	error_msg = ft_strdup("syntax error near unexpected token `");
-	if(!error_msg)
+	if (!error_msg)
 		return ;
-	if(is_uniq)
+	if (is_uniq)
 		check = ft_strmerge(&error_msg, ")", "'", NULL);
 	else
 		check = ft_strmerge(&error_msg, token->input, "'", NULL);
-	if(!check)
+	if (!check)
 	{
 		free(error_msg);
 		return ;

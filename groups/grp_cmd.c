@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   groups.h                                           :+:      :+:    :+:   */
+/*   grp_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:30:18 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 10:28:19 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:45:08 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "groups.h"
 #include "builtins/builtins.h"
 
-static t_promptret grp_getcmd_applyenv(t_grp *grp)
+static t_promptret	grp_getcmd_applyenv(t_grp *grp)
 {
-	char *env_input;
-	
+	char	*env_input;
+
 	env_input = ft_strdup(grp->cmd->var_name);
-	if(!ft_strmerge(&env_input, "=", NULL, grp->cmd->var_data)
- 		|| !ft_strmerge(&env_input, NULL, NULL, NULL))
+	if (!ft_strmerge(&env_input, "=", NULL, grp->cmd->var_data)
+		|| !ft_strmerge(&env_input, NULL, NULL, NULL))
 	{
 		free(env_input);
 		return (PMT_ERROR);
 	}
-	if(!add_env(grp->l_shell, env_input))
+	if (!add_env(grp->l_shell, env_input))
 	{
 		free(env_input);
 		return (PMT_ERROR);
@@ -33,51 +33,51 @@ static t_promptret grp_getcmd_applyenv(t_grp *grp)
 	return (PMT_SUCCESS);
 }
 
-t_promptret grp_getcmd_applychar(t_grp *grp, size_t pos)
+t_promptret	grp_getcmd_applychar(t_grp *grp, size_t pos)
 {
-	char *extract;
-	
-	if((ft_isspace(grp->input_after_io[pos]) && !grp_isinquote(grp->reader)) 
+	char	*extract;
+
+	if ((ft_isspace(grp->input_after_io[pos]) && !grp_isinquote(grp->reader))
 		|| grp->input_after_io[pos] == 0)
 	{
-		if(ft_strlen(grp->reader->buffer) == 0)
+		if (ft_strlen(grp->reader->buffer) == 0)
 			return (PMT_SUCCESS);
 		extract = grp_read_extract(grp->reader);
-		if(!extract)
+		if (!extract)
 			return (PMT_ERROR);
-		if(ft_strchr(extract, '*'))
+		if (ft_strchr(extract, '*'))
 			return (grp_expand_wildcard(grp, extract));
-		if(!cmd_add(grp->cmd, extract))
+		if (!cmd_add(grp->cmd, extract))
 			return (PMT_ERROR);
 		return (PMT_SUCCESS);
 	}
 	return (grp_read_addchar(grp->reader, grp->input_after_io[pos], TRUE));
 }
 
-t_promptret grp_getcmd(t_grp *grp)
+t_promptret	grp_getcmd(t_grp *grp)
 {
-	size_t pos;
-	t_promptret status;
-	
+	size_t		pos;
+	t_promptret	status;
+
 	grp->cmd = cmd_create(grp->l_shell);
-	if(!grp->cmd)
+	if (!grp->cmd)
 		return (PMT_ERROR);
 	grp_read_reset(grp->reader);
 	pos = 0;
-	while(grp->input_after_io[pos])
+	while (grp->input_after_io[pos])
 	{
 		status = grp_getcmd_applychar(grp, pos);
-		if(status != PMT_SUCCESS)
+		if (status != PMT_SUCCESS)
 			return (status);
 		pos++;
 	}
 	status = grp_getcmd_applychar(grp, pos);
-	if(status != PMT_SUCCESS)
+	if (status != PMT_SUCCESS)
 		return (status);
-	if(!cmd_check_setvar(grp->cmd))
-		return  (PMT_ERROR);
-	if(grp->cmd->var_isset && 
-		(!grp->cmd->name || ft_strlen(grp->cmd->name) == 0))
+	if (!cmd_check_setvar(grp->cmd))
+		return (PMT_ERROR);
+	if (grp->cmd->var_isset
+		&& (!grp->cmd->name || ft_strlen(grp->cmd->name) == 0))
 		return (grp_getcmd_applyenv(grp));
 	return (PMT_SUCCESS);
 }

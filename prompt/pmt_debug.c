@@ -6,13 +6,13 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:49:34 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/12 18:09:26 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:03:20 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prompt.h"
 
-void pmt_print(t_pmt* pmt)
+void	pmt_print(t_pmt *pmt)
 {
 	(void)pmt;
 }

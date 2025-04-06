@@ -6,33 +6,33 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:42:45 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/27 15:08:07 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:24:04 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void chk_unexpteced_ctoken(t_chk *chk, char c)
+void	chk_unexpteced_ctoken(t_chk *chk, char c)
 {
-	if(chk->last_msg)
+	if (chk->last_msg)
 	{
 		free(chk->last_msg);
 		chk->last_msg = NULL;
 	}
 	chk->last_msg = ft_strdup("Syntax error near unexpected token ` '");
-	if(!chk->last_msg)
+	if (!chk->last_msg)
 		return ;
 	chk->last_msg[36] = c;
 }
 
-void chk_custom_message(t_chk *chk, const char *msg)
+void	chk_custom_message(t_chk *chk, const char *msg)
 {
-	if(chk->last_msg)
+	if (chk->last_msg)
 	{
 		free(chk->last_msg);
 		chk->last_msg = NULL;
 	}
 	chk->last_msg = ft_strdup(msg);
-	if(!chk->last_msg)
+	if (!chk->last_msg)
 		return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:32:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/31 18:32:18 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/06 15:07:44 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	get_outfile_order(t_grp *grp, int *file_fd, int is_append)
 t_promptret	redirect_fd_output(t_grp *grp)
 {
 	int		file_fd;
-	char 	*last_out;
+	char	*last_out;
 	int		is_append;
 
 	file_fd = -1;
@@ -102,5 +102,3 @@ t_promptret	redirect_fd_output(t_grp *grp)
 	}
 	return (PMT_FAILED);
 }
-
-
