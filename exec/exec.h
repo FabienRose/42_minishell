@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 18:23:05 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 18:23:05 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/06 20:27:05 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/06 20:27:05 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,11 @@ t_bool		reset_fd(t_fd *fd);
  * @return t_promptret Status of the saving
  */
 t_promptret	save_fd(t_fd *fd);
-
+/**
+ * @brief Print an error message and return FALSE
+ * 
+ * @param file File name
+ * @return t_bool FALSE
+ */
+t_bool		file_error(char *file, t_grp *grp);
 #endif //EXEC_H

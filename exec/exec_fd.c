@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 18:22:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 18:22:35 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/06 20:19:49 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/06 20:22:52 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_promptret	redirect_fd_output(t_grp *grp)
 	{
 		get_outfile_order(grp, &file_fd, is_append);
 		if (file_fd == -1)
-			return (PMT_ERROR);
+			return (PMT_FAILED);
 		if (dup2(file_fd, STDOUT_FILENO) == -1)
 		{
 			close(file_fd);
