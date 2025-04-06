@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:11:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/12 10:31:33 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:28:19 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "stdlib.h"
 # include "unistd.h"
 
-
 //--------------------------------------------------
 //                   COMMON
 //--------------------------------------------------
@@ -29,18 +28,17 @@ typedef unsigned char	t_bool;
 # define FALSE 0
 
 //====================== PRINT ======================
-# define FONT_NRM			"\x1B[0m"
-# define FONT_RED 			"\x1B[31m"
-# define FONT_GRN 			"\x1B[32m"
-# define FONT_YEL 			"\x1B[33m"
-# define FONT_BLU 			"\x1B[34m"
-# define FONT_MAG 			"\x1B[35m"
-# define FONT_CYN 			"\x1B[36m"
-# define FONT_WHT 			"\x1B[37m"
-# define FONT_BOLD			"\033[1m"	 	 
-# define FONT_UNDERLINE		"\033[4m"	 
-# define FONT_NO_UNDERLINE	"\033[24m"	 
-
+# define FONT_NRM			"\001\x1B[0m\002"
+# define FONT_RED 			"\001\x1B[31m\002"
+# define FONT_GRN 			"\001\x1B[32m\002"
+# define FONT_YEL 			"\001\x1B[33m\002"
+# define FONT_BLU 			"\001\x1B[34m\002"
+# define FONT_MAG 			"\001\x1B[35m\002"
+# define FONT_CYN 			"\001\x1B[36m\002"
+# define FONT_WHT 			"\001\x1B[37m\002"
+# define FONT_BOLD			"\001\033[1m\002"	 	 
+# define FONT_UNDERLINE		"\001\033[4m\002"	 
+# define FONT_NO_UNDERLINE	"\001\033[24m\002"	 
 
 //--------------------------------------------------
 //                   CHECKERS
@@ -58,6 +56,15 @@ t_bool	ft_isprint(int c);
  * @return t_bool TRUE if is space
  */
 t_bool	ft_isspace(int c);
+
+	//--------------------- Strings ---------------------
+/**
+ * @brief Check if the given string only possess spaces or empty
+ * 
+ * @param str String to check
+ * @return t_bool TRUE if onl;y posses spaces or empty
+ */
+t_bool	ft_isonlyspace(char *str);
 
 //--------------------------------------------------
 //                  CONVERTIONS
@@ -101,7 +108,8 @@ void	*ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 /**
  * @brief Realloc memory and copy data the newly create pointer
- * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * @warning Old memory will be freed any other var
+ * pointing to ptr will no longer have access
  * 
  * @param ptr Pointer of the pointer to realloc
  * @param old_len Current size in Byte of the memory
@@ -111,7 +119,8 @@ void	*ft_calloc(size_t nmemb, size_t size);
 t_bool	ft_realloc(void **ptr, size_t old_len, size_t new_len);
 /**
  * @brief Realloc memory and copy data the newly create pointer (size * QUANTITY)
- * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * @warning Old memory will be freed any other var
+ * pointing to ptr will no longer have access
  * 
  * @param ptr Pointer of the pointer to realloc
  * @param old_len Current in QUANTITY of the memory
@@ -119,17 +128,19 @@ t_bool	ft_realloc(void **ptr, size_t old_len, size_t new_len);
  * @param data_size Size of one type (QUANTITY)
  * @return t_bool FALSE if Failed
  */
-t_bool ft_realloc_s(void **ptr, size_t old_len, size_t new_len, size_t data_size);
+t_bool	ft_realloc_s(void **ptr, size_t old_len,
+			size_t new_len, size_t data_size);
 /**
  * @brief Realloc memory and copy data the newly double array
- * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * @warning Old memory will be freed any other
+ * var pointing to ptr will no longer have access
  * 
  * @param ptr Pointer of the pointer to realloc
  * @param old_len Current in QUANTITY of the memory
  * @param new_len New size in QUANTITY of the memory
  * @return t_bool 
  */
-t_bool ft_realloc_da(void ***ptr, size_t old_len, size_t new_len);
+t_bool	ft_realloc_da(void ***ptr, size_t old_len, size_t new_len);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
@@ -142,32 +153,35 @@ void	*ft_memchr(const void *s, int c, size_t n);
 	//--------------------- Push ---------------------
 /**
  * @brief Add and extend memory a the end of the array
- * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * @warning Old memory will be freed any other 
+ * var pointing to ptr will no longer have access
  * 
  * @param arr Pointer of pointer of the array
  * @param size Size in Byte of the struct to be added;
  * @return void *: location of the newly created data;
  */
-void *ft_arraypush(void **arr, size_t size);
+void	*ft_arraypush(void **arr, size_t size);
 /**
  * @brief Add and extend memory a the end of the double array
- * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * @warning Old memory will be freed any other var 
+ * pointing to ptr will no longer have access
  * 
  * @param arr Pointer of pointer of the double array
  * @param ndata Pointer of the newly added structure
  * @return t_bool FALSE if failed
  */
-t_bool ft_arraypush_d(void ***arr, void *ndata);
+t_bool	ft_arraypush_d(void ***arr, void *ndata);
 /**
  * @brief Add and extend memory a the end of the double array
- * @warning Old memory will be freed any other var pointing to ptr will no longer have access
+ * @warning Old memory will be freed any other 
+ * var pointing to ptr will no longer have access
  * 
  * @param arr Pointer of pointer of the double array
  * @param create Function called to create the new data
  * @param del Function to free newly allocated memory in case of fail
  * @return t_bool FALSE if failed
  */
-t_bool ft_arraypush_df(void ***arr, void *(*create)(void), void(*del)(void *));
+t_bool	ft_arraypush_df(void ***arr, void *(*create)(void), void(*del)(void *));
 
 	//--------------------- Pop ---------------------
 /**
@@ -177,14 +191,14 @@ t_bool ft_arraypush_df(void ***arr, void *(*create)(void), void(*del)(void *));
  * @param pos Position of the element to remove
  * @return void* Pointer to of the first element (Extracted);
  */
-void *ft_arraypopat_d(void ***arr, size_t pos);
+void	*ft_arraypopat_d(void ***arr, size_t pos);
 /**
  * @brief Remove the first element of the array and resize this latter
  * 
  * @param arr Pointer to the array to resize
  * @return void* Pointer to of the first element (Extracted);
  */
-void *ft_arraypopfront_d(void ***arr);
+void	*ft_arraypopfront_d(void ***arr);
 
 	//--------------------- Len ---------------------
 /**
@@ -210,15 +224,14 @@ size_t	ft_arraylen_d(void **arr);
  * 
  * @param arr Array to free
  */
-void ft_arrayfree(void **arr);
+void	ft_arrayfree(void **arr);
 /**
  * @brief Free a double array all component arr free using custom function
  * 
  * @param arr Pointer of the double array to free
  * @param del Function used to delete the components
  */
-void ft_arrayfree_d(void ***arr, void(*del)(void *));
-
+void	ft_arrayfree_d(void ***arr, void (*del)(void *));
 
 //--------------------------------------------------
 //                    STRINGS
@@ -239,13 +252,15 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 /**
  * @brief Merge str1, str2, str3 (in order) with bstr
  * 
- * @param bstr Pointer of string, which will be realloc and merged with the other str
+ * @param bstr Pointer of string, which will
+ * be realloc and merged with the other str
  * @param str1 [NULLABLE] Str to add
  * @param str2 [NULLABLE] Str to add
  * @param str3 [NULLABLE] Str to add
  * @return t_bool FALSE if failed
  */
-t_bool	ft_strmerge(char **bstr, const char *str1, const char *str2, const char *str3);
+t_bool	ft_strmerge(char **bstr, const char *str1,
+			const char *str2, const char *str3);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
@@ -273,6 +288,23 @@ char	**ft_split(char const *s, char c);
 void	ft_split_release(char ***arr);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+/**
+ * @brief Remove a charcter in the middle of a string
+ * 
+ * @param rstr Pointer toward the string
+ * @param at Position in the of the chacter to remove;
+ * @return t_bool FALSE if failed
+ */
+t_bool	ft_strpopat(char **rstr, size_t at);
+/**
+ * @brief Insert a charcter in the middle of a string
+ * 
+ * @param p_str Pointer of the string to change
+ * @param at Position to add the character
+ * @param c Character to add
+ * @return t_bool FALSE if failed
+ */
+t_bool	ft_strinsert(char **p_str, size_t at, char c);
 
 //--------------------------------------------------
 //                		FILES

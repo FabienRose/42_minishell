@@ -6,35 +6,35 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:35:02 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/20 10:49:42 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:33:40 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
 
-static void cmd_clear_str(void *str)
+static void	cmd_clear_str(void *str)
 {
 	free(str);
 }
 
 void	cmd_clear(t_cmd **cmd)
 {
-	t_cmd *c_cmd;
+	t_cmd	*c_cmd;
 
-	if(cmd && *cmd)
+	if (cmd && *cmd)
 	{
 		c_cmd = *cmd;
-		if(c_cmd->name)
+		if (c_cmd->name)
 		{
 			free(c_cmd->name);
 			c_cmd->name = NULL;
 		}
-		if(c_cmd->var_name)
+		if (c_cmd->var_name)
 		{
 			free(c_cmd->var_name);
 			c_cmd->var_name = NULL;
 		}
-		if(c_cmd->var_data)
+		if (c_cmd->var_data)
 		{
 			free(c_cmd->var_data);
 			c_cmd->var_data = NULL;

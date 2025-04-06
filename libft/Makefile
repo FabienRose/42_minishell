@@ -41,6 +41,7 @@ SRCS=	./array/ft_arraypush.c \
 		./memory/ft_memcmp.c \
 		./memory/ft_memchr.c \
 		./memory/ft_calloc.c \
+		./strings/ft_strinsert.c \
 		./strings/ft_strpush.c \
 		./strings/ft_strmapi.c \
 		./strings/ft_strncmp.c \
@@ -55,9 +56,11 @@ SRCS=	./array/ft_arraypush.c \
 		./strings/ft_tolower.c \
 		./strings/ft_strtrim.c \
 		./strings/ft_split.c \
+		./strings/ft_strpop.c \
 		./strings/ft_strdup.c \
 		./strings/ft_strjoin.c \
 		./strings/ft_strcpy.c \
+		./strings/ft_strchecks.c \
 		./strings/ft_substr.c \
 		./strings/ft_toupper.c \
 		./checkers/ft_isascii.c \

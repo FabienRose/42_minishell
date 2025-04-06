@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:08:06 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/26 17:42:05 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 13:23:19 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	chk_clear(t_chk **chk)
 	cchk = *chk;
 	if (cchk)
 	{
-		if(cchk->last_msg)
+		if (cchk->last_msg)
 		{
 			free(cchk->last_msg);
 			cchk->last_msg = NULL;

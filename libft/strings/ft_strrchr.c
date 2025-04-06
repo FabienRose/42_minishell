@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:49:35 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/27 18:42:15 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:09:41 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (NULL);
 }
-
 
 char	*ft_strfrchr(const char *s, int c)
 {

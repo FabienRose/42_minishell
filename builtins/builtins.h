@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:54:35 by fmixtur           #+#    #+#             */
 /*   Updated: 2025/04/01 10:01:04 by fmixtur          ###   ########.ch       */
@@ -62,6 +62,7 @@ t_bool	builtin_pwd(char **arguments);
  * @return t_bool TRUE if the arguments were exported, FALSE it fails
  */
 t_bool	builtin_export(t_shell *shell, char **arg);
+t_bool	add_env(t_shell *shell, char *arg);
 //====================== UNSET ======================
 /**
  * @brief Unset the environment variable

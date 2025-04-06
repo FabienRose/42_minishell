@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:13:06 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 12:13:48 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:29:33 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 //Local
 #include "shell/shell.h"
 
-void util_seterror(void *shell, const char *msg)
+void	util_seterror(void *shell, const char *msg)
 {
-	t_shell* cast_shell;
-	
-	if(!shell || !msg || ft_strlen(msg) == 0)
+	t_shell	*cast_shell;
+
+	if (!shell || !msg || ft_strlen(msg) == 0)
 		return ;
-	cast_shell = (t_shell*)shell;
-	if(cast_shell->last_error)
+	cast_shell = (t_shell *)shell;
+	if (cast_shell->last_error)
 	{
 		free(cast_shell->last_error);
 		cast_shell->last_error = NULL;
@@ -30,37 +30,39 @@ void util_seterror(void *shell, const char *msg)
 	cast_shell->last_error = ft_strdup(msg);
 }
 
-void util_clearerror(void *shell)
+void	util_clearerror(void *shell)
 {
-	t_shell* cast_shell;
-	
-	if(!shell)
+	t_shell	*cast_shell;
+
+	if (!shell)
 		return ;
-	cast_shell = (t_shell*)shell;
-	if(cast_shell->last_error)
+	cast_shell = (t_shell *)shell;
+	if (cast_shell->last_error)
 	{
 		free(cast_shell->last_error);
 		cast_shell->last_error = NULL;
 	}
 }
 
-void util_printerror(void *shell)
-{t_shell* cast_shell;
-	
-	if(!shell)
+void	util_printerror(void *shell)
+{
+	t_shell	*cast_shell;
+
+	if (!shell)
 		return ;
-	cast_shell = (t_shell*)shell;
-	if(!cast_shell->last_error)
+	cast_shell = (t_shell *)shell;
+	if (!cast_shell->last_error)
 	{
 		printf("%s%s", FONT_RED, FONT_BOLD);
 		perror("Error");
 		printf("%s\n", FONT_NRM);
 	}
 	else
-		printf("%s%sError: %s%s\n", FONT_RED, FONT_BOLD, cast_shell->last_error, FONT_NRM);
+		printf("%s%sError: %s%s\n", FONT_RED, FONT_BOLD,
+			cast_shell->last_error, FONT_NRM);
 }
 
-void util_printerrorstr(void *shell, const char *msg)
+void	util_printerrorstr(void *shell, const char *msg)
 {
 	util_seterror(shell, msg);
 	util_printerror(shell);

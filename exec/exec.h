@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 17:52:45 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 17:54:20 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/06 18:23:05 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/06 18:23:05 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef struct s_fd
 //--------------------------------------------------
 	//--------------------- Setup ---------------------
 /**
- * @brief Execute a group: token or command with or without redirections
+ * @brief Execute a group containing either a token or a 
+ * command with or without redirections
  * 
  * @param grp Group to execute
  * @return t_promptret Status of the execution

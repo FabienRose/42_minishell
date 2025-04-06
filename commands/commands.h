@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_add.c                                          :+:      :+:    :+:   */
+/*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 16:54:19 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/27 16:54:19 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/06 15:34:24 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 //--------------------------------------------------
 //                 LOCAL INCLUDES
 //--------------------------------------------------
-#include "common.h"
+# include "common.h"
 
 //--------------------------------------------------
 //                   STRCUTURES
 //--------------------------------------------------
 typedef struct s_cmd
 {
-	char 	*name;
-	char 	**args;
+	char	*name;
+	char	**args;
 	char	**full;
 	void	*l_shell;
 	t_bool	var_isset;
@@ -43,7 +43,7 @@ typedef struct s_cmd
  * @param shell Reference to shell
  * @return t_cmd*  Newly created command
  */
-t_cmd *cmd_create(void *shell);
+t_cmd	*cmd_create(void *shell);
 /**
  * @brief Initialize a given command structure
  * 
@@ -51,17 +51,18 @@ t_cmd *cmd_create(void *shell);
  * @param shell Reference to shell
  * @return t_bool* FALSE if failed
  */
-t_bool cmd_init(t_cmd *cmd, void *shell);
+t_bool	cmd_init(t_cmd *cmd, void *shell);
 
 //====================== ADD ======================
 /**
- * @brief Add data either to the name or the args (automatic), and copy the data into the full array
+ * @brief Add data either to the name or the args (automatic), 
+ * and copy the data into the full array
  * 
  * @param cmd Command to add the data in
  * @param data Data to add
  * @return t_bool FALSE if failed
  */
-t_bool cmd_add(t_cmd* cmd, char *data);
+t_bool	cmd_add(t_cmd *cmd, char *data);
 
 //====================== VARS ======================
 /**
@@ -70,7 +71,7 @@ t_bool cmd_add(t_cmd* cmd, char *data);
  * @param cmd command to check
  * @return t_bool FALSE if failed
  */
-t_bool cmd_check_setvar(t_cmd *cmd);
+t_bool	cmd_check_setvar(t_cmd *cmd);
 
 //====================== CLEAR ======================
 /**
@@ -88,6 +89,6 @@ void	cmd_clear(t_cmd **cmd);
  * @param tabs Tabs string to display before the informations
  * @param tab_count The current sub group indentation
  */
-void cmd_print(t_cmd* cmd, char *tabs, int tab_count);
+void	cmd_print(t_cmd *cmd, char *tabs, int tab_count);
 
 #endif //COMMANDS_H

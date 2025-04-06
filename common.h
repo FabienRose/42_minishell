@@ -6,12 +6,9 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:42:20 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/27 14:43:25 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:45:31 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//TODO: Make sure that command works grep "void"> test.txt < minishell.txt < common.txt > test2.txt
-
 
 #ifndef COMMON_H
 # define COMMON_H
@@ -27,6 +24,7 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <dirent.h>
+# include <termios.h>
 
 //--------------------------------------------------
 //                      LIBS
@@ -37,13 +35,13 @@
 //                   DEFIENS
 //--------------------------------------------------
 //====================== SETTINGS ======================
-#define PROMPT_DISP_FULL TRUE
+# define PROMPT_DISP_FULL TRUE
 
-#define PROMPT_USER_COL FONT_CYN
-#define PROMPT_NAME_COL FONT_YEL
-#define PROMPT_DIR_COL FONT_BLU
+# define PROMPT_USER_COL FONT_CYN
+# define PROMPT_NAME_COL FONT_YEL
+# define PROMPT_DIR_COL FONT_BLU
 
-#define PROMT_BUFFER_SIZE 32
+# define PROMT_BUFFER_SIZE 32
 
 //====================== DEVELOPMNET ======================
 # ifndef RELEASE
@@ -63,6 +61,11 @@ typedef enum e_promptret
 }	t_promptret;
 
 //--------------------------------------------------
+//                  GLOBAL VARIABLS
+//--------------------------------------------------
+extern int	g_onint;
+
+//--------------------------------------------------
 //                    FUNCTIONS
 //--------------------------------------------------
 //====================== SIGNATURES ======================
@@ -80,28 +83,28 @@ void	print_welcome(void);
  * @param shell Reference to the main shell structure
  * @param msg Message to set
  */
-void util_seterror(void *shell, const char *msg);
+void	util_seterror(void *shell, const char *msg);
 /**
  * @brief Remove any active error message
  * 
  * @param shell Reference to the main shell structure
  */
-void util_clearerror(void *shell);
+void	util_clearerror(void *shell);
 /**
  * @brief Print the active error message, if none setwill print perror
  * 
  * @param shell Reference to the main shell structure
  */
-void util_printerror(void *shell);
+void	util_printerror(void *shell);
 /**
  * @brief Set Print and clear an error message
  * 
  * @param shell Reference to the main shell structure
  * @param msg Message to set
  */
-void util_printerrorstr(void *shell, const char *msg);
+void	util_printerrorstr(void *shell, const char *msg);
 
 	//--------------------- Strings ---------------------
-void util_printsplit(char **split);
+void	util_printsplit(char **split);
 
 #endif //COMMON_H

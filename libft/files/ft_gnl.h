@@ -6,12 +6,12 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:29:03 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/07 15:21:49 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:16:55 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef FT_GNL_H
+# define FT_GNL_H
 
 # include "stdlib.h"
 # include "unistd.h"
