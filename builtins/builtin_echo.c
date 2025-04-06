@@ -27,7 +27,7 @@ static t_bool	check_n_flag(char *arg)
 	return (TRUE);
 }
 
-t_bool	blt_echo(char **args)
+t_bool	builtin_echo(char **args)
 {
 	int		i;
 	t_bool	n_flag;

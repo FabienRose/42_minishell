@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
 /*   Updated: 2025/04/05 18:15:38 by kgauthie         ###   ########.fr       */
@@ -30,10 +30,11 @@ typedef struct s_shell
 {
 	char				*last_error;
 	t_dir				*current_dir;
+	char				**environment;
+	char				***original_env;
 	struct	sigaction	sint_default;
 	struct	sigaction	sint_exec;
 	struct	sigaction	sint_stdin;
-	char				**environement;
 	t_bool				initialized;
 	int					last_return;
 }	t_shell;
@@ -47,7 +48,7 @@ typedef struct s_shell
  * 
  * @return FALSE if failed
  */
-t_bool	shell_init(t_shell *shell);
+t_bool	shell_init(t_shell *shell, char ***environ);
 
 //====================== START ======================
 /**
@@ -128,7 +129,7 @@ t_bool shell_sig_switchkill(t_shell *shell);
 
 //====================== ENV ======================
 /**
- * @brief Fecth the environement for to generate a header to the prompt
+ * @brief Fecth the environment for to generate a header to the prompt
  * 
  * @return char* Header to display (data is malloc)
  */

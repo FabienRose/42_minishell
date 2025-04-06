@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 11:02:10 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/19 15:05:23 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/28 12:37:29 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/28 12:46:58 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_bool cmd_add_full(t_cmd* cmd, const char *data)
 t_bool cmd_add(t_cmd* cmd, char *data)
 {
 	size_t len;
-	
+
 	if(!cmd)
 		return (FALSE);
 	if(!cmd->name)

@@ -1,9 +1,9 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grp_cmd.c                                          :+:      :+:    :+:   */
+/*   groups.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:30:18 by kgauthie          #+#    #+#             */
 /*   Updated: 2025/04/06 10:28:19 by kgauthie         ###   ########.fr       */
@@ -45,6 +45,8 @@ t_promptret grp_getcmd_applychar(t_grp *grp, size_t pos)
 		extract = grp_read_extract(grp->reader);
 		if(!extract)
 			return (PMT_ERROR);
+		if(ft_strchr(extract, '*'))
+			return (grp_expand_wildcard(grp, extract));
 		if(!cmd_add(grp->cmd, extract))
 			return (PMT_ERROR);
 		return (PMT_SUCCESS);

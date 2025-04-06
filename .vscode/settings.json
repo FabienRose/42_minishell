@@ -15,10 +15,6 @@
 		"utility": "c",
 		"groups.h": "c",
 		"commands.h": "c",
-		"tokens.h": "c",
-		"deque": "c",
-		"string": "c",
-		"vector": "c",
-		"libft.h": "c"
+		"tokens.h": "c"
 	}
 }

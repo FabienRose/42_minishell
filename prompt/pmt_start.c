@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   pmt_start.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:14:23 by fmixtur           #+#    #+#             */
 /*   Updated: 2025/04/05 13:59:25 by kgauthie         ###   ########.fr       */
@@ -52,7 +52,7 @@ t_promptret pmt_exec(t_pmt* pmt)
 	// 	return PMT_ERROR;
 	if(!shell_sig_switchexec(pmt->l_shell))
 		return(PMT_ERROR);
-	status = set_and_execute(pmt->start_group);
+	status = exec_setup(pmt->start_group);
 	if(!shell_sig_switchdefault(pmt->l_shell))
 		return(PMT_ERROR);
 	return (status);

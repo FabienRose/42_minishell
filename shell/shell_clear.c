@@ -22,5 +22,5 @@ void shell_clear(t_shell *shell)
 		shell->last_error = NULL;
 	}
 	rl_clear_history();
-	free_environ(shell->environement);
+	free_environ(shell->environment);
 }

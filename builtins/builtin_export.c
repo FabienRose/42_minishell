@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 16:40:17 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 10:20:03 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/01 09:53:51 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/01 09:53:51 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ static char	**create_sorted_array(t_shell *shell)
 	int		i;
 
 	i = 0;
-	while (shell->environement[i])
+	while (shell->environment[i])
 		i++;
 	sorted = ft_calloc(sizeof(char *), i + 1);
 	if (!sorted)
 		return (NULL);
 	i = 0;
-	while (shell->environement[i])
+	while (shell->environment[i])
 	{
-		sorted[i] = ft_strdup(shell->environement[i]);
+		sorted[i] = ft_strdup(shell->environment[i]);
 		if (!sorted[i])
 		{
 			free_environ(sorted);
@@ -90,16 +90,16 @@ t_bool	add_env(t_shell *shell, char *arg)
 
 	equal_sign = ft_strchr(arg, '=');
 	if (!equal_sign)
-		return (set_environement(shell, arg, NULL, FALSE));
+		return (set_environment(shell, arg, NULL, FALSE));
 	var_name = ft_substr(arg, 0, equal_sign - arg);
 	if (!var_name)
 		return (FALSE);
-	ret = set_environement(shell, var_name, equal_sign + 1, FALSE);
+	ret = set_environment(shell, var_name, equal_sign + 1, FALSE);
 	free(var_name);
 	return (ret);
 }
 
-t_bool	export(t_shell *shell, char **arg)
+t_bool	builtin_export(t_shell *shell, char **arg)
 {
 	int	i;
 

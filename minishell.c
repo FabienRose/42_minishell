@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:53:27 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/02 13:53:58 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/01 00:12:46 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/01 00:13:07 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	main(int argc, char **argv, char **envp)
 	t_shell data;
 	
 	print_welcome();
-	
-	if(!shell_init(&data))
+	if(!shell_init(&data, &envp))
 	{
 		printf("%s%sError: Cannot init shell%s\n", FONT_RED, FONT_BOLD, FONT_NRM);
 		return (1);

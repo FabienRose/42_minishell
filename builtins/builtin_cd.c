@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 12:12:15 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/28 13:01:17 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/01 09:53:46 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/02 12:31:13 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,28 @@ char	*define_path(char *arg)
 	return (path);
 }
 
-t_bool	change_directory(t_shell *shell, char **arg)
+t_bool	builtin_change_directory(t_shell *shell, char **arg)
 {
 	char	*path;
 
 	if (arg[1])
 	{
 		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
+		shell->last_return = 1;
 		return (FALSE);
 	}
 	path = define_path(arg[0]);
 	if (chdir(path) == -1)
 	{
-		perror(ft_strjoin("minishell: cd: ", path));
+		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd(path, 2);
+		perror("");
+		shell->last_return = 1;
 		free(path);
 		return (FALSE);
 	}
-	set_environement(shell, "OLDPWD", getenv("PWD"), FALSE);
-	set_environement(shell, "PWD", getcwd(NULL, 0), TRUE);
+	set_environment(shell, "OLDPWD", getenv("PWD"), FALSE);
+	set_environment(shell, "PWD", getcwd(NULL, 0), TRUE);
 	free(path);
 	return (TRUE);
 }

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 12:23:36 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/01 12:23:36 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/01 09:54:11 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/01 09:54:11 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "shell/shell.h"
 
-t_bool	unset(t_shell *shell, char **args)
+t_bool	builtin_unset(t_shell *shell, char **args)
 {
 	int	i;
 
@@ -23,7 +23,7 @@ t_bool	unset(t_shell *shell, char **args)
 	while (args[i])
 	{
 		if (is_valid_identifier(args[i]))
-			unset_environement(shell, args[i]);
+			unset_environment(shell, args[i]);
 		i++;
 	}
 	return (TRUE);
