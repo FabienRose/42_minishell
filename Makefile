@@ -70,18 +70,18 @@ SRCS=	./minishell.c \
 		./groups/grp_cmd.c \
 		./groups/grp_debug.c \
 		./groups/grp_init.c \
-		./groups/grp_io.c \
 		./groups/grp_io_stdin.c \
 		./groups/grp_io_stdin_parse.c \
 		./groups/grp_io_stdin_sub.c \
 		./groups/grp_io_sub.c \
-		./groups/grp_set.c \
 		./groups/grp_split.c \
 		./groups/grp_tild.c \
-		./groups/grp_uniq.c \
 		./groups/grp_vars.c \
 		./groups/grp_vars_util.c \
 		./groups/grp_wildcards.c \
+		./groups/grp_io.c \
+		./groups/grp_set.c \
+		./groups/grp_uniq.c \
 		./groups/reader/grp_checkers.c \
 		./groups/reader/grp_read_clear.c \
 		./groups/reader/grp_read_extract.c \
