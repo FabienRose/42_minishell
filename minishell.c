@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:04:47 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 18:33:26 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:09:09 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	return (data.last_return);
+	return ((unsigned char)(data.last_return));
 }

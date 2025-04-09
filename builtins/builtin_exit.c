@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:41:12 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 19:56:40 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/09 20:15:34 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,27 @@ t_bool	is_numeric(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i])
+			&& str[i] != '-'
+			&& str[i] != '+')
 			return (FALSE);
 		i++;
 	}
 	return (TRUE);
+}
+
+static t_promptret	builtin_exit_sub(t_shell *shell, char **args)
+{
+	if (!is_numeric(args[0]))
+	{
+		ft_putstr_fd("minishell: exit: ", 2);
+		ft_putstr_fd(args[0], 2);
+		ft_putstr_fd(": numeric argument required\n", 2);
+		shell->last_return = 2;
+		return (PMT_STOP);
+	}
+	shell->last_return = ft_atoi(args[0]);
+	return (PMT_STOP);
 }
 
 t_promptret	builtin_exit(t_shell *shell, char **args)
@@ -46,17 +62,6 @@ t_promptret	builtin_exit(t_shell *shell, char **args)
 		return (PMT_SUCCESS);
 	}
 	if (len == 1)
-	{
-		if (!is_numeric(args[1]))
-		{
-			ft_putstr_fd("minishell: exit: ", 2);
-			ft_putstr_fd(args[1], 2);
-			ft_putstr_fd(": numeric argument required\n", 2);
-			shell->last_return = 2;
-			return (PMT_STOP);
-		}
-		shell->last_return = ft_atoi(args[1]);
-		return (PMT_STOP);
-	}
+		return (builtin_exit_sub(shell, args));
 	return (PMT_FAILED);
 }
