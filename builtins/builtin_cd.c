@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:53:46 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 18:37:46 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:44:51 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ t_bool	builtin_change_directory(t_shell *shell, char **arg)
 		free(path);
 		return (FALSE);
 	}
-	set_environment(shell, "OLDPWD", my_getenv("PWD", shell->environment), FALSE);
+	set_environment(shell, "OLDPWD",
+		my_getenv("PWD", shell->environment), FALSE);
 	set_environment(shell, "PWD", getcwd(NULL, 0), TRUE);
 	free(path);
 	return (TRUE);

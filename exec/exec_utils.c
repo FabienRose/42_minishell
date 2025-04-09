@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 20:26:38 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 16:20:01 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:44:23 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	get_stdin_fd(t_grp *grp)
 	i = 0;
 	while (grp->io->input_stdin[i])
 	{
-		if(!ft_strmerge(&data, grp->io->input_stdin[i++], NULL, NULL))
+		if (!ft_strmerge(&data, grp->io->input_stdin[i++], NULL, NULL))
 			return (-1);
 	}
 	ft_putstr_fd(data, fd[1]);

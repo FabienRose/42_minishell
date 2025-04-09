@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 09:04:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/09 15:42:08 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:45:22 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ char	*shell_gethead(t_shell *shell)
 
 	if (!shell_gethead_check(shell, &str, &dir))
 		return (NULL);
-	if (!ft_strmerge(&str, FONT_BOLD, PROMPT_USER_COL, my_getenv("USER", shell->environment))
+	if (!ft_strmerge(&str, FONT_BOLD, PROMPT_USER_COL,
+			my_getenv("USER", shell->environment))
 		|| !ft_strmerge(&str, FONT_NRM, "@", NULL)
-		|| !ft_strmerge(&str, FONT_BOLD, PROMPT_NAME_COL, my_getenv("NAME", shell->environment))
+		|| !ft_strmerge(&str, FONT_BOLD, PROMPT_NAME_COL,
+			my_getenv("NAME", shell->environment))
 		|| !ft_strmerge(&str, FONT_NRM, ":", NULL)
 		|| !ft_strmerge(&str, FONT_BOLD, FONT_BLU, dir)
 		|| !ft_strmerge(&str, FONT_NRM, "$ ", NULL)
@@ -58,7 +60,6 @@ t_bool	shell_update_loc(t_shell *shell)
 	ndir = dir_new(my_getenv("PWD", shell->environment));
 	if (!ndir)
 		return (FALSE);
-	//printf("HELLO: %s\n", ndir->path);
 	if (shell->current_dir)
 		dir_clear(&(shell->current_dir));
 	shell->current_dir = ndir;

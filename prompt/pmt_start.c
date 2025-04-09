@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:14:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 16:28:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:43:34 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ t_promptret	pmt_start(t_pmt *pmt)
 		if (status != PMT_SUCCESS)
 			return (status);
 		status = pmt_parse(pmt);
-		if(status != PMT_SUCCESS
+		if (status != PMT_SUCCESS
 			&& ((t_shell *)(pmt->l_shell))->last_return == 0)
 			((t_shell *)(pmt->l_shell))->last_return = 1;
-		grp_debug(pmt->start_group, 0);
 		if (status != PMT_SUCCESS)
 			return (status);
 		return (pmt_exec(pmt));

@@ -67,6 +67,7 @@ SRCS=	./minishell.c \
 		./groups/grp_io_stdin_sub.c \
 		./groups/grp_checks_2.c \
 		./groups/grp_checks.c \
+		./groups/grp_wildcards_seg.c \
 		./groups/grp_cmd.c \
 		./groups/grp_tild.c \
 		./groups/grp_init.c \
