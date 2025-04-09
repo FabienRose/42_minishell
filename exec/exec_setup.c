@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exec_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:16:47 by fmixtur           #+#    #+#             */
 /*   Updated: 2025/04/09 19:44:13 by kgauthie         ###   ########.fr       */
