@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:02:29 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 15:06:26 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/06 20:27:05 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/06 20:27:05 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_promptret	exec_setup(t_grp *grp);
  * @param shell Reference to the main shell structure
  * @return t_bool TRUE if the command is a builtins, FALSE otherwise
  */
-t_bool		exec_builtins(t_cmd *cmd, t_shell *shell);
+t_promptret	exec_builtins(t_cmd *cmd, t_shell *shell);
 /**
  * @brief Execute a command
  * 
@@ -110,4 +110,18 @@ int			get_stdin_fd(t_grp *grp);
  * @return t_bool TRUE if the file descriptors are reset, FALSE otherwise
  */
 t_bool		reset_fd(t_fd *fd);
+/**
+ * @brief Save the file descriptors
+ * 
+ * @param fd File descriptors to save in
+ * @return t_promptret Status of the saving
+ */
+t_promptret	save_fd(t_fd *fd);
+/**
+ * @brief Print an error message and return FALSE
+ * 
+ * @param file File name
+ * @return t_bool FALSE
+ */
+t_bool		file_error(char *file, t_grp *grp);
 #endif //EXEC_H

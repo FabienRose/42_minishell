@@ -3,9 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:22:56 by fmixtur           #+#    #+#             */
+/*   Created: 2025/04/06 18:22:11 by fmixtur           #+#    #+#             */
 /*   Updated: 2025/04/08 15:21:32 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -51,10 +51,18 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 	return (FALSE);
 }
 
+t_promptret	handle_child_process(t_cmd *cmd, t_shell *shell, char **paths)
+{
+	exec_path(paths, cmd, shell);
+	ft_split_release(&paths);
+	shell->last_return = 127;
+	return (PMT_STOP);
+}
+
 t_promptret	exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	pid_t	pid;
-	int		status;
+	int		ret;
 	char	**paths;
 
 	paths = ft_split(getenv("PATH"), ':');
@@ -67,15 +75,10 @@ t_promptret	exec_cmd(t_cmd *cmd, t_shell *shell)
 		return (PMT_ERROR);
 	}
 	if (pid == 0)
-	{
-		exec_path(paths, cmd, shell);
-		ft_split_release(&paths);
-		shell->last_return = 127;
-		return (PMT_STOP);
-	}
+		return (handle_child_process(cmd, shell, paths));
 	ft_split_release(&paths);
-	waitpid(pid, &status, 0);
-	shell->last_return = WEXITSTATUS(status);
+	waitpid(pid, &ret, 0);
+	shell->last_return = WEXITSTATUS(ret);
 	if (shell->last_return == 0)
 		return (PMT_SUCCESS);
 	else

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   workspace.json                                     :+:      :+:    :+:   */
+/*   exec_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 22:11:17 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/02 22:11:17 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/06 18:16:47 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/06 18:16:47 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ t_promptret	handle_pipe(t_grp *grp, t_promptret status)
 	t_fd	pipe_fd;
 	pid_t	pid;
 
-	pipe_fd.saved_stdin = dup(STDIN_FILENO);
-	pipe_fd.saved_stdout = dup(STDOUT_FILENO);
+	save_fd(&pipe_fd);
 	if (pipe(pipe_fd.pipe_fd) == -1)
 		return (PMT_ERROR);
 	pid = fork();
@@ -107,16 +106,15 @@ t_promptret	exec_setup(t_grp *grp)
 		status = handle_io(grp, &io_fd);
 	if (grp->cmd && grp->cmd->name && status == PMT_SUCCESS)
 	{
-		if (exec_builtins(grp->cmd, grp->l_shell) == PMT_SUCCESS)
-			status = PMT_SUCCESS;
-		else if (exec_cmd(grp->cmd, grp->l_shell) == PMT_SUCCESS)
-			status = PMT_SUCCESS;
-		else
-			status = PMT_FAILED;
+		status = exec_builtins(grp->cmd, grp->l_shell);
+		if (status == PMT_STOP)
+			return (PMT_STOP);
+		if (status != PMT_SUCCESS)
+			status = exec_cmd(grp->cmd, grp->l_shell);
 	}
 	else if (grp->grp_uniq)
 		status = exec_uniq(grp);
-	if (grp->token)
+	if (grp->token && status != PMT_STOP)
 		status = handle_token(grp);
 	if (grp->io)
 		reset_fd(&io_fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 18:32:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 15:07:44 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/06 20:19:49 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/06 20:22:52 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_promptret	redirect_fd_output(t_grp *grp)
 	{
 		get_outfile_order(grp, &file_fd, is_append);
 		if (file_fd == -1)
-			return (PMT_ERROR);
+			return (PMT_FAILED);
 		if (dup2(file_fd, STDOUT_FILENO) == -1)
 		{
 			close(file_fd);
@@ -101,4 +101,15 @@ t_promptret	redirect_fd_output(t_grp *grp)
 		return (PMT_SUCCESS);
 	}
 	return (PMT_FAILED);
+}
+
+t_promptret	save_fd(t_fd *fd)
+{
+	fd->saved_stdin = dup(STDIN_FILENO);
+	if (fd->saved_stdin == -1)
+		return (PMT_ERROR);
+	fd->saved_stdout = dup(STDOUT_FILENO);
+	if (fd->saved_stdout == -1)
+		return (PMT_ERROR);
+	return (PMT_SUCCESS);
 }
