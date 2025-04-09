@@ -49,9 +49,9 @@ SRCS=	./minishell.c \
 		./exec/exec_cmd.c \
 		./exec/exec_fd.c \
 		./exec/exec_utils.c \
+		./exec/exec_fd_utils.c \
 		./exec/exec_builtins.c \
 		./exec/exec_setup.c \
-		./exec/exec_fd_utils.c \
 		./prompt/pmt_start.c \
 		./prompt/pmt_parse.c \
 		./prompt/pmt_check.c \

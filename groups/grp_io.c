@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:21:01 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 14:03:17 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/08 13:53:06 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_promptret	grp_getio(t_grp *grp)
 	if (!grp_getio_merge(grp))
 		return (PMT_ERROR);
 	if (grp->io
-		&& ft_arraylen_d((void **)&(grp->io->input_stdin_safewords)) > 0)
+		&& ft_arraylen_d((void **)(grp->io->input_stdin_safewords)) > 0)
 		return (grp_io_stdin(grp));
 	return (PMT_SUCCESS);
 }

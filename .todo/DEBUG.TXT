@@ -22,8 +22,5 @@ arg=
 arg= ls;echo $arg
 arg = test
 
->>>>>>>>>> $echo crash <<<<<<<<<<
 
->>>>>>>>>> No line return <<<<<<<<<
-
->>>>>>>>>> Double prompt on xctrl + c on running function <<<<<<<
+>>>>>>>>>> NO FREE ON EXECVE <<<<<<<

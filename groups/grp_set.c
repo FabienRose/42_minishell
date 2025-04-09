@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 10:51:12 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 14:39:12 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/08 13:11:20 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ static t_promptret	grp_set_input_sub(t_grp *grp)
 		status = grp_getcmd(grp);
 	else
 		status = grp_check_residue(grp);
+	if (status != PMT_SUCCESS)
+		return (status);
+	status = grp_check_double(grp);
 	if (status != PMT_SUCCESS)
 		return (status);
 	return (status);

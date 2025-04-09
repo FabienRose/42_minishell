@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:39:05 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 15:24:24 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:21:11 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_arraylen(void *arr, size_t size)
 		pos++;
 	return (pos / size);
 }
-
+#include "stdio.h"
 size_t	ft_arraylen_d(void **arr)
 {
 	size_t	pos;
