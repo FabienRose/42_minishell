@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 08:32:13 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 15:00:04 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:44:53 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ size_t	dir_getlen(t_dir *dir);
  * @param dir Directory to generate the path from
  * @return char* the returned path
  */
-char	*dir_getdisp(t_dir *dir);
+char	*dir_getdisp(t_dir *dir, void *vshell);
 
 //====================== CLEAR ======================
 /**

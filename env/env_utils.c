@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:11:54 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 18:11:59 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/09 18:54:06 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ char	*my_getenv(const char* var, char **env)
 	value = NULL;
 	var_len = ft_strlen(var);
 	i = 0;
-	while (env[i] != NULL)
+	while (env[i])
 	{
-		printf("HERE BEFORE: %s\n", env[i]);
 		if (ft_strncmp(var, env[i], var_len - 1) == 0 && env[i][var_len] == '=')
 		{
 			if (ft_strchr(env[i], '='))
@@ -31,7 +30,6 @@ char	*my_getenv(const char* var, char **env)
 			else
 				value = NULL;
 		}
-		printf("HERE AFTER: %i\n", i);
 		i++;
 	}
 	return (value);
@@ -61,7 +59,6 @@ t_bool	copy_environ(t_shell *minishell)
 		}
 	}
 	minishell->environment[size] = NULL;
-	printf("size: %i\n", size);
 	return (TRUE);
 }
 

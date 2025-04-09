@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:22:11 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/08 15:21:32 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:42:11 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_promptret	exec_cmd(t_cmd *cmd, t_shell *shell)
 	int		ret;
 	char	**paths;
 
-	paths = ft_split(getenv("PATH"), ':');
+	paths = ft_split(my_getenv("PATH", shell->environment), ':');
 	if (!paths)
 		return (PMT_ERROR);
 	pid = fork();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:04:47 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 17:45:22 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/09 18:33:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv, char **envp)
 			FONT_RED, FONT_BOLD, FONT_NRM);
 		return (1);
 	}
-	printf("%s\n", my_getenv("qsdqsd", data.environment));
 	if (!shell_start(&data))
 	{
 		util_printerror(&data);
