@@ -6,21 +6,21 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 09:04:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/22 10:01:12 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:45:22 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static t_bool shell_gethead_check(t_shell *shell, char **str, char **dir)
+static t_bool	shell_gethead_check(t_shell *shell, char **str, char **dir)
 {
-	if(!shell->current_dir)
+	if (!shell->current_dir)
 		return (FALSE);
-	*dir = dir_getdisp(shell->current_dir);
-	if(!(*dir))
+	*dir = dir_getdisp(shell->current_dir, shell);
+	if (!(*dir))
 		return (FALSE);
 	*str = ft_strdup("");
-	if(!(*str))
+	if (!(*str))
 	{
 		free(*dir);
 		return (FALSE);
@@ -28,16 +28,18 @@ static t_bool shell_gethead_check(t_shell *shell, char **str, char **dir)
 	return (TRUE);
 }
 
-char *shell_gethead(t_shell *shell)
+char	*shell_gethead(t_shell *shell)
 {
-	char *str;
-	char *dir;
+	char	*str;
+	char	*dir;
 
-	if(!shell_gethead_check(shell, &str, &dir))
+	if (!shell_gethead_check(shell, &str, &dir))
 		return (NULL);
-	if(!ft_strmerge(&str, FONT_BOLD, PROMPT_USER_COL, getenv("USER"))
+	if (!ft_strmerge(&str, FONT_BOLD, PROMPT_USER_COL,
+			my_getenv("USER", shell->environment))
 		|| !ft_strmerge(&str, FONT_NRM, "@", NULL)
-		|| !ft_strmerge(&str, FONT_BOLD, PROMPT_NAME_COL, getenv("NAME"))
+		|| !ft_strmerge(&str, FONT_BOLD, PROMPT_NAME_COL,
+			my_getenv("NAME", shell->environment))
 		|| !ft_strmerge(&str, FONT_NRM, ":", NULL)
 		|| !ft_strmerge(&str, FONT_BOLD, FONT_BLU, dir)
 		|| !ft_strmerge(&str, FONT_NRM, "$ ", NULL)
@@ -48,17 +50,17 @@ char *shell_gethead(t_shell *shell)
 		return (NULL);
 	}
 	free(dir);
-	return str;		
+	return (str);
 }
 
-t_bool shell_update_loc(t_shell *shell)
+t_bool	shell_update_loc(t_shell *shell)
 {
-	t_dir *ndir;
+	t_dir	*ndir;
 
-	ndir = dir_new(getenv("PWD"));
-	if(!ndir)
+	ndir = dir_new(my_getenv("PWD", shell->environment));
+	if (!ndir)
 		return (FALSE);
-	if(shell->current_dir)
+	if (shell->current_dir)
 		dir_clear(&(shell->current_dir));
 	shell->current_dir = ndir;
 	return (TRUE);

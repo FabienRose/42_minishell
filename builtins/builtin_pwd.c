@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 13:03:05 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/02/28 13:06:08 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/03/26 17:36:46 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/03/26 17:36:46 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-t_bool	pwd(char **arguments)
+t_bool	builtin_pwd(char **arguments)
 {
 	char	*working_directory;
 

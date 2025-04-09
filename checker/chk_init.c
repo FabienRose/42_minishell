@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_tilde.c                                        :+:      :+:    :+:   */
+/*   chk_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/09 11:55:03 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/15 10:41:47 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/03/26 16:08:06 by kgauthie          #+#    #+#             */
+/*   Updated: 2025/03/26 17:42:11 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#include "checker.h"
 
-t_bool pmt_ontilde(t_pmt* pmt)
+void	*chk_new(void)
 {
-	//char *home_dir;
-	//size_t pos;
-	
-	if(!pmt)
+	return (chk_create());
+}
+
+t_chk	*chk_create(void)
+{
+	t_chk	*nchk;
+
+	nchk = ft_calloc(sizeof(t_chk), 1);
+	if (!nchk)
+		return (NULL);
+	if (!chk_init(nchk))
+	{
+		chk_clear(&nchk);
+		return (NULL);
+	}
+	return (nchk);
+}
+
+t_bool	chk_init(t_chk *chk)
+{
+	if (!chk)
 		return (FALSE);
-	// home_dir = getenv("HOME");
-	// if(!home_dir)
-	// {
-	// 	if(!pmt_reader_addchar(pmt->reader, '~'))
-	// 		return (FALSE);
-	// 	return (TRUE);
-	// }
-	// pos = 0;
-	// while(home_dir[pos])
-	// {
-	// 	if(!pmt_reader_addchar(pmt->reader, home_dir[pos]))
-	// 		return (FALSE);
-	// 	pos++;
-	// }
+	chk->in_dq = FALSE;
+	chk->in_sq = FALSE;
+	chk->par_count = 0;
+	chk->last_msg = NULL;
 	return (TRUE);
 }

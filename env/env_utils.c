@@ -3,41 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 15:30:55 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/25 15:32:58 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/09 18:11:54 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/09 19:24:21 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
+char	*my_getenv(const char *var, char **env)
+{
+	int		i;
+	int		var_len;
+	char	*value;
+
+	value = NULL;
+	var_len = ft_strlen(var);
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(var, env[i], var_len - 1) == 0 && env[i][var_len] == '=')
+		{
+			if (ft_strchr(env[i], '='))
+				value = ft_strchr(env[i], '=') + 1;
+			else
+				value = NULL;
+		}
+		i++;
+	}
+	return (value);
+}
+
 t_bool	copy_environ(t_shell *minishell)
 {
-	extern char		**environ;
 	int				i;
 	int				size;
 
 	size = 0;
-	while (environ[size])
+	while ((*minishell->original_env)[size])
 		size++;
-	minishell->environement = malloc((size + 1) * sizeof(char *));
-	if (!minishell->environement)
+	minishell->environment = malloc((size + 1) * sizeof(char *));
+	if (!minishell->environment)
 		return (FALSE);
 	i = -1;
 	while (++i < size)
 	{
-		minishell->environement[i] = ft_strdup(environ[i]);
-		if (!minishell->environement[i])
+		minishell->environment[i] = ft_strdup((*minishell->original_env)[i]);
+		if (!minishell->environment[i])
 		{
 			while (i-- > 0)
-				free(minishell->environement[i]);
-			free(minishell->environement);
+				free(minishell->environment[i]);
+			free(minishell->environment);
 			return (FALSE);
 		}
 	}
-	minishell->environement[size] = NULL;
-	environ = minishell->environement;
+	minishell->environment[size] = NULL;
 	return (TRUE);
 }
 

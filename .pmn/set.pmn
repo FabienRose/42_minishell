@@ -1,7 +1,7 @@
 &&Language&&##c##
 &&ProgType&&##program##
 &&ProgName&&##minishell##
-&&ExtLib&&##-lreadline##
+&&ExtLib&&##-lreadline -ltinfo##
 &&Sanitize&&##true##
 &&AdvancedMake&&##true##
 &&AMKWidth&&##50##

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 08:32:13 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/02/22 09:53:03 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:44:53 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //--------------------------------------------------
 //                 LOCAL INCLUDES
 //--------------------------------------------------
-#include "common.h"
+# include "common.h"
 
 //--------------------------------------------------
 //                   STRCUTURES
@@ -26,7 +26,7 @@ typedef struct s_dir
 	char	**detailed_path;
 	char	*path;
 	char	*name;
-	t_bool	is_file; //TODO: Add chechking during that the directory is a file
+	t_bool	is_file;
 }	t_dir;
 
 //--------------------------------------------------
@@ -39,7 +39,7 @@ typedef struct s_dir
  * @param path Directory path to create from
  * @return t_dir* Newly created structure (and initialized)
  */
-t_dir* dir_new(const char* path);
+t_dir	*dir_new(const char *path);
 /**
  * @brief Initialize structure of type t_dir using a given path
  * 
@@ -47,12 +47,13 @@ t_dir* dir_new(const char* path);
  * @param path path to initialized to (If empty the function will fail)
  * @return t_bool return status of the initialization (FALSE == Failed)
  */
-t_bool dir_init_from_path(t_dir* dir, const char* path);
+t_bool	dir_init_from_path(t_dir *dir, const char *path);
 
 //====================== NAVIGATION ======================
 /**
  * @brief Get the directory at N pos
- * @warning The returned string is a local reference and while be freed on dir_clear
+ * @warning The returned string is a local 
+ * reference and while be freed on dir_clear
  * 
  * @param dir t_dir to searh in
  * @param pos position of the folder name
@@ -69,19 +70,21 @@ size_t	dir_getlen(t_dir *dir);
 
 //====================== DISPLAY ======================
 /**
- * @brief Generate the display path of the dir (PROMPT_DISP_FULL will modify the output)
+ * @brief Generate the display path of the dir 
+ * (PROMPT_DISP_FULL will modify the output)
  * 
  * @param dir Directory to generate the path from
  * @return char* the returned path
  */
-char *dir_getdisp(t_dir* dir);
+char	*dir_getdisp(t_dir *dir, void *vshell);
 
 //====================== CLEAR ======================
 /**
  * @brief Clear a t_dir structure (on a secure way)
  * 
- * @param dir Ref to the pointer where your t_dir* is stored (! Pointer of Pointer !)
+ * @param dir Ref to the pointer where your t_dir* is stored 
+ * (! Pointer of Pointer !)
  */
-void dir_clear(t_dir **dir);
+void	dir_clear(t_dir **dir);
 
 #endif //DIRECTORIES_H

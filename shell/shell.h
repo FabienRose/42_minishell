@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/03/26 11:30:23 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:41:42 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ typedef struct s_shell
 {
 	char				*last_error;
 	t_dir				*current_dir;
-	struct	sigaction	sa;
-	char				**environement;
+	char				**environment;
+	char				***original_env;
+	struct sigaction	sint_default;
+	struct sigaction	sint_exec;
+	struct sigaction	sint_stdin;
 	t_bool				initialized;
 	int					last_return;
 }	t_shell;
@@ -45,7 +48,7 @@ typedef struct s_shell
  * 
  * @return FALSE if failed
  */
-t_bool	shell_init(t_shell *shell);
+t_bool	shell_init(t_shell *shell, char ***environ);
 
 //====================== START ======================
 /**
@@ -54,7 +57,7 @@ t_bool	shell_init(t_shell *shell);
  * @param shell Global shell structure
  * @return t_bool FALSE if Failed
  */
-t_bool shell_start(t_shell* shell);
+t_bool	shell_start(t_shell *shell);
 
 //====================== SIGNALS ======================
 /**
@@ -63,28 +66,71 @@ t_bool shell_start(t_shell* shell);
  * @param ptr to the main t_shell structure
  * @return t_bool = FALSE if fail
  */
-t_bool shell_init_sig(t_shell* ptr);
+t_bool	shell_init_sig(t_shell *ptr);
 /**
- * @brief Function called by the sigaction system
+ * @brief Function called by the sigaction system when ctrl + '\' is pressed
  * 
  * @param sig Signal ID
  */
 void	shell_sig_handler(int sig);
+/**
+ * @brief Function called by the sigaction system (for sub process)
+ * 
+ * @param sig Signal ID
+ */
+void	shell_sig_handler_exec(int sig);
+/**
+ * @brief Function called by the sigaction system (When listening to stdin)
+ * 
+ * @param sig Signal ID
+ */
+void	shell_sig_handler_stdin(int sig);
+
+/**
+ * @brief Will switch the current SIGINT to the the shell_sig_handler function
+ * 
+ * @param shell Shell in which the sa is
+ * @return t_bool FALSE if failed
+ */
+t_bool	shell_sig_switchdefault(t_shell *shell);
+/**
+ * @brief Will switch the current SIGINT
+ * to the the shell_sig_handler_exec function
+ * 
+ * @param shell Shell in which the sa is
+ * @return t_bool FALSE if failed
+ */
+t_bool	shell_sig_switchexec(t_shell *shell);
+/**
+ * @brief Will switch the current SIGINT
+ * to the the shell_sig_handler_stdin function
+ * 
+ * @param shell Shell in which the sa is
+ * @return t_bool FALSE if failed
+ */
+t_bool	shell_sig_switchstdin(t_shell *shell);
+/**
+ * @brief Restor SIGINT into it's normal function
+ * 
+ * @param shell Shell in which the sa is
+ * @return t_bool FALSED on fail
+ */
+t_bool	shell_sig_switchkill(t_shell *shell);
 
 //====================== ENV ======================
 /**
- * @brief Fecth the environement for to generate a header to the prompt
+ * @brief Fecth the environment for to generate a header to the prompt
  * 
  * @return char* Header to display (data is malloc)
  */
-char *shell_gethead(t_shell *shell);
+char	*shell_gethead(t_shell *shell);
 /**
  * @brief Call to update the shell->current_dir with PWD
  * 
  * @param shell Global shell structure
  * @return t_bool FALSE if Failed
  */
-t_bool shell_update_loc(t_shell *shell);
+t_bool	shell_update_loc(t_shell *shell);
 
 //====================== CLEAR ======================
 /**
@@ -92,6 +138,6 @@ t_bool shell_update_loc(t_shell *shell);
  * 
  * @param shell A pointer to the struct
  */
-void shell_clear(t_shell *shell);
+void	shell_clear(t_shell *shell);
 
 #endif //SHELL_H

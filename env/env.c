@@ -3,35 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 15:21:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/03/25 15:34:36 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/09 17:01:51 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/09 19:24:43 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
-t_bool	update_existing_env(char **env_copy, char *variable, char *entry)
+t_bool	update_existing_env(t_shell *minishell, char *variable, char *entry)
 {
 	int			i;
 	int			var_len;
 	int			has_equals;
-	extern char	**environ;
 
 	i = 0;
 	var_len = ft_strlen(variable);
 	has_equals = ft_strchr(entry, '=') != NULL;
-	while (env_copy[i])
+	while (minishell->environment[i])
 	{
-		if (ft_strncmp(env_copy[i], variable, var_len) == 0
-			&& (env_copy[i][var_len] == '=' || env_copy[i][var_len] == '\0'))
+		if (ft_strncmp(minishell->environment[i], variable, var_len) == 0
+			&& (minishell->environment[i][var_len] == '='
+			|| minishell->environment[i][var_len] == '\0'))
 		{
 			if (!has_equals)
 				return (TRUE);
-			free(env_copy[i]);
-			env_copy[i] = entry;
-			environ = env_copy;
+			free(minishell->environment[i]);
+			minishell->environment[i] = entry;
 			return (TRUE);
 		}
 		i++;
@@ -39,64 +38,60 @@ t_bool	update_existing_env(char **env_copy, char *variable, char *entry)
 	return (FALSE);
 }
 
-t_bool	set_environement(t_shell *minishell, char *variable,
-			char *value, int path_is_malloc)
+t_bool	set_environment(t_shell *minishell, char *variable,
+			char *value, int value_is_malloc)
 {
 	int			i;
 	char		*entry;
-	extern char	**environ;
 
 	entry = create_env(variable, value);
-	if (path_is_malloc)
+	if (value_is_malloc)
 		free(value);
 	if (!entry)
 		return (FALSE);
-	if (update_existing_env(minishell->environement, variable, entry))
+	if (update_existing_env(minishell, variable, entry))
 		return (TRUE);
 	i = 0;
-	while (minishell->environement[i])
+	while (minishell->environment[i])
 		i++;
-	minishell->environement = resize_environ(minishell->environement, i + 2);
-	if (!minishell->environement)
+	minishell->environment = resize_environ(minishell->environment, i + 2);
+	if (!minishell->environment)
 	{
 		free(entry);
 		return (FALSE);
 	}
-	minishell->environement[i] = entry;
-	minishell->environement[i + 1] = NULL;
-	environ = minishell->environement;
+	minishell->environment[i] = entry;
+	minishell->environment[i + 1] = NULL;
 	return (TRUE);
 }
 
 static void	shift_environ(t_shell *minishell, int start)
 {
 	int			j;
-	extern char	**environ;
 
 	j = start;
-	while (minishell->environement[j + 1])
+	while (minishell->environment[j + 1])
 	{
-		minishell->environement[j] = minishell->environement[j + 1];
+		minishell->environment[j] = minishell->environment[j + 1];
 		j++;
 	}
-	minishell->environement[j] = NULL;
-	environ = minishell->environement;
+	minishell->environment[j] = NULL;
 }
 
-t_bool	unset_environement(t_shell *minishell, char *variable)
+t_bool	unset_environment(t_shell *minishell, char *variable)
 {
 	int			i;
 	int			var_len;
 
 	i = -1;
 	var_len = ft_strlen(variable);
-	while (minishell->environement[++i])
+	while (minishell->environment[++i])
 	{
-		if (ft_strncmp(minishell->environement[i], variable, var_len) == 0
-			&& (minishell->environement[i][var_len] == '='
-			|| minishell->environement[i][var_len] == '\0'))
+		if (ft_strncmp(minishell->environment[i], variable, var_len) == 0
+			&& (minishell->environment[i][var_len] == '='
+			|| minishell->environment[i][var_len] == '\0'))
 		{
-			free(minishell->environement[i]);
+			free(minishell->environment[i]);
 			shift_environ(minishell, i);
 			return (TRUE);
 		}

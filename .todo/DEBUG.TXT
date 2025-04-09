@@ -22,4 +22,5 @@ arg=
 arg= ls;echo $arg
 arg = test
 
->>>>>>>>>> $echo crash <<<<<<<<<<
+
+>>>>>>>>>> NO FREE ON EXECVE <<<<<<<
