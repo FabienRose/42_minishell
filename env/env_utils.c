@@ -6,13 +6,13 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:11:54 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 18:54:06 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:24:21 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
-char	*my_getenv(const char* var, char **env)
+char	*my_getenv(const char *var, char **env)
 {
 	int		i;
 	int		var_len;

@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:30:18 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 14:49:07 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:40:05 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,5 +250,11 @@ t_promptret	grp_getio_applytoio(t_grp *grp, t_token *token);
  * @return t_promptret PMT_SUCCESS if success, PMT_ERROR if failed
  */
 t_promptret	grp_expand_wildcard(t_grp *grp, char *extract);
+
+	//--------------------- SUB ---------------------
+/**
+ * @brief Sub function of grp_expand_wildcard
+ */
+t_bool		check_segments(char **seg, char *name, char *extract);
 
 #endif //GROUPS_H

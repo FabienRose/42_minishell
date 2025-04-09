@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:50:21 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/09 16:13:03 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:26:26 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ static t_promptret	grp_io_stdin_apply(t_grp *grp, int *fds)
 		output = ft_gnl(fds[0]);
 	}
 	close(fds[0]);
-	if(output)
+	if (output)
 		free(output);
 	output = ft_strdup("");
-	if(!output)
+	if (!output)
 		return (PMT_ERROR);
 	if (!ft_arraypush_d((void ***)&(grp->io->input_stdin), output))
 	{

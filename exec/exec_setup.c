@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:16:47 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 18:31:31 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:44:13 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_promptret	exec_uniq(t_grp *grp)
 	}
 	waitpid(pid, &return_status, 0);
 	((t_shell *)&(grp->l_shell))->last_return = return_status;
-	if(return_status == 0)
+	if (return_status == 0)
 		return (PMT_SUCCESS);
 	return (PMT_FAILED);
 }
@@ -69,7 +69,7 @@ t_promptret	handle_token(t_grp *grp)
 	else if (grp->token->type == TOK_AND)
 	{
 		status = exec_setup(grp->grp_before);
-		if (status == PMT_SUCCESS 
+		if (status == PMT_SUCCESS
 			&& grp->grp_after)
 			status = exec_setup(grp->grp_after);
 	}
@@ -106,7 +106,9 @@ t_promptret	exec_setup(t_grp *grp)
 	status = PMT_SUCCESS;
 	if (grp->io)
 		status = handle_io(grp, &io_fd);
-	if (grp->cmd && grp->cmd->name && ft_strlen(grp->cmd->name) > 0 && status == PMT_SUCCESS)
+	if (grp->cmd && grp->cmd->name
+		&& ft_strlen(grp->cmd->name) > 0
+		&& status == PMT_SUCCESS)
 	{
 		status = exec_builtins(grp->cmd, grp->l_shell);
 		if (status == PMT_STOP)

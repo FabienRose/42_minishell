@@ -40,6 +40,7 @@ SRCS=	./minishell.c \
 		./utils/util_string.c \
 		./utils/util_errors.c \
 		./builtins/builtin_echo.c \
+		./builtins/builtin_exit.c \
 		./builtins/builtin_pwd.c \
 		./builtins/builtin_cd.c \
 		./builtins/builtin_export.c \
@@ -67,6 +68,7 @@ SRCS=	./minishell.c \
 		./groups/grp_io_stdin_sub.c \
 		./groups/grp_checks_2.c \
 		./groups/grp_checks.c \
+		./groups/grp_wildcards_seg.c \
 		./groups/grp_cmd.c \
 		./groups/grp_tild.c \
 		./groups/grp_init.c \

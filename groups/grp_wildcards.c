@@ -6,56 +6,11 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 20:42:40 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 18:07:45 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:40:20 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "groups.h"
-
-static t_bool	check_segments_final(char **seg, char *name, int pos)
-{
-	int pos_name;
-	int pos_seg;
-
-	pos_name = ft_strlen(name) - 1;
-	pos_seg = ft_strlen(seg[pos]) - 1;
-	while(pos_name >= 0 && pos_seg >= 0)
-	{
-		if(name[pos_name] != seg[pos][pos_seg])
-			return (FALSE);
-		pos_name--;
-		pos_seg--;
-	}
-	return (TRUE);
-}
-
-static t_bool	check_segments(char **seg, char *name, char *extract)
-{
-	char	*pos;
-	int		i;
-
-	pos = name;
-	i = 0;
-	while (seg[i])
-	{
-		if (i == 0 && extract[0] != '*' && ft_strncmp(name, seg[0],
-				ft_strlen(seg[0])) != 0)
-			return (FALSE);
-		if (i == 0 && extract[0] != '*')
-			pos += ft_strlen(seg[0]);
-		else
-		{
-			pos = ft_strnstr(pos, seg[i], ft_strlen(pos));
-			if (!pos)
-				return (FALSE);
-			pos += ft_strlen(seg[i]);
-		}
-		i++;
-	}
-	if (ft_arraylen_d((void **)seg) != 0 && extract[ft_strlen(extract) - 1] != '*')
-		return (check_segments_final(seg, name, ft_arraylen_d((void **)seg) - 1));
-	return (TRUE);
-}
 
 t_bool	wildcard_match(char *name, char *extract)
 {
@@ -97,17 +52,17 @@ t_bool	match_arg_push(char ***argument, char *extract)
 	return (TRUE);
 }
 
-t_promptret grp_expand_wildcard_extended(t_grp *grp, char ***argument)
+static t_promptret	grp_expand_wildcard_extended(t_grp *grp, char ***argument)
 {
-	char 	*current;
+	char	*current;
 	int		i;
-	
+
 	bubble_sort((*argument));
 	i = 0;
 	while ((*argument)[i])
 	{
 		current = ft_strdup((*argument)[i]);
-		if(!current || !cmd_add(grp->cmd, current))
+		if (!current || !cmd_add(grp->cmd, current))
 		{
 			ft_split_release(argument);
 			return (PMT_ERROR);
@@ -117,10 +72,10 @@ t_promptret grp_expand_wildcard_extended(t_grp *grp, char ***argument)
 	ft_split_release(argument);
 	return (PMT_SUCCESS);
 }
+
 t_promptret	grp_expand_wildcard(t_grp *grp, char *extract)
 {
 	char	**argument;
-	
 
 	argument = ft_calloc(1, sizeof(char *));
 	if (!argument || !match_arg_push(&argument, extract))
@@ -128,10 +83,10 @@ t_promptret	grp_expand_wildcard(t_grp *grp, char *extract)
 		free(extract);
 		return (PMT_ERROR);
 	}
-	if(ft_arraylen_d((void **)argument) == 0)
+	if (ft_arraylen_d((void **)argument) == 0)
 	{
 		free(argument);
-		if(!cmd_add(grp->cmd, extract))
+		if (!cmd_add(grp->cmd, extract))
 			return (PMT_ERROR);
 		return (PMT_SUCCESS);
 	}

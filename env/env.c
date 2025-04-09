@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:01:51 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 17:01:51 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/09 19:24:43 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void	shift_environ(t_shell *minishell, int start)
 		j++;
 	}
 	minishell->environment[j] = NULL;
-
 }
 
 t_bool	unset_environment(t_shell *minishell, char *variable)

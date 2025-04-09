@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:47:12 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 16:52:11 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/09 19:24:50 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ t_bool	unset_environment(t_shell *minishell, char *variable);
  * @param env environment
  * @return char*
  */
-char	*my_getenv(const char* var, char **env);
+char	*my_getenv(const char *var, char **env);
 #endif //ENV_H

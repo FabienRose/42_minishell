@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:04:50 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 18:10:47 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/09 19:45:33 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 t_bool	shell_init(t_shell *shell, char ***environ)
 {
-	
-
 	shell->last_error = NULL;
 	shell->current_dir = NULL;
 	if (!shell_init_sig(shell))
