@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:00:14 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 17:03:10 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/09 14:12:53 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static t_bool	cd_builtins(t_cmd *cmd, t_shell *shell)
 		if (!builtin_change_directory(shell, cmd->args))
 			return (TRUE);
 		shell->last_return = 0;
-		shell_update_loc(shell);
 		return (TRUE);
 	}
 	else if (ft_strncmp(cmd->name, "pwd", 4) == 0)

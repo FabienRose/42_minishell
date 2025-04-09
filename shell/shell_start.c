@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:44:39 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 15:38:22 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:12:59 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_bool	shell_start(t_shell *shell)
 	ret = shell_nextprompt(shell);
 	while (ret != PMT_ERROR && ret != PMT_STOP)
 	{
+		if (!shell_update_loc(shell))
+			return (FALSE);
 		ret = shell_nextprompt(shell);
 	}
 	if (ret == PMT_ERROR)

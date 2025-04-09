@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 09:04:15 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 15:40:15 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:15:01 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_bool	shell_update_loc(t_shell *shell)
 	ndir = dir_new(getenv("PWD"));
 	if (!ndir)
 		return (FALSE);
+	//printf("HELLO: %s\n", ndir->path);
 	if (shell->current_dir)
 		dir_clear(&(shell->current_dir));
 	shell->current_dir = ndir;
