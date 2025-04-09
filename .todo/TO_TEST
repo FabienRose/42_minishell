@@ -21,3 +21,5 @@ $arg
 ((cat < minishell.c) > test.txt) && echo 5
 (((cat < minishell.c) > test.txt ) > test.txt) > text.txt
 cat << hello ===> CTRL+D													!!!!!!!!!!!!!
+(cd ../ && echo 5) && echo 6
+(echo "5" && echo "6") && echo "7"
