@@ -6,7 +6,7 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:16:47 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 15:00:12 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:31:31 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_promptret	exec_setup(t_grp *grp)
 	status = PMT_SUCCESS;
 	if (grp->io)
 		status = handle_io(grp, &io_fd);
-	if (grp->cmd && grp->cmd->name && status == PMT_SUCCESS)
+	if (grp->cmd && grp->cmd->name && ft_strlen(grp->cmd->name) > 0 && status == PMT_SUCCESS)
 	{
 		status = exec_builtins(grp->cmd, grp->l_shell);
 		if (status == PMT_STOP)

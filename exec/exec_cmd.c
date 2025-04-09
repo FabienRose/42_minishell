@@ -65,7 +65,7 @@ t_promptret	exec_cmd(t_cmd *cmd, t_shell *shell)
 	int		ret;
 	char	**paths;
 
-	paths = ft_split(getenv("PATH"), ':');
+	paths = ft_split(my_getenv("PATH", shell->environment), ':');
 	if (!paths)
 		return (PMT_ERROR);
 	pid = fork();

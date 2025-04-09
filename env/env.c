@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 00:26:12 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 13:23:01 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/09 17:01:51 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/09 17:01:51 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_bool	update_existing_env(t_shell *minishell, char *variable, char *entry)
 				return (TRUE);
 			free(minishell->environment[i]);
 			minishell->environment[i] = entry;
-			*minishell->original_env = minishell->environment;
 			return (TRUE);
 		}
 		i++;
@@ -63,7 +62,6 @@ t_bool	set_environment(t_shell *minishell, char *variable,
 	}
 	minishell->environment[i] = entry;
 	minishell->environment[i + 1] = NULL;
-	*minishell->original_env = minishell->environment;
 	return (TRUE);
 }
 
@@ -78,7 +76,7 @@ static void	shift_environ(t_shell *minishell, int start)
 		j++;
 	}
 	minishell->environment[j] = NULL;
-	*minishell->original_env = minishell->environment;
+
 }
 
 t_bool	unset_environment(t_shell *minishell, char *variable)

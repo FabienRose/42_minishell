@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 00:11:57 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/01 00:12:31 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/09 18:11:54 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/09 18:54:06 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
+
+char	*my_getenv(const char* var, char **env)
+{
+	int		i;
+	int		var_len;
+	char	*value;
+
+	value = NULL;
+	var_len = ft_strlen(var);
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(var, env[i], var_len - 1) == 0 && env[i][var_len] == '=')
+		{
+			if (ft_strchr(env[i], '='))
+				value = ft_strchr(env[i], '=') + 1;
+			else
+				value = NULL;
+		}
+		i++;
+	}
+	return (value);
+}
 
 t_bool	copy_environ(t_shell *minishell)
 {
@@ -36,7 +59,6 @@ t_bool	copy_environ(t_shell *minishell)
 		}
 	}
 	minishell->environment[size] = NULL;
-	*minishell->original_env = minishell->environment;
 	return (TRUE);
 }
 

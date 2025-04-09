@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 00:26:28 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/01 00:27:48 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/09 16:47:12 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/09 16:52:11 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,12 @@ char	**resize_environ(char **environ, int new_size);
  * @param variable
  */
 t_bool	unset_environment(t_shell *minishell, char *variable);
-
+/**
+ * @brief Get an environment variable
+ * 
+ * @param var variable to get
+ * @param env environment
+ * @return char*
+ */
+char	*my_getenv(const char* var, char **env);
 #endif //ENV_H

@@ -6,11 +6,12 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:16:35 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 14:09:32 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:49:17 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "groups.h"
+#include "shell/shell.h"
 
 t_promptret	grp_parseinput_apply(t_grp *grp, char *name)
 {
@@ -22,7 +23,7 @@ t_promptret	grp_parseinput_apply(t_grp *grp, char *name)
 		return (grp_read_addchar(grp->reader, '$', FALSE));
 	if (ft_strlen(name) == 1 && name[0] == '?')
 		return (grp_apply_lastresult(grp));
-	env_value = getenv(name);
+	env_value = my_getenv(name, ((t_shell *)(grp->l_shell))->environment);
 	if (!env_value)
 		return (PMT_SUCCESS);
 	pos = 0;
