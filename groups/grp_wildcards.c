@@ -6,11 +6,28 @@
 /*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 20:42:40 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 17:09:32 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:07:45 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "groups.h"
+
+static t_bool	check_segments_final(char **seg, char *name, int pos)
+{
+	int pos_name;
+	int pos_seg;
+
+	pos_name = ft_strlen(name) - 1;
+	pos_seg = ft_strlen(seg[pos]) - 1;
+	while(pos_name >= 0 && pos_seg >= 0)
+	{
+		if(name[pos_name] != seg[pos][pos_seg])
+			return (FALSE);
+		pos_name--;
+		pos_seg--;
+	}
+	return (TRUE);
+}
 
 static t_bool	check_segments(char **seg, char *name, char *extract)
 {
@@ -21,7 +38,6 @@ static t_bool	check_segments(char **seg, char *name, char *extract)
 	i = 0;
 	while (seg[i])
 	{
-		printf("%s\n", seg[i]);
 		if (i == 0 && extract[0] != '*' && ft_strncmp(name, seg[0],
 				ft_strlen(seg[0])) != 0)
 			return (FALSE);
@@ -36,8 +52,8 @@ static t_bool	check_segments(char **seg, char *name, char *extract)
 		}
 		i++;
 	}
-	if (i > 0 && extract[ft_strlen(extract) - 1] != '*' && *pos != '\0')
-		return (FALSE);
+	if (ft_arraylen_d((void **)seg) != 0 && extract[ft_strlen(extract) - 1] != '*')
+		return (check_segments_final(seg, name, ft_arraylen_d((void **)seg) - 1));
 	return (TRUE);
 }
 
