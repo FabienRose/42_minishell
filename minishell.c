@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 18:21:35 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 18:21:58 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/09 17:04:47 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/09 17:45:22 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv, char **envp)
 			FONT_RED, FONT_BOLD, FONT_NRM);
 		return (1);
 	}
+	printf("%s\n", my_getenv("qsdqsd", data.environment));
 	if (!shell_start(&data))
 	{
 		util_printerror(&data);

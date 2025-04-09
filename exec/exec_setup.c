@@ -111,6 +111,7 @@ t_promptret	exec_setup(t_grp *grp)
 			return (PMT_STOP);
 		if (status != PMT_SUCCESS)
 			status = exec_cmd(grp->cmd, grp->l_shell);
+		// printf("Getenv :%s\n Copied env :%s\n", getenv());
 	}
 	else if (grp->grp_uniq)
 		status = exec_uniq(grp);
