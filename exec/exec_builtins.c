@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 17:00:14 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 14:12:53 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/09 19:11:39 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/09 19:14:17 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ t_promptret	exec_builtins(t_cmd *cmd, t_shell *shell)
 		status = PMT_SUCCESS;
 	else if (cd_builtins(cmd, shell))
 		status = PMT_SUCCESS;
-	else if (strncmp(cmd->name, "exit", 5) == 0)
-		status = PMT_STOP;
+	else if (ft_strncmp(cmd->name, "exit", 5) == 0)
+		status = builtin_exit(shell, cmd->args);
 	else
 		status = PMT_FAILED;
 	return (status);

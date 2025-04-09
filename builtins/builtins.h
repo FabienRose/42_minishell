@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 09:54:35 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/01 10:01:04 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/09 19:32:25 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/09 19:32:25 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,14 @@ t_bool	add_env(t_shell *shell, char *arg);
  * @return t_bool TRUE if the variable was unset, FALSE it fails
  */
 t_bool	builtin_unset(t_shell *shell, char **args);
+//====================== EXIT ======================
+/**
+ * @brief Exit the shell
+ * 
+ * @param shell t_shell structure
+ * @param args arguments to exit
+ */
+t_promptret	builtin_exit(t_shell *shell, char **args);
 //====================== PRINT_ENV ======================
 /**
  * @brief Print the environment
