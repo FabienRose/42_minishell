@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 20:26:38 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 20:26:53 by fmixtur          ###   ########.ch       */
+/*   Updated: 2025/04/09 16:20:01 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,16 @@ int	get_stdin_fd(t_grp *grp)
 	int		fd[2];
 	int		i;
 
-	data = calloc(1, 1);
+	data = ft_calloc(1, 1);
 	pipe(fd);
 	if (fd[1] == -1)
 		return (-1);
 	i = 0;
 	while (grp->io->input_stdin[i])
-		data = ft_strjoin(data, grp->io->input_stdin[i++]);
+	{
+		if(!ft_strmerge(&data, grp->io->input_stdin[i++], NULL, NULL))
+			return (-1);
+	}
 	ft_putstr_fd(data, fd[1]);
 	free(data);
 	close(fd[1]);

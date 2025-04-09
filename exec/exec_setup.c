@@ -53,7 +53,10 @@ t_promptret	exec_uniq(t_grp *grp)
 		return (PMT_STOP);
 	}
 	waitpid(pid, &return_status, 0);
-	return (return_status);
+	((t_shell *)&(grp->l_shell))->last_return = return_status;
+	if(return_status == 0)
+		return (PMT_SUCCESS);
+	return (PMT_FAILED);
 }
 
 t_promptret	handle_token(t_grp *grp)
@@ -66,15 +69,14 @@ t_promptret	handle_token(t_grp *grp)
 	else if (grp->token->type == TOK_AND)
 	{
 		status = exec_setup(grp->grp_before);
-		if (((t_shell *)grp->l_shell)->last_return
-			== PMT_SUCCESS && grp->grp_after)
+		if (status == PMT_SUCCESS 
+			&& grp->grp_after)
 			status = exec_setup(grp->grp_after);
 	}
 	else if (grp->token->type == TOK_OR)
 	{
 		status = exec_setup(grp->grp_before);
-		if (((t_shell *)grp->l_shell)->last_return
-			== PMT_FAILED && grp->grp_after)
+		if (status == PMT_FAILED && grp->grp_after)
 			status = exec_setup(grp->grp_after);
 	}
 	return (status);

@@ -16,6 +16,6 @@
 		"groups.h": "c",
 		"commands.h": "c",
 		"tokens.h": "c",
-		"directories.h": "c"
+		"exec.h": "c"
 	}
 }
