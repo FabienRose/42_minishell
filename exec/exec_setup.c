@@ -5,40 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 16:19:57 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/10 16:19:57 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/10 16:35:25 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 16:35:25 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
-
-t_promptret	handle_pipe(t_grp *grp, t_promptret status)
-{
-	t_fd	pipe_fd;
-	pid_t	pid;
-
-	save_fd(&pipe_fd);
-	if (pipe(pipe_fd.pipe_fd) == -1)
-		return (PMT_ERROR);
-	pid = fork();
-	if (pid == 0)
-	{
-		shell_sig_switch_quit(grp->l_shell);
-		close(pipe_fd.pipe_fd[0]);
-		dup2(pipe_fd.pipe_fd[1], STDOUT_FILENO);
-		close(pipe_fd.pipe_fd[1]);
-		exec_setup(grp->grp_before);
-		return (PMT_STOP);
-	}
-	close(pipe_fd.pipe_fd[1]);
-	dup2(pipe_fd.pipe_fd[0], STDIN_FILENO);
-	close(pipe_fd.pipe_fd[0]);
-	status = exec_setup(grp->grp_after);
-	waitpid(pid, NULL, 0);
-	if (!reset_fd(&pipe_fd))
-		return (PMT_ERROR);
-	return (status);
-}
 
 t_promptret	exec_uniq(t_grp *grp)
 {
@@ -46,6 +18,8 @@ t_promptret	exec_uniq(t_grp *grp)
 	int		return_status;
 
 	pid = fork();
+	if (pid == -1)
+		return (PMT_ERROR);
 	if (pid == 0)
 	{
 		shell_sig_switch_quit(grp->l_shell);

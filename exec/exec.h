@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 20:27:05 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 20:27:05 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/10 16:35:54 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 16:35:57 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_fd
  * @return t_promptret Status of the execution
  */
 t_promptret	exec_setup(t_grp *grp);
+t_promptret	handle_pipe(t_grp *grp, t_promptret status);
+
 	//--------------------- Execution ---------------------
 /**
  * @brief Execute a builtins command
