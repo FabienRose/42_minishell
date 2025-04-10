@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.h                                            :+:      :+:    :+:   */
+/*   exec_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 09:02:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 15:41:42 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/10 14:36:05 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 14:36:56 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_shell
 	struct sigaction	sint_default;
 	struct sigaction	sint_exec;
 	struct sigaction	sint_stdin;
+	struct sigaction	squit;
 	t_bool				initialized;
 	int					last_return;
 }	t_shell;
@@ -85,6 +86,7 @@ void	shell_sig_handler_exec(int sig);
  * @param sig Signal ID
  */
 void	shell_sig_handler_stdin(int sig);
+void	shell_sig_handler_quit(int sig);
 
 /**
  * @brief Will switch the current SIGINT to the the shell_sig_handler function
@@ -116,6 +118,7 @@ t_bool	shell_sig_switchstdin(t_shell *shell);
  * @return t_bool FALSED on fail
  */
 t_bool	shell_sig_switchkill(t_shell *shell);
+t_bool	shell_sig_switch_quit(t_shell *shell);
 
 //====================== ENV ======================
 /**

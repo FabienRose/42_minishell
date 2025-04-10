@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_signals_sub.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 15:08:23 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 15:44:07 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/10 16:17:06 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 16:17:06 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_bool	shell_sig_switchexec(t_shell *shell)
 {
 	if (sigaction(SIGINT, &(shell->sint_exec), NULL) == -1)
 		return (FALSE);
+	if (sigaction(SIGQUIT, &(shell->squit), NULL) == -1)
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -30,6 +32,7 @@ t_bool	shell_sig_switchdefault(t_shell *shell)
 {
 	if (sigaction(SIGINT, &(shell->sint_default), NULL) == -1)
 		return (FALSE);
+	signal(SIGQUIT, SIG_IGN);
 	return (TRUE);
 }
 
@@ -37,5 +40,12 @@ t_bool	shell_sig_switchkill(t_shell *shell)
 {
 	(void)shell;
 	signal(SIGINT, SIG_DFL);
+	return (TRUE);
+}
+
+t_bool	shell_sig_switch_quit(t_shell *shell)
+{
+	(void)shell;
+	signal(SIGQUIT, SIG_DFL);
 	return (TRUE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 18:16:47 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/10 12:00:58 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/10 16:19:57 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 16:19:57 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,20 @@ t_promptret	handle_pipe(t_grp *grp, t_promptret status)
 	pid = fork();
 	if (pid == 0)
 	{
+		shell_sig_switch_quit(grp->l_shell);
 		close(pipe_fd.pipe_fd[0]);
 		dup2(pipe_fd.pipe_fd[1], STDOUT_FILENO);
 		close(pipe_fd.pipe_fd[1]);
 		exec_setup(grp->grp_before);
 		return (PMT_STOP);
 	}
-	else
-	{
-		close(pipe_fd.pipe_fd[1]);
-		dup2(pipe_fd.pipe_fd[0], STDIN_FILENO);
-		close(pipe_fd.pipe_fd[0]);
-		status = exec_setup(grp->grp_after);
-		waitpid(pid, NULL, 0);
-		reset_fd(&pipe_fd);
-	}
+	close(pipe_fd.pipe_fd[1]);
+	dup2(pipe_fd.pipe_fd[0], STDIN_FILENO);
+	close(pipe_fd.pipe_fd[0]);
+	status = exec_setup(grp->grp_after);
+	waitpid(pid, NULL, 0);
+	if (!reset_fd(&pipe_fd))
+		return (PMT_ERROR);
 	return (status);
 }
 
@@ -49,6 +48,7 @@ t_promptret	exec_uniq(t_grp *grp)
 	pid = fork();
 	if (pid == 0)
 	{
+		shell_sig_switch_quit(grp->l_shell);
 		exec_setup(grp->grp_uniq);
 		return (PMT_STOP);
 	}
@@ -120,7 +120,7 @@ t_promptret	exec_setup(t_grp *grp)
 		status = exec_uniq(grp);
 	if (grp->token && status != PMT_STOP)
 		status = handle_token(grp);
-	if (grp->io)
-		reset_fd(&io_fd);
+	if (grp->io && !reset_fd(&io_fd))
+		return (PMT_ERROR);
 	return (status);
 }

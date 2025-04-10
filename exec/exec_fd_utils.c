@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 20:25:46 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 20:26:01 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/10 16:19:50 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 16:19:50 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 t_bool	reset_fd(t_fd *fd)
 {
-	dup2(fd->saved_stdin, STDIN_FILENO);
-	dup2(fd->saved_stdout, STDOUT_FILENO);
+	if (dup2(fd->saved_stdin, STDIN_FILENO) == -1)
+		return (FALSE);
+	if (dup2(fd->saved_stdout, STDOUT_FILENO) == -1)
+		return (FALSE);
 	close(fd->saved_stdin);
 	close(fd->saved_stdout);
 	return (TRUE);

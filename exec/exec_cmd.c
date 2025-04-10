@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 18:22:11 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 14:44:45 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/10 16:17:25 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 16:19:41 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,24 @@ t_bool	exec_path(char **paths, t_cmd *cmd, t_shell *shell)
 
 t_promptret	handle_child_process(t_cmd *cmd, t_shell *shell, char **paths)
 {
+	shell_sig_switch_quit(shell);
 	exec_path(paths, cmd, shell);
 	ft_split_release(&paths);
 	shell->last_return = 127;
 	return (PMT_STOP);
+}
+
+static t_promptret	exec_cmd_test(t_cmd *cmd, t_shell *shell)
+{
+	if (!my_getenv("PATH", shell->environment))
+	{
+		ft_putstr_fd("Minishell: command not found: ", 2);
+		ft_putstr_fd(cmd->name, 2);
+		ft_putstr_fd("\n", 2);
+		shell->last_return = 127;
+		return (PMT_FAILED);
+	}
+	return (PMT_SUCCESS);
 }
 
 t_promptret	exec_cmd(t_cmd *cmd, t_shell *shell)
@@ -65,6 +79,8 @@ t_promptret	exec_cmd(t_cmd *cmd, t_shell *shell)
 	int		ret;
 	char	**paths;
 
+	if (exec_cmd_test(cmd, shell) != PMT_SUCCESS)
+		return (PMT_FAILED);
 	paths = ft_split(my_getenv("PATH", shell->environment), ':');
 	if (!paths)
 		return (PMT_ERROR);

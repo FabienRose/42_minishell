@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chk_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 13:24:16 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/06 13:27:22 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/10 16:17:17 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 16:17:17 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	chk_onquote(t_chk *chk, char c)
 
 static t_promptret	chk_onpar(t_chk *chk, char c)
 {
+	if (chk->in_sq || chk->in_dq)
+		return (PMT_SUCCESS);
 	if (c == '(')
 		chk->par_count++;
 	else if (c == ')')

@@ -1,17 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pmt_start.c                                        :+:      :+:    :+:   */
+/*   settings.json                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 12:14:23 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/10 11:53:55 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/10 16:27:27 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 16:27:27 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prompt.h"
 #include "shell/shell.h"
+
+static void	pmt_start_gv(t_pmt *pmt)
+{
+	if (g_onint == 1)
+		printf("\n");
+	if (g_onint == 2)
+		((t_shell *)(pmt->l_shell))->last_return = 131;
+	g_onint = 0;
+}
 
 t_promptret	pmt_start(t_pmt *pmt)
 {
@@ -19,9 +28,7 @@ t_promptret	pmt_start(t_pmt *pmt)
 
 	if (!pmt || !pmt->disp)
 		return (PMT_ERROR);
-	if (g_onint)
-		printf("\n");
-	g_onint = 0;
+	pmt_start_gv(pmt);
 	pmt->prompt = readline(pmt->disp);
 	if (pmt->prompt && ft_strlen(pmt->prompt) > 0 && pmt->prompt[0] != '\n')
 	{
@@ -37,6 +44,8 @@ t_promptret	pmt_start(t_pmt *pmt)
 			return (status);
 		return (pmt_exec(pmt));
 	}
+	if (!pmt->prompt)
+		printf("exit\n");
 	if (!pmt->prompt)
 		return (PMT_STOP);
 	return (PMT_SUCCESS);

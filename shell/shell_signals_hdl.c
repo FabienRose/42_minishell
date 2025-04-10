@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_signals_hdl.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:06:29 by kgauthie          #+#    #+#             */
-/*   Updated: 2025/04/06 15:42:03 by kgauthie         ###   ########.fr       */
+/*   Created: 2025/04/10 16:16:50 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/10 16:16:50 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,14 @@ void	shell_sig_handler_stdin(int sig)
 	if (sig == SIGINT)
 	{
 		g_onint = 1;
+	}
+}
+
+void	shell_sig_handler_quit(int sig)
+{
+	if (sig == SIGQUIT)
+	{
+		printf("Quit (core dumped)\n");
+		g_onint = 2;
 	}
 }

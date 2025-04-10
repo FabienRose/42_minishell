@@ -24,3 +24,4 @@ cat << hello ===> CTRL+D													!!!!!!!!!!!!!
 (cd ../ && echo 5) && echo 6
 (echo "5" && echo "6") && echo "7"
 (.testers/success 6 || .testers/failed 5) && .testers/success 3
+(cat minishell.c | grep "{" | wc -l) > test.txt >> text.txt > testest.txt >> tex2t.txt 
