@@ -23,3 +23,4 @@ $arg
 cat << hello ===> CTRL+D													!!!!!!!!!!!!!
 (cd ../ && echo 5) && echo 6
 (echo "5" && echo "6") && echo "7"
+(.testers/success 6 || .testers/failed 5) && .testers/success 3

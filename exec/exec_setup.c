@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgauthie <kgauthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 18:16:47 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/09 19:44:13 by kgauthie         ###   ########.fr       */
+/*   Updated: 2025/04/10 12:00:58 by kgauthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_promptret	exec_uniq(t_grp *grp)
 		return (PMT_STOP);
 	}
 	waitpid(pid, &return_status, 0);
-	((t_shell *)&(grp->l_shell))->last_return = return_status;
+	((t_shell *)(grp->l_shell))->last_return = return_status;
 	if (return_status == 0)
 		return (PMT_SUCCESS);
 	return (PMT_FAILED);
