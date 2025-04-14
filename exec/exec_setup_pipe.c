@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmixtur <fmixtur@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 16:36:26 by fmixtur           #+#    #+#             */
-/*   Updated: 2025/04/10 16:41:45 by fmixtur          ###   ########.ch       */
+/*   Created: 2025/04/10 23:33:09 by fmixtur           #+#    #+#             */
+/*   Updated: 2025/04/11 00:08:22 by fmixtur          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static t_promptret	handle_pipe_sub(t_grp *grp, t_promptret status,
 		return (PMT_ERROR);
 	close(pipe_fd.pipe_fd[0]);
 	status = exec_setup(grp->grp_after);
-	waitpid(pid, NULL, 0);
 	if (!reset_fd(&pipe_fd))
 		return (PMT_ERROR);
+	waitpid(pid, NULL, 0);
 	return (status);
 }
 
